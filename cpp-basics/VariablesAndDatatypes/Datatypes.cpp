@@ -9,7 +9,7 @@ int main(){
     // float
     float share = 3.77;
 
-    // char datatype
+    // char datatype -- always use ' ' to define
     char alphabet = 'z';
 
     // Double
