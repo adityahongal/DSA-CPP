@@ -44,7 +44,7 @@ int binaryToDecimal(int n) {
 int main(){
 
     int binaryNumber;
-    cout << "Enter a number: ";
+    cout << "Enter a Binary number: ";
     cin >> binaryNumber;
     cout << binaryToDecimal(binaryNumber) << endl;
 
