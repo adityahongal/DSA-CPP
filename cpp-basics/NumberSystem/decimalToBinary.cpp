@@ -41,7 +41,7 @@ int decimalToBinaryDivisionMethod(int n) {
     while(n>0) {
         int bit = n % 2;
         // cout << bit << endl;
-        binaryNumber = bit * pow(10, i++) + binaryNumber;
+        binaryNumber = bit * pow(10, i++) + binaryNumber;               // To reverse it into integer representation
         n = n / 2;
     }
     return binaryNumber;
