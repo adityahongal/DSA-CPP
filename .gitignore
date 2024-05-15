@@ -2,3 +2,5 @@ a.out
 output/
 output
 /output/
+.vscode
+settings.json
