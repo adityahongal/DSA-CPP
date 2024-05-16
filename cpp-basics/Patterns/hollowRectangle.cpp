@@ -11,6 +11,8 @@
 // similarly col 0 and col 5 contains all stars
 // rest all are blank spaces
 
+// Also we are using length-1, which is n-1 because we are using ZERO based numbering which starts from 0,1,2......n-1
+
 #include<iostream>
 using namespace std;
 
