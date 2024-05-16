@@ -11,11 +11,24 @@ int main(){
     // row -> outer loop 
     // column -> inner loop 
 
-    for(int row = 0; row < 4; row++){
-        for(int col = 0; col < 4; col++){
+    // for(int row = 0; row < 4; row++){
+    //     for(int col = 0; col < 4; col++){
+    //         cout << "*" << " ";
+    //     }
+    //     // print on newline after every row
+    //     cout << endl;
+    // }
+
+    // SQUARE BASED ON USER INPUTS
+
+    int side;
+    cout << "Enter the side of the square: ";
+    cin >> side;
+
+    for (int row = 0; row < side; row++){
+        for(int col = 0; col < side; col++){
             cout << "*" << " ";
         }
-        // print on newline after every row
         cout << endl;
     }
     return 0;
