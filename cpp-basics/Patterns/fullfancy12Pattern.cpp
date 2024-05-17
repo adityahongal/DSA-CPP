@@ -1,7 +1,4 @@
-// Fancy 12 pattern
-
-// In even index print numbers
-// In odd index print stars
+// Full Fancy 12 pattern
 
 // It runs good till n=9;
 
@@ -22,10 +19,27 @@ void fancy12(int n) {
   }
 }
 
+void fullfancy12(int n) {
+    fancy12(n);
+
+    // Inverted pattern of fancy12
+    n--;
+    for (int i = 0; i < n; i++) {
+        for ( int j = 0; j < 2 * (n - i) - 1; j++) {
+
+        if (j % 2 == 0)
+          cout << n -i;
+        else
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
+
 int main() {
 
     int n;
     cin >> n;
-    fancy12(n);
+    fullfancy12(n);
     return 0;
 }
