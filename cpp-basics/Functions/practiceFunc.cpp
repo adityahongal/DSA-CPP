@@ -49,15 +49,49 @@ using namespace std;
 //     }
 // }
 
-void Factorial(){
-    int n;
-    cout << "Enter a number: ";
-    cin >> n;
-    long long int fact = 1;
-    for ( int i = 1; i <= n; i++){
-        fact = fact * i;
-        cout << fact << endl;
+// void Factorial(){
+//     int n;
+//     cout << "Enter a number: ";
+//     cin >> n;
+//     long long int fact = 1;
+//     for ( int i = 1; i <= n; i++){
+//         fact = fact * i;
+//         cout << fact << endl;
+//     }
+// }
+
+// check prime or not
+bool CheckPrime() {
+  // divisible by one or self only.
+  // not perfectly divisible by other numbers
+
+  // method to solve
+  // we will not check divisibility with self and 1
+  // we will check with all the other numbers that in the range of
+  // 2 to N-1,
+  // where N is the number you are checking prime for,
+  // 2 is to skip 1 and N-1 is to skip the number you are checking
+
+  int num;
+  cout << "Enter a number: ";
+  cin >> num;
+
+  bool isPrime = true;  // Flag to track if the number is prime
+
+  for (int i = 2; i < num; i++) {
+    if (num % i == 0) {
+      isPrime = false;
+      break;  // Exit the loop if not prime
     }
+  }
+
+  if (isPrime) {
+    cout << num << " is a prime number" << endl;
+  } else {
+    cout << num << " is not a prime number" << endl;
+  }
+
+  return isPrime; // You can optionally return the primality result
 }
 
 int main(){
@@ -66,7 +100,8 @@ int main(){
     // printAllDigits();
     // AreaOfCircle();
     // checkEvenOdd();
-    Factorial();
+    // Factorial();
+    CheckPrime();
 
     return 0;
 }
