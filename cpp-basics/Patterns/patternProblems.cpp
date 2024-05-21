@@ -169,15 +169,30 @@ using namespace std;
     
 // }
 
-void floydsTriangle() {
-  int size;
+// void floydsTriangle() {
+//   int size;
+//   cout << "Enter Size of pattern" << endl;
+//   cin >> size;
+//   int c = 1;
+//   for (int row = 0; row < size; row++) {
+//     for (int col = 0; col <= row ; col++) {
+//       cout << c << "  ";
+//       c++;
+//     }
+//     cout << endl;
+//   }
+// }
+
+void pascalsTriangle() {
+  int n;
   cout << "Enter Size of pattern" << endl;
-  cin >> size;
-  int c = 1;
-  for (int row = 0; row < size; row++) {
-    for (int col = 0; col <= row ; col++) {
-      cout << c << "  ";
-      c++;
+  cin >> n;
+
+  for (int row = 1; row <= n; row++) {
+    int C = 1;
+    for (int col = 1; col <= row; col++) {
+      cout << C << " ";
+      C = C * (row - col) / col;
     }
     cout << endl;
   }
@@ -192,7 +207,8 @@ int main(){
     // fancyPatternOne();
     // fancyPatternTwo();
     // fancyPatternThree();
-    floydsTriangle();
+    // floydsTriangle();
+    pascalsTriangle();
 
     return 0;
 }
