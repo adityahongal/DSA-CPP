@@ -22,19 +22,39 @@ using namespace std;
 //     }
 // }
 
-void AreaOfCircle(){
-    float radius;
-    cout << "Enter radius: ";
-    cin >> radius;
-    float area = 3.14 * radius * radius;
-    cout << "Area of circle is: " << area << endl;
+// void AreaOfCircle(){
+//     float radius;
+//     cout << "Enter radius: ";
+//     cin >> radius;
+//     float area = 3.14 * radius * radius;
+//     cout << "Area of circle is: " << area << endl;
+// }
+
+void checkEvenOdd(){
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+    // if(n % 2 == 0){
+    //     cout << n << " is even" << endl;
+    // }else{
+    //     cout << n << " is odd" << endl;
+    // }
+
+    // Bitwise method
+    if((n & 1) == 0 ){
+        cout << n << " is even" << endl;
+    }
+    else{
+        cout << n << " is odd" << endl;
+    }
 }
 
 int main(){
 
     // KMtoMiles();
     // printAllDigits();
-    AreaOfCircle();
+    // AreaOfCircle();
+    checkEvenOdd();
 
     return 0;
 }
