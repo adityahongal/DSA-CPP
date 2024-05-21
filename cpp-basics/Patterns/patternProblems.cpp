@@ -81,36 +81,72 @@ using namespace std;
 //     }
 // }
 
-void fancyPatternOne(){
+// void fancyPatternOne(){
+//     int n;
+//     cout << "Enter the size of pattern:" << endl;
+//     cin >> n;
+
+//     // It works till only N = 9 so,
+//     // if ( n > 9){
+//     //     cout << "Please put value <= 9. " << endl;
+//     //     return;
+//     // }
+//     assert(n<=9);           // Can be used instead of above if statement.
+
+//     // outer loop
+//     for ( int row = 0; row < n; row++){
+
+//         int start_num_index = 8 - row;             // from where to start index
+//         int num = row + 1;                         // start of printing numbers
+//         int count_num = num;                      // number of times the number should be printed
+//         for ( int col = 0; col < 17; col ++){
+//             if ( col == start_num_index && count_num > 0){
+//                 cout << num;
+//                 start_num_index+=2;                 // the numbers print skipping two indexes
+//                 count_num--;
+//             }
+//             else {
+//                 cout << "*";
+//             }
+//         }
+//         cout << endl;
+//     }
+// }
+
+void fancyPatternTwo(){
     int n;
     cout << "Enter the size of pattern:" << endl;
     cin >> n;
 
-    // It works till only N = 9 so,
-    // if ( n > 9){
-    //     cout << "Please put value <= 9. " << endl;
-    //     return;
-    // }
-    assert(n<=9);           // Can be used instead of above if statement.
-
-    // outer loop
+    // upper half of pattern
+    int c = 1;
     for ( int row = 0; row < n; row++){
-
-        int start_num_index = 8 - row;             // from where to start index
-        int num = row + 1;                         // start of printing numbers
-        int count_num = num;                      // number of times the number should be printed
-        for ( int col = 0; col < 17; col ++){
-            if ( col == start_num_index && count_num > 0){
-                cout << num;
-                start_num_index+=2;                 // the numbers print skipping two indexes
-                count_num--;
-            }
-            else {
+        for ( int col = 0; col <= row; col++ ){
+            cout << c ;
+            c++;
+            if ( col < row ){
                 cout << "*";
             }
         }
         cout << endl;
     }
+    //cout << "Now C:" << c ;                  // to check the value of start number after upper loop
+
+    // lower half of pattern
+    int start = c - n;
+    for ( int row = 0; row < n; row++){
+        int k = start;
+        for ( int col = 0; col <= n - row - 1; col ++){                   // col <= n - row - 1
+            cout << k ;
+            k++;
+            if ( col < n - row - 1 ){
+                cout << "*";
+            }
+        }
+        start = start - ( n - row - 1);
+        cout << endl;
+    }
+
 }
 
 int main(){
@@ -119,7 +155,8 @@ int main(){
     // numericHollowInvertedHalfPyramid();
     // numericPalindromeEquilateralPyramid();
     // solidHalfDiamond();
-    fancyPatternOne();
+    // fancyPatternOne();
+    fancyPatternTwo();
 
     return 0;
 }
