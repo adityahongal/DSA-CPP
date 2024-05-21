@@ -61,37 +61,67 @@ using namespace std;
 // }
 
 // check prime or not
-bool CheckPrime() {
-  // divisible by one or self only.
-  // not perfectly divisible by other numbers
+// bool CheckPrime() {
+//   // divisible by one or self only.
+//   // not perfectly divisible by other numbers
 
-  // method to solve
-  // we will not check divisibility with self and 1
-  // we will check with all the other numbers that in the range of
-  // 2 to N-1,
-  // where N is the number you are checking prime for,
-  // 2 is to skip 1 and N-1 is to skip the number you are checking
+//   // method to solve
+//   // we will not check divisibility with self and 1
+//   // we will check with all the other numbers that in the range of
+//   // 2 to N-1,
+//   // where N is the number you are checking prime for,
+//   // 2 is to skip 1 and N-1 is to skip the number you are checking
 
-  int num;
-  cout << "Enter a number: ";
-  cin >> num;
+//   int num;
+//   cout << "Enter a number: ";
+//   cin >> num;
 
-  bool isPrime = true;  // Flag to track if the number is prime
+//   bool isPrime = true;  // Flag to track if the number is prime
 
+//   for (int i = 2; i < num; i++) {
+//     if (num % i == 0) {
+//       isPrime = false;
+//       break;  // Exit the loop if not prime
+//     }
+//   }
+
+//   if (isPrime) {
+//     cout << num << " is a prime number" << endl;
+//   } else {
+//     cout << num << " is not a prime number" << endl;
+//   }
+
+//   return isPrime; // You can optionally return the primality result
+// }
+
+// print all prime numbers from 1 to N
+
+bool CheckPrime(int num, bool printFlag) {
   for (int i = 2; i < num; i++) {
     if (num % i == 0) {
-      isPrime = false;
-      break;  // Exit the loop if not prime
+      if (printFlag) {
+        cout << num << " is not a prime number" << endl;
+      }
+      return false;
     }
   }
 
-  if (isPrime) {
+  if (printFlag) {
     cout << num << " is a prime number" << endl;
-  } else {
-    cout << num << " is not a prime number" << endl;
   }
+  return true;
+}
 
-  return isPrime; // You can optionally return the primality result
+void PrintPrimeFromOneToN(int N) {
+    cout << "Prime Number from 1 to " << N << " are :" << endl;
+
+  for (int i = 1; i <= N; i++) {
+    bool isPrime = CheckPrime(i, false);
+    if (isPrime) {
+      cout << i << " ";
+    }
+  }
+  cout << endl;
 }
 
 int main(){
@@ -101,7 +131,8 @@ int main(){
     // AreaOfCircle();
     // checkEvenOdd();
     // Factorial();
-    CheckPrime();
+    // CheckPrime();
+    PrintPrimeFromOneToN(100);
 
     return 0;
 }
