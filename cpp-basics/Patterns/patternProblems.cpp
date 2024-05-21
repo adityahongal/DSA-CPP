@@ -113,40 +113,60 @@ using namespace std;
 //     }
 // }
 
-void fancyPatternTwo(){
+// void fancyPatternTwo(){
+//     int n;
+//     cout << "Enter the size of pattern:" << endl;
+//     cin >> n;
+
+//     // upper half of pattern
+//     int c = 1;
+//     for ( int row = 0; row < n; row++){
+//         for ( int col = 0; col <= row; col++ ){
+//             cout << c ;
+//             c++;
+//             if ( col < row ){
+//                 cout << "*";
+//             }
+//         }
+//         cout << endl;
+//     }
+//     //cout << "Now C:" << c ;                  // to check the value of start number after upper loop
+
+//     // lower half of pattern
+//     int start = c - n;
+//     for ( int row = 0; row < n; row++){
+//         int k = start;
+//         for ( int col = 0; col <= n - row - 1; col ++){                   // col <= n - row - 1
+//             cout << k ;
+//             k++;
+//             if ( col < n - row - 1 ){
+//                 cout << "*";
+//             }
+//         }
+//         start = start - ( n - row - 1);
+//         cout << endl;
+//     }
+
+// }
+
+void fancyPatternThree(){
     int n;
     cout << "Enter the size of pattern:" << endl;
     cin >> n;
 
-    // upper half of pattern
-    int c = 1;
-    for ( int row = 0; row < n; row++){
-        for ( int col = 0; col <= row; col++ ){
-            cout << c ;
-            c++;
-            if ( col < row ){
-                cout << "*";
+    for (int row = 0; row < n; row++) {
+        int cond = row <= n/2 ? 2 * row : 2 * ( n - row - 1 );
+        for ( int col = 0; col <= cond; col++){
+            if ( col <= cond/2 ){
+                cout << col + 1;
+            }
+            else {
+                cout << cond - col + 1;
             }
         }
         cout << endl;
     }
-    //cout << "Now C:" << c ;                  // to check the value of start number after upper loop
-
-    // lower half of pattern
-    int start = c - n;
-    for ( int row = 0; row < n; row++){
-        int k = start;
-        for ( int col = 0; col <= n - row - 1; col ++){                   // col <= n - row - 1
-            cout << k ;
-            k++;
-            if ( col < n - row - 1 ){
-                cout << "*";
-            }
-        }
-        start = start - ( n - row - 1);
-        cout << endl;
-    }
-
+    
 }
 
 int main(){
@@ -156,7 +176,8 @@ int main(){
     // numericPalindromeEquilateralPyramid();
     // solidHalfDiamond();
     // fancyPatternOne();
-    fancyPatternTwo();
+    // fancyPatternTwo();
+    fancyPatternThree();
 
     return 0;
 }
