@@ -183,16 +183,40 @@ using namespace std;
 //   }
 // }
 
-void pascalsTriangle() {
+// void pascalsTriangle() {
+//   int n;
+//   cout << "Enter Size of pattern" << endl;
+//   cin >> n;
+
+//   for (int row = 1; row <= n; row++) {
+//     int C = 1;
+//     for (int col = 1; col <= row; col++) {
+//       cout << C << " ";
+//       C = C * (row - col) / col;                 // formula of Binomial Co-efficient
+//     }
+//     cout << endl;
+//   }
+// }
+
+void butterflyPattern(){
   int n;
   cout << "Enter Size of pattern" << endl;
   cin >> n;
 
-  for (int row = 1; row <= n; row++) {
-    int C = 1;
-    for (int col = 1; col <= row; col++) {
-      cout << C << " ";
-      C = C * (row - col) / col;
+  for ( int row = 0; row < 2 * n; row++ ){
+    int cond = row < n ? row : n + ( n - row - 1 );
+    int space_count = row < n ? 2 * ( n - cond - 1 ) : row - cond - 1;
+    for ( int col = 0; col < 2 * n; col++){
+      if ( col <= cond ){
+        cout << "* ";
+      }
+      else if ( space_count > 0){
+        cout << "  ";
+        space_count--;
+      }
+      else {
+        cout << "* ";
+      }
     }
     cout << endl;
   }
@@ -208,7 +232,8 @@ int main(){
     // fancyPatternTwo();
     // fancyPatternThree();
     // floydsTriangle();
-    pascalsTriangle();
+    // pascalsTriangle();
+    butterflyPattern();
 
     return 0;
 }
