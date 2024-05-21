@@ -30,22 +30,33 @@ using namespace std;
 //     cout << "Area of circle is: " << area << endl;
 // }
 
-void checkEvenOdd(){
+// void checkEvenOdd(){
+//     int n;
+//     cout << "Enter a number: ";
+//     cin >> n;
+//     // if(n % 2 == 0){
+//     //     cout << n << " is even" << endl;
+//     // }else{
+//     //     cout << n << " is odd" << endl;
+//     // }
+
+//     // Bitwise method
+//     if((n & 1) == 0 ){
+//         cout << n << " is even" << endl;
+//     }
+//     else{
+//         cout << n << " is odd" << endl;
+//     }
+// }
+
+void Factorial(){
     int n;
     cout << "Enter a number: ";
     cin >> n;
-    // if(n % 2 == 0){
-    //     cout << n << " is even" << endl;
-    // }else{
-    //     cout << n << " is odd" << endl;
-    // }
-
-    // Bitwise method
-    if((n & 1) == 0 ){
-        cout << n << " is even" << endl;
-    }
-    else{
-        cout << n << " is odd" << endl;
+    long long int fact = 1;
+    for ( int i = 1; i <= n; i++){
+        fact = fact * i;
+        cout << fact << endl;
     }
 }
 
@@ -54,7 +65,8 @@ int main(){
     // KMtoMiles();
     // printAllDigits();
     // AreaOfCircle();
-    checkEvenOdd();
+    // checkEvenOdd();
+    Factorial();
 
     return 0;
 }
