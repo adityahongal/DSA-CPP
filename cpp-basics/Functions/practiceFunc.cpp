@@ -96,32 +96,61 @@ using namespace std;
 
 // print all prime numbers from 1 to N
 
-bool CheckPrime(int num, bool printFlag) {
-  for (int i = 2; i < num; i++) {
-    if (num % i == 0) {
-      if (printFlag) {
-        cout << num << " is not a prime number" << endl;
-      }
-      return false;
+// bool CheckPrime(int num, bool printFlag) {
+//   for (int i = 2; i < num; i++) {
+//     if (num % i == 0) {
+//       if (printFlag) {
+//         cout << num << " is not a prime number" << endl;
+//       }
+//       return false;
+//     }
+//   }
+
+//   if (printFlag) {
+//     cout << num << " is a prime number" << endl;
+//   }
+//   return true;
+// }
+
+// void PrintPrimeFromOneToN(int N) {
+//     cout << "Prime Number from 1 to " << N << " are :" << endl;
+
+//   for (int i = 1; i <= N; i++) {
+//     bool isPrime = CheckPrime(i, false);
+//     if (isPrime) {
+//       cout << i << " ";
+//     }
+//   }
+//   cout << endl;
+// }
+
+// reverse an integer
+// LEETCODE PROBLEM
+
+int ReverseInteger(int x) {
+  int ans = 0 ;
+  bool isNeg = false; 
+
+  if ( x <= INT_MIN){
+    return 0;
+  }
+
+  if (x < 0) {
+    isNeg = true;
+    x = -x;
+  }
+
+  while (x > 0) {
+    
+    if ( ans > INT_MAX/10 ){
+      return 0;
     }
-  }
 
-  if (printFlag) {
-    cout << num << " is a prime number" << endl;
+    int digit = x % 10;
+    ans = ans * 10 + digit;
+    x = x / 10;
   }
-  return true;
-}
-
-void PrintPrimeFromOneToN(int N) {
-    cout << "Prime Number from 1 to " << N << " are :" << endl;
-
-  for (int i = 1; i <= N; i++) {
-    bool isPrime = CheckPrime(i, false);
-    if (isPrime) {
-      cout << i << " ";
-    }
-  }
-  cout << endl;
+  cout << (isNeg ? -ans : ans) << endl;
 }
 
 int main(){
@@ -132,7 +161,10 @@ int main(){
     // checkEvenOdd();
     // Factorial();
     // CheckPrime();
-    PrintPrimeFromOneToN(100);
+    // PrintPrimeFromOneToN(100);
+    ReverseInteger(123);
+    ReverseInteger(-123);
+    ReverseInteger(120);
 
     return 0;
 }
