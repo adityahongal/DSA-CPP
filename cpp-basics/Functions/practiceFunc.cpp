@@ -1,4 +1,5 @@
 #include<iostream>
+#include <vector>
 using namespace std;
 
 // Kilometer to Miles
@@ -127,30 +128,57 @@ using namespace std;
 // reverse an integer
 // LEETCODE PROBLEM
 
-int ReverseInteger(int x) {
-  int ans = 0 ;
-  bool isNeg = false; 
+// int ReverseInteger(int x) {
+//   int ans = 0 ;
+//   bool isNeg = false; 
 
-  if ( x <= INT_MIN){
-    return 0;
-  }
+//   if ( x <= INT_MIN){
+//     return 0;
+//   }
 
-  if (x < 0) {
-    isNeg = true;
-    x = -x;
-  }
+//   if (x < 0) {
+//     isNeg = true;
+//     x = -x;
+//   }
 
-  while (x > 0) {
+//   while (x > 0) {
     
-    if ( ans > INT_MAX/10 ){
-      return 0;
-    }
+//     if ( ans > INT_MAX/10 ){
+//       return 0;
+//     }
 
-    int digit = x % 10;
-    ans = ans * 10 + digit;
-    x = x / 10;
-  }
-  cout << (isNeg ? -ans : ans) << endl;
+//     int digit = x % 10;
+//     ans = ans * 10 + digit;
+//     x = x / 10;
+//   }
+//   cout << (isNeg ? -ans : ans) << endl;
+// }
+
+// set k- th bit
+// a value k is given which represent index value of binary representation of an
+// integer the index starts from right to left ex 3210 <-- the program is
+// written to achieve -> replace k the position in binary representation of an
+// integer to 1 k can be converted into bitwise representation by left shift the
+// value of k with 1 ex 1 << k by doing a bitwise OR we will be able to achieve
+// this efficiently
+
+// void SetKthBit(int decimalNumber, int k) {
+//   int mask = 1 << k;
+//   int result = decimalNumber | mask;
+//   cout << "Result after set bit of " << decimalNumber << " with " << k
+//        << " bits is: " << result << endl;
+// }
+
+// convert temperature
+void ConvertTemperature(double celcius) {
+  double kelvin = celcius + 273.15;
+  double fahrenheit = celcius * 1.80 + 32.00;
+
+  vector<double> v;
+  v.push_back(kelvin);
+  v.push_back(fahrenheit);
+  
+  cout << celcius << " T0 Fahrenheit :" << v.back() << endl << celcius << " To kelvin :" << v.front() << endl;
 }
 
 int main(){
@@ -162,9 +190,13 @@ int main(){
     // Factorial();
     // CheckPrime();
     // PrintPrimeFromOneToN(100);
-    ReverseInteger(123);
-    ReverseInteger(-123);
-    ReverseInteger(120);
+    // ReverseInteger(123);
+    // ReverseInteger(-123);
+    // ReverseInteger(120);
+    // SetKthBit(10,2);
+    // SetKthBit(15,3);
+    ConvertTemperature(101.23);
+    ConvertTemperature(39.86);
 
     return 0;
 }
