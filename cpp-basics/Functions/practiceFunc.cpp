@@ -170,15 +170,43 @@ using namespace std;
 // }
 
 // convert temperature
-void ConvertTemperature(double celcius) {
-  double kelvin = celcius + 273.15;
-  double fahrenheit = celcius * 1.80 + 32.00;
+// void ConvertTemperature(double celcius) {
+//   double kelvin = celcius + 273.15;
+//   double fahrenheit = celcius * 1.80 + 32.00;
 
-  vector<double> v;
-  v.push_back(kelvin);
-  v.push_back(fahrenheit);
+//   vector<double> v;
+//   v.push_back(kelvin);
+//   v.push_back(fahrenheit);
   
-  cout << celcius << " T0 Fahrenheit :" << v.back() << endl << celcius << " To kelvin :" << v.front() << endl;
+//   cout << celcius << " T0 Fahrenheit :" << v.back() << endl << celcius << " To kelvin :" << v.front() << endl;
+// }
+
+// Count all set bits
+// set bits is number of 1's present in binary representation
+
+void countSetBits(){
+  int n;
+  cout << "Enter a number: ";
+  cin >> n;
+
+  int count = 0;
+  // while (n > 0) {
+  //   int bit = n % 2;
+  //   if (bit == 1) {
+  //     count++;
+  //   }
+  //   n = n / 2;
+  // }
+
+  // Using Bitwise And cz it is faster
+  while (n > 0) {
+    int bit = n & 1;
+    if (bit == 1) {
+      count++;
+    }
+    n = n >> 1;              // right shift
+  }
+  cout << count << endl;
 }
 
 int main(){
@@ -195,8 +223,10 @@ int main(){
     // ReverseInteger(120);
     // SetKthBit(10,2);
     // SetKthBit(15,3);
-    ConvertTemperature(101.23);
-    ConvertTemperature(39.86);
+    // ConvertTemperature(101.23);
+    // ConvertTemperature(39.86);
+    countSetBits();
+
 
     return 0;
 }
