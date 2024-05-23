@@ -184,29 +184,46 @@ using namespace std;
 // Count all set bits
 // set bits is number of 1's present in binary representation
 
-void countSetBits(){
-  int n;
-  cout << "Enter a number: ";
-  cin >> n;
+// void countSetBits(){
+//   int n;
+//   cout << "Enter a number: ";
+//   cin >> n;
 
-  int count = 0;
-  // while (n > 0) {
-  //   int bit = n % 2;
-  //   if (bit == 1) {
-  //     count++;
-  //   }
-  //   n = n / 2;
-  // }
+//   int count = 0;
+//   // while (n > 0) {
+//   //   int bit = n % 2;
+//   //   if (bit == 1) {
+//   //     count++;
+//   //   }
+//   //   n = n / 2;
+//   // }
 
-  // Using Bitwise And cz it is faster
-  while (n > 0) {
-    int bit = n & 1;
-    if (bit == 1) {
-      count++;
-    }
-    n = n >> 1;              // right shift
+//   // Using Bitwise AND cz it is faster
+//   while (n > 0) {
+//     int bit = n & 1;
+//     if (bit == 1) {
+//       count++;
+//     }
+//     n = n >> 1;              // right shift
+//   }
+//   cout << count << endl;
+// }
+
+// create number using digits
+void CreateNumberUsingDigits() {
+  int numberOfDigits = 0;
+  int digit;
+  int num = 0;
+  cout << "Enter the number of digits you want to enter" << endl;
+  cin >> numberOfDigits;
+  for (int i = 0; i < numberOfDigits; ++i) {
+    cout << "Enter digit: " << endl;
+    cin >> digit;
+    num = num * 10 + digit;
+    cout << "The Number formed so far " << num << endl;
   }
-  cout << count << endl;
+
+  cout << endl << "The Final Number formed is " << num << endl;
 }
 
 int main(){
@@ -225,8 +242,8 @@ int main(){
     // SetKthBit(15,3);
     // ConvertTemperature(101.23);
     // ConvertTemperature(39.86);
-    countSetBits();
-
+    // countSetBits();
+    CreateNumberUsingDigits();
 
     return 0;
 }
