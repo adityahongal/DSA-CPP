@@ -25,11 +25,28 @@ bool findtarget( int arr[], int size, int target ){
 
 // Finding Maximum Number in Array
 int findMax( int arr[], int size ){
-    int maxAns = INT_MIN;
+    int maxAns = INT_MIN;                                         // requires #include limits.h INT_MAX, INT_MIN
     for ( int index = 0; index < size; ++index ){
         maxAns = max(maxAns, arr[index]);                         // Inbuilt function
     }
     return maxAns;
+}
+
+// count 0's and 1's in an array 
+void printZeroesAndOnes(int arr[],int size){
+    int zeroCount = 0;
+    int oneCount = 0;
+    for ( int index = 0; index < size; ++index ){
+        int currentElement = arr[index];
+        if ( currentElement == 0 ){
+            zeroCount++;
+        }
+        else if ( currentElement == 1 ){
+            oneCount++;
+        }
+    }
+    cout << "Number of 0's: " << zeroCount << endl;
+    cout << "Number of 1's: " << oneCount << endl;
 }
 
 int main (){
@@ -89,7 +106,9 @@ int main (){
     // bool ans = findtarget(arr,size,53);            // Linear Search function
     // cout << "ans: " << ans << endl;
 
-    cout << "max number is: " << findMax( arr, size) << endl;
+    // cout << "max number is: " << findMax( arr, size) << endl;
+
+    printZeroesAndOnes(arr,size);
 
     return 0;
 }
