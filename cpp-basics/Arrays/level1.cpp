@@ -19,9 +19,22 @@ int main (){
 
     // Filling an array
 
-    int arr[4];
-    fill(arr,arr+4,365);
-    cout << arr[0] << " " << arr[1] << " " << arr[2] << " " << arr[3] << endl;
+    // int arr[4];
+    // fill(arr,arr+4,365);
+    // cout << arr[0] << " " << arr[1] << " " << arr[2] << " " << arr[3] << endl;
+
+    // Taking input in a Array
+
+    int arr[5];
+    for (int i = 0; i < 5; i++){
+        cout << "Enter the value for the value " << i << endl;
+        cin >> arr[i];
+    }
+
+    // Printing the array
+    for(int i = 0; i < 5; i++){
+        cout << arr[i] << " ";
+    }
     
     return 0;
 }
