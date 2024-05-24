@@ -1,4 +1,5 @@
 #include<iostream>
+#include<limits.h>
 using namespace std;
 
 // Functions with Arrays
@@ -10,6 +11,9 @@ void printArray( int arr[], int size){
 
 // Linear Search Algorithm
 bool findtarget( int arr[], int size, int target ){
+    cout << "Enter the target value: ";
+    cin >> target;
+
     // Traverse the array
     for ( int index = 0; index < size; ++index ){
         if ( arr[index] == target ){
@@ -17,6 +21,15 @@ bool findtarget( int arr[], int size, int target ){
         }
     }
     return false;
+}
+
+// Finding Maximum Number in Array
+int findMax( int arr[], int size ){
+    int maxAns = INT_MIN;
+    for ( int index = 0; index < size; ++index ){
+        maxAns = max(maxAns, arr[index]);                         // Inbuilt function
+    }
+    return maxAns;
 }
 
 int main (){
@@ -60,16 +73,23 @@ int main (){
 
     // Functions with Array
 
-    int arr[5] = {10,20,30,40,50};
-    int size = 5;
-    int target;
-    cout << "Enter the target value: ";
-    cin >> target;
+    int arr[100];
+    int size;
+    cout << "Enter the size of the array: " << endl;
+    cin >> size;
+
+    // Get user input for array elements
+    cout << "Enter the elements of the array: " << endl;
+    for (int index = 0; index < size; ++index) {
+        cin >> arr[index];
+    }
 
     // printArray(arr, size);
-    bool ans = findtarget(arr,size,target);            // Linear Search function
-    cout << "ans: " << ans << endl;
 
-    
+    // bool ans = findtarget(arr,size,53);            // Linear Search function
+    // cout << "ans: " << ans << endl;
+
+    cout << "max number is: " << findMax( arr, size) << endl;
+
     return 0;
 }
