@@ -1,6 +1,14 @@
 #include<iostream>
 using namespace std;
 
+// Functions with Arrays
+void printArray( int arr[], int size){
+    for ( int index = 0; index < size; ++index ){
+        cout << arr[index] << " ";
+    }
+}
+
+
 int main (){
 
     // // Creating an Array
@@ -25,16 +33,28 @@ int main (){
 
     // Taking input in a Array
 
-    int arr[5];
-    for (int i = 0; i < 5; i++){
-        cout << "Enter the value for the value " << i << endl;
-        cin >> arr[i];
-    }
+    // int arr[5];
+    // for (int i = 0; i < 5; i++){
+    //     cout << "Enter the value for the value " << i << endl;
+    //     cin >> arr[i];
+    // }
 
-    // Printing the array
-    for(int i = 0; i < 5; i++){
-        cout << arr[i] << " ";
-    }
+    // // Printing the array
+    // for(int i = 0; i < 5; i++){
+    //     cout << arr[i] << " ";                       // arr[i] is also equal to i[arr]
+    // }
+
+    // arr[i] is also equal to i[arr]
+    // value at(base address + (datatypeSize * Index)) 
+    // above formula give address(memory location) of the index 
+
+    // Functions with Array
+
+    int arr[5] = {10,20,30,40,50};
+    int size = 5;
+
+    printArray(arr, size);
+
     
     return 0;
 }
