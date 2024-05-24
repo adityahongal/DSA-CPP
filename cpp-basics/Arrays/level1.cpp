@@ -49,6 +49,28 @@ void printZeroesAndOnes(int arr[],int size){
     cout << "Number of 1's: " << oneCount << endl;
 }
 
+// Extreme Printing
+void extremePrint(int arr[],int n){
+
+    int left = 0;
+    int right = n-1;
+
+    while ( left <= right ){
+
+        if( left == right ){
+            // print only 1 time
+            cout << arr[left] << " ";
+            left++;
+        }
+        else{
+        cout << arr[left] << " ";
+        cout << arr[right] << " ";
+        left++;
+        right--;
+        }
+    }
+}
+
 int main (){
 
     // // Creating an Array
@@ -108,7 +130,9 @@ int main (){
 
     // cout << "max number is: " << findMax( arr, size) << endl;
 
-    printZeroesAndOnes(arr,size);
+    // printZeroesAndOnes(arr,size);
+
+    extremePrint(arr,size);
 
     return 0;
 }
