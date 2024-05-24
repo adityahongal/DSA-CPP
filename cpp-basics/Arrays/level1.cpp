@@ -8,6 +8,16 @@ void printArray( int arr[], int size){
     }
 }
 
+// Linear Search Algorithm
+bool findtarget( int arr[], int size, int target ){
+    // Traverse the array
+    for ( int index = 0; index < size; ++index ){
+        if ( arr[index] == target ){
+            return true;
+        }
+    }
+    return false;
+}
 
 int main (){
 
@@ -52,8 +62,13 @@ int main (){
 
     int arr[5] = {10,20,30,40,50};
     int size = 5;
+    int target;
+    cout << "Enter the target value: ";
+    cin >> target;
 
-    printArray(arr, size);
+    // printArray(arr, size);
+    bool ans = findtarget(arr,size,target);            // Linear Search function
+    cout << "ans: " << ans << endl;
 
     
     return 0;
