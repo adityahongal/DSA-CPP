@@ -92,17 +92,48 @@ using namespace std;
 
 // Three Sum in arrays
 
-void checkThreeSum(int arr[], int n, int target)
-{
-    // Check all pairs
-    for (int i = 0; i < n; i++){
-        for (int j = i + 1; j < n; j++){                        // use (int j = i + 1; j < n; j++) to get unique and relevant pairs
-            for (int k = j + 1; k < n; k++){
-                if (arr[i] + arr[j] + arr[k] == target){
-                    cout << arr[i] << ", " << arr[j] << ", " << arr[k] << endl;
-                }
-            }
+// void checkThreeSum(int arr[], int n, int target)
+// {
+//     // Check all pairs
+//     for (int i = 0; i < n; i++){
+//         for (int j = i + 1; j < n; j++){                        // use (int j = i + 1; j < n; j++) to get unique and relevant pairs
+//             for (int k = j + 1; k < n; k++){
+//                 if (arr[i] + arr[j] + arr[k] == target){
+//                     cout << arr[i] << ", " << arr[j] << ", " << arr[k] << endl;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// Shifting an array or cyclically rotating an array
+
+void rotateArray(int arr[], int size, int shift){
+    int n = shift%size;                     // To find start position of rotation,suppose shift = 2, size = 6,then finalShift = 2 
+
+    if (n == 0){
+        // no need to do anything
+        return;
+    }
+
+    // Step 1: Copy last two digits(finalshift) into an temp array
+    int temp[1000];
+    int index = 0;
+    for (int i = size - n; i < size; i++){
+        temp[index] = arr[i];
+        index++;
+    }
+
+    // Step 2: Shift array elements by n places
+    for( int i = size -1; i >= 0; i--){
+        if( i - n >= 0 ){
+            arr[i] = arr[i - n];                                        // Starts from last plaace and paste's whatever it is by n places
         }
+    }
+
+    // Step 3: copy temp elements into original array
+    for( int i = 0; i < n; i++){
+        arr[i] = temp[i];
     }
 }
 
@@ -147,9 +178,26 @@ int main()
     // }
 
     // Check Three Sum in arrays
-    int arr[] = {10, 20, 30, 40};
-    int n = 4;
-    checkThreeSum(arr, n,70);
+    // int arr[] = {10, 20, 30, 40};
+    // int n = 4;
+    // checkThreeSum(arr, n,70);
+
+    // Shifting the array by n positions
+    int arr[] = {10,20,30,40,50,60};
+    int size = 6;
+    int n = 2;                                  // cyclically rotate array by 2 places
+
+    cout << "Before: " << endl;
+    for (int i = 0; i < size; i++){
+        cout << arr[i] << " ";
+    }
+
+    rotateArray(arr, size, n);
+
+    cout << "\nAfter: " << endl;
+    for (int i = 0; i < size; i++){
+        cout << arr[i] << " ";
+    }
 
     return 0;
 }
