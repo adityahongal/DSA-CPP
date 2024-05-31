@@ -1,5 +1,6 @@
 #include<iostream>
 #include<limits.h>
+#include<algorithm>
 using namespace std;
 
 // Finding the single number (Leetcode Question)
@@ -51,16 +52,16 @@ void sortZeroOne( int brr[], int n ){
 
 int main(){
 
-    int arr[100];
-    int size;
-    cout << "Enter the size of the array: " << endl;
-    cin >> size;
+    // int arr[100];
+    // int size;
+    // cout << "Enter the size of the array: " << endl;
+    // cin >> size;
 
-    // Get user input for array elements
-    cout << "Enter the elements of the array: " << endl;
-    for (int index = 0; index < size; ++index) {
-        cin >> arr[index];
-    }
+    // // Get user input for array elements
+    // cout << "Enter the elements of the array: " << endl;
+    // for (int index = 0; index < size; ++index) {
+    //     cin >> arr[index];
+    // }
 
     // findSingleNumber(arr, size);
 
@@ -68,7 +69,12 @@ int main(){
     int brr[] = { 0,1,1,0,1,1,0};
     int sortSize = 7;
 
-    sortZeroOne(brr, sortSize);
+    // sortZeroOne(brr, sortSize);                        // Sorting using own method
+    sort (brr, brr+sortSize);                             // Sorting using inbuilt Sort function
+    cout << "The sorted array is: " << endl;
+    for ( int i = 0; i < sortSize; i++ ){
+        cout << brr[i] << " ";
+    }
 
     return 0;
 }
