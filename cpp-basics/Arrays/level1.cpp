@@ -75,22 +75,44 @@ void printZeroesAndOnes(int arr[],int size){
 
 // Swapping in arrays
 
-void swap(int arr[], int size) {
+// void swap(int arr[], int size) {
  
- int i, j;
-    cout << "Enter the indices of the elements to swap: " << endl;
-    cin >> i >> j;
+//  int i, j;
+//     cout << "Enter the indices of the elements to swap: " << endl;
+//     cin >> i >> j;
 
-    if (i < 0 || i >= size || j < 0 || j >= size) {
-        cout << "Invalid indices. Please enter indices between 0 and " << size - 1 << "." << endl;
-        return;
+//     if (i < 0 || i >= size || j < 0 || j >= size) {
+//         cout << "Invalid indices. Please enter indices between 0 and " << size - 1 << "." << endl;
+//         return;
+//     }
+
+//     int temp = arr[i];
+//     arr[i] = arr[j];
+//     arr[j] = temp;
+
+//     cout << "Array after swapping elements at indices " << i << " and " << j << ": " << endl;
+//     for (int index = 0; index < size; ++index) {
+//         cout << arr[index] << " ";
+//     }
+//     cout << endl;
+// }
+
+// Reversing in arrays
+
+void reverseArray(int arr[], int size) {
+    int start = 0;
+    int end = size - 1;
+
+    while (start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        start++;
+        end--;
     }
 
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-
-    cout << "Array after swapping elements at indices " << i << " and " << j << ": " << endl;
+    cout << "Array after reversing: " << endl;
     for (int index = 0; index < size; ++index) {
         cout << arr[index] << " ";
     }
@@ -160,7 +182,9 @@ int main (){
 
     // extremePrint(arr,size);
 
-    swap(arr,size);
+    // swap(arr,size);
+
+    reverseArray(arr,size);
 
     return 0;
 }
