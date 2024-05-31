@@ -61,18 +61,31 @@ using namespace std;
 
 // Two Sum in arrays
 
-bool checkTwoSum(int arr[], int n, int target){
+// bool checkTwoSum(int arr[], int n, int target){
 
-    // Check all pairs
-    for( int i = 0; i < n; i++){
+//     // Check all pairs
+//     for( int i = 0; i < n; i++){
+//         for ( int j = 0; j < n; j++){
+//             if ( arr[i] + arr[j] == target ){
+//                 // cout << arr[i] << ", " << arr[j] << endl;
+//                 return true;
+//             }
+//         }
+//     }
+//     return false;
+// }
+
+void printAllTriplets( int arr[], int n){
+    int count = 0;
+    for ( int i = 0; i < n; i++){
         for ( int j = 0; j < n; j++){
-            if ( arr[i] + arr[j] == target ){
-                // cout << arr[i] << ", " << arr[j] << endl;
-                return true;
+            for ( int k = 0; k < n; k++){
+                    cout << arr[i] << ", " << arr[j] << ", " << arr[k] << endl;
+                    count++;
             }
         }
     }
-    return false;
+    cout << "The total number of triplets is: " << count << endl;
 }
 
 int main(){
@@ -104,15 +117,19 @@ int main(){
     // printPairs(arr, size);
 
     // Two Sum in arrays
+    // int arr[] = {10,20,30,40};
+    // int n = 4;
+    // bool ans = checkTwoSum(arr,n,690);
+    // if ( ans == true ){
+    //     cout << "Pair found" << endl;
+    // }
+    // else{
+    //     cout << "Pair not found" << endl;
+    // }
+
     int arr[] = {10,20,30,40};
     int n = 4;
-    bool ans = checkTwoSum(arr,n,690);
-    if ( ans == true ){
-        cout << "Pair found" << endl;
-    }
-    else{
-        cout << "Pair not found" << endl;
-    }
+    printAllTriplets(arr,n);
 
     return 0;
 }
