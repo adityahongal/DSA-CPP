@@ -50,25 +50,51 @@ void printZeroesAndOnes(int arr[],int size){
 }
 
 // Extreme Printing
-void extremePrint(int arr[],int n){
+// void extremePrint(int arr[],int n){
 
-    int left = 0;
-    int right = n-1;
+//     int left = 0;
+//     int right = n-1;
 
-    while ( left <= right ){
+//     while ( left <= right ){
 
-        if( left == right ){
-            // print only 1 time
-            cout << arr[left] << " ";
-            left++;
-        }
-        else{
-        cout << arr[left] << " ";
-        cout << arr[right] << " ";
-        left++;
-        right--;
-        }
+//         if( left == right ){
+//             // print only 1 time
+//             cout << arr[left] << " ";
+//             left++;
+//         }
+//         else{
+//         cout << arr[left] << " ";
+//         cout << arr[right] << " ";
+//         left++;
+//         right--;
+//         }
+//     }
+// }
+
+// TRY SWAPPING AND REVERSE
+
+// Swapping in arrays
+
+void swap(int arr[], int size) {
+ 
+ int i, j;
+    cout << "Enter the indices of the elements to swap: " << endl;
+    cin >> i >> j;
+
+    if (i < 0 || i >= size || j < 0 || j >= size) {
+        cout << "Invalid indices. Please enter indices between 0 and " << size - 1 << "." << endl;
+        return;
     }
+
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+
+    cout << "Array after swapping elements at indices " << i << " and " << j << ": " << endl;
+    for (int index = 0; index < size; ++index) {
+        cout << arr[index] << " ";
+    }
+    cout << endl;
 }
 
 int main (){
@@ -132,7 +158,9 @@ int main (){
 
     // printZeroesAndOnes(arr,size);
 
-    extremePrint(arr,size);
+    // extremePrint(arr,size);
+
+    swap(arr,size);
 
     return 0;
 }
