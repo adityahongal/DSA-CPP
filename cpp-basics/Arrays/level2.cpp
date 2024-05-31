@@ -51,26 +51,42 @@ using namespace std;
 
 // Print all pairs 
 
-void printPairs(int arr[], int n) {
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            cout << arr[i] << ", " << arr[j] << endl;
+// void printPairs(int arr[], int n) {
+//     for(int i = 0; i < n; i++) {
+//         for(int j = 0; j < n; j++) {
+//             cout << arr[i] << ", " << arr[j] << endl;
+//         }
+//     }
+// }
+
+// Two Sum in arrays
+
+bool checkTwoSum(int arr[], int n, int target){
+
+    // Check all pairs
+    for( int i = 0; i < n; i++){
+        for ( int j = 0; j < n; j++){
+            if ( arr[i] + arr[j] == target ){
+                // cout << arr[i] << ", " << arr[j] << endl;
+                return true;
+            }
         }
     }
+    return false;
 }
 
 int main(){
 
-    int arr[100];
-    int size;
-    cout << "Enter the size of the array: " << endl;
-    cin >> size;
+    // int arr[100];
+    // int size;
+    // cout << "Enter the size of the array: " << endl;
+    // cin >> size;
 
-    // Get user input for array elements
-    cout << "Enter the elements of the array: " << endl;
-    for (int index = 0; index < size; ++index) {
-        cin >> arr[index];
-    }
+    // // Get user input for array elements
+    // cout << "Enter the elements of the array: " << endl;
+    // for (int index = 0; index < size; ++index) {
+    //     cin >> arr[index];
+    // }
 
     // findSingleNumber(arr, size);
 
@@ -85,7 +101,18 @@ int main(){
     //     cout << brr[i] << " ";
     // }
 
-    printPairs(arr, size);
+    // printPairs(arr, size);
+
+    // Two Sum in arrays
+    int arr[] = {10,20,30,40};
+    int n = 4;
+    bool ans = checkTwoSum(arr,n,690);
+    if ( ans == true ){
+        cout << "Pair found" << endl;
+    }
+    else{
+        cout << "Pair not found" << endl;
+    }
 
     return 0;
 }
