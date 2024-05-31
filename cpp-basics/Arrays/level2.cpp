@@ -1,6 +1,6 @@
-#include<iostream>
-#include<limits.h>
-#include<algorithm>
+#include <iostream>
+#include <limits.h>
+#include <algorithm>
 using namespace std;
 
 // Finding the single number (Leetcode Question)
@@ -49,7 +49,7 @@ using namespace std;
 //     }
 // }
 
-// Print all pairs 
+// Print all pairs
 
 // void printPairs(int arr[], int n) {
 //     for(int i = 0; i < n; i++) {
@@ -65,7 +65,7 @@ using namespace std;
 
 //     // Check all pairs
 //     for( int i = 0; i < n; i++){
-//         for ( int j = 0; j < n; j++){
+// for ( int j = 0; j < n; j++){                       // use (int j = i + 1; j < n; j++) to get unique and relevant pairs
 //             if ( arr[i] + arr[j] == target ){
 //                 // cout << arr[i] << ", " << arr[j] << endl;
 //                 return true;
@@ -75,20 +75,39 @@ using namespace std;
 //     return false;
 // }
 
-void printAllTriplets( int arr[], int n){
-    int count = 0;
-    for ( int i = 0; i < n; i++){
-        for ( int j = 0; j < n; j++){
-            for ( int k = 0; k < n; k++){
+// Prinnt all Triples in arrays
+
+// void printAllTriplets( int arr[], int n){
+//     int count = 0;
+//     for ( int i = 0; i < n; i++){
+//         for ( int j = 0; j < n; j++){
+//             for ( int k = 0; k < n; k++){
+//                     cout << arr[i] << ", " << arr[j] << ", " << arr[k] << endl;
+//                     count++;
+//             }
+//         }
+//     }
+//     cout << "The total number of triplets is: " << count << endl;
+// }
+
+// Three Sum in arrays
+
+void checkThreeSum(int arr[], int n, int target)
+{
+    // Check all pairs
+    for (int i = 0; i < n; i++){
+        for (int j = i + 1; j < n; j++){                        // use (int j = i + 1; j < n; j++) to get unique and relevant pairs
+            for (int k = j + 1; k < n; k++){
+                if (arr[i] + arr[j] + arr[k] == target){
                     cout << arr[i] << ", " << arr[j] << ", " << arr[k] << endl;
-                    count++;
+                }
             }
         }
     }
-    cout << "The total number of triplets is: " << count << endl;
 }
 
-int main(){
+int main()
+{
 
     // int arr[100];
     // int size;
@@ -127,9 +146,10 @@ int main(){
     //     cout << "Pair not found" << endl;
     // }
 
-    int arr[] = {10,20,30,40};
+    // Check Three Sum in arrays
+    int arr[] = {10, 20, 30, 40};
     int n = 4;
-    printAllTriplets(arr,n);
+    checkThreeSum(arr, n,70);
 
     return 0;
 }
