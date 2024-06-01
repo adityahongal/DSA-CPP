@@ -41,6 +41,7 @@ void printVectors(vector<int> v){
     for (int i = 0; i < size; i++){
         cout << v[i] << endl;
     }
+    cout<< endl;
 }
 
 void vectors(){
@@ -48,18 +49,22 @@ void vectors(){
     vector<int> v;
 
     // Insert elements into vector
-    // v.push_back(10);
-    // v.push_back(20);
-    // v.push_back(30);
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
 
     // To check Capacity and size of vector
-    while(1){
-    int data;
-    cout << "Enter data: " << endl;
-    cin >> data;
-    v.push_back(data);
-    cout << "Capacity: " << v.capacity() << " Size: " << v.size() << endl; 
-    }
+    // while(1){
+    // int data;
+    // cout << "Enter data: " << endl;
+    // cin >> data;
+    // v.push_back(data);
+    // cout << "Capacity: " << v.capacity() << " Size: " << v.size() << endl; 
+    // }
+
+    // To delete a element we call it pop in vector and it pops from the END of the array
+    // 10,20,30 ---> 30 will be popped
+    v.pop_back();
 
     printVectors(v);
     
