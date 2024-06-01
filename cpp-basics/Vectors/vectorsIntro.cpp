@@ -48,9 +48,18 @@ void vectors(){
     vector<int> v;
 
     // Insert elements into vector
-    v.push_back(10);
-    v.push_back(20);
-    v.push_back(30);
+    // v.push_back(10);
+    // v.push_back(20);
+    // v.push_back(30);
+
+    // To check Capacity and size of vector
+    while(1){
+    int data;
+    cout << "Enter data: " << endl;
+    cin >> data;
+    v.push_back(data);
+    cout << "Capacity: " << v.capacity() << " Size: " << v.size() << endl; 
+    }
 
     printVectors(v);
     
