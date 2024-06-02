@@ -154,12 +154,48 @@ void findMaximumIn2DArray() {
   cout << "Max Number is " << max_number << endl;
 }
 
+void printRowWiseSum(){
+    int a[3][4] = {
+      {10, 20, 30, 40},
+      {50, 60, 70, 80},
+      {110, 200, 300, 400},
+  };
+
+  for (int i = 0; i < 3; i++) {
+    int rowSum = 0;                              //Start everytime with 0
+    for (int j = 0; j < 4; j++) {
+      rowSum += a[i][j];                         // rowSum = rowSum + a[i][j];
+    }
+    cout << "Sum of Row: " << i << " is: " << rowSum << endl;
+  }
+  cout << endl;
+}
+
+void printColWiseSum() {
+  int a[3][4] = {
+      {55, 20, 30, 40},
+      {50, 60, 90, 80},
+      {110, 23, 30, 99},
+  };
+
+  for (int j = 0; j < 4; j++) {
+    int colSum = 0;
+    for (int i = 0; i < 3; i++) {
+      colSum += a[i][j];
+    }
+    cout << "Sum of Col: " << j << " is: " << colSum << endl;
+  }
+  cout << endl;
+}
+
 int main() {
 
     // example1();
     // example2();
     // print2DVector();
-    findMinimumIn2DArray();
-    findMaximumIn2DArray();
+    // findMinimumIn2DArray();
+    // findMaximumIn2DArray();
+    printRowWiseSum();
+    printColWiseSum();
     return 0;
 }
