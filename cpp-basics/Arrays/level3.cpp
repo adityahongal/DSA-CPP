@@ -84,31 +84,46 @@ using namespace std;
 // }
 
 // Searching in 2D array using Linear search algorithm
-bool search2DArray(int a[][4],int rows,int cols,int target){
-    for( int i = 0; i < rows; i++){
-        for( int j = 0; j < cols; j++){
-            if(a[i][j] == target){
-                return true;
-            }
-        }
-    }
-    return false;
-}
+// bool search2DArray(int a[][4],int rows,int cols,int target){
+//     for( int i = 0; i < rows; i++){
+//         for( int j = 0; j < cols; j++){
+//             if(a[i][j] == target){
+//                 return true;
+//             }
+//         }
+//     }
+//     return false;
+// }
 
-void example2(){
-    int a[3][4] = { {10,20,30,40},
-                    {50,60,70,80},
-                    {90,100,150,200}};
-    int rows = 3;
-    int cols = 4;
-    int target = 400;
-    bool ans = search2DArray(a,rows,cols,target);
-    cout << "answer is: "<< ans << endl;
+// void example2(){
+//     int a[3][4] = { {10,20,30,40},
+//                     {50,60,70,80},
+//                     {90,100,150,200}};
+//     int rows = 3;
+//     int cols = 4;
+//     int target = 400;
+//     bool ans = search2DArray(a,rows,cols,target);
+//     cout << "answer is: "<< ans << endl;
+// }
+
+// Creation on 2D array using vector
+void print2DVector(){
+    vector<vector<int> > arr(4,vector<int>(3,999));
+    int row = arr.size();
+    int col = arr[0].size();
+
+    for( int i=0; i<row; i++){
+        for( int j=0; j<col;j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
 
 int main() {
 
     // example1();
-    example2();
+    // example2();
+    print2DVector();
     return 0;
 }
