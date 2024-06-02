@@ -188,6 +188,57 @@ void printColWiseSum() {
   cout << endl;
 }
 
+void diagonalSum() {
+  int a[4][4] = {
+      {10, 20, 30, 40},
+      {50, 60, 7090, 80},
+      {110, 2, 30, 9},
+      {110, 2, 30, 2},
+  };
+
+  int diaSum = 0;
+  for (int i = 0; i < 4; i++) {
+    diaSum += a[i][i];
+  }
+
+  cout << "Diagonal Sum: " << diaSum << endl;
+}
+
+void transposeMatrix(){
+    int b[3][3] = {{10, 20, 30,},
+                    {11,12,13},
+                    {31,32,33}};
+    
+    // int ans[100][100] = {0};
+
+    // for(int i=0; i<3; i++){
+    //     for(int j=0; j<3; j++){
+    //         ans[i][j] = b[j][i];
+    //     }
+    // }
+
+    // for(int i=0; i<3; i++){
+    //     for(int j=0; j<3; j++){
+    //         cout << ans[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+    // To transpose using same matrix - use swap function
+    for(int i=0; i<3; i++){
+        for(int j=i; j<3; j++){                  // j =i; cz we dont want to repeat the same ---> when i = 1, (0,1) = (1,0), This will repeat so we avoid
+            swap(b[i][j],b[j][i]);
+        }
+    }
+
+    for(int i=0; i<3; i++){
+        for(int j=0; j<3; j++){                           
+            cout << b[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
 int main() {
 
     // example1();
@@ -195,7 +246,9 @@ int main() {
     // print2DVector();
     // findMinimumIn2DArray();
     // findMaximumIn2DArray();
-    printRowWiseSum();
-    printColWiseSum();
+    // printRowWiseSum();
+    // printColWiseSum();
+    // diagonalSum();
+    transposeMatrix();
     return 0;
 }
