@@ -29,13 +29,18 @@ void print2DArrayDiagonalwise(int crr[][4], int rows, int cols) {
   cout << "Printing Array" << endl;
 
   // Method 1
+//   for(int i=0; i < rows; i++) {
+//     for(int j=0; j<cols;j++){
+//         if(i==j){
+//             cout << crr[i][j] << " ";
+//         }
+//     }
+//     cout << endl;
+//   }
+
+  // Method 2
   for(int i=0; i < rows; i++) {
-    for(int j=0; j<cols;j++){
-        if(i==j){
-            cout << crr[i][j] << " ";
-        }
-    }
-    cout << endl;
+    cout << crr[i][i] << " ";
   }
 }
 
