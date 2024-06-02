@@ -131,12 +131,9 @@ void findMinimumIn2DArray(){
 
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 4; j++) {
-      if (a[i][j] < min_number) {
-        min_number = a[i][j];
-      }
+      min_number = min(a[i][j],min_number);                           //Inbuilt function
     }
   }
-
   cout << "Minimum Number is " << min_number << endl;
 }
 
@@ -151,12 +148,9 @@ void findMaximumIn2DArray() {
 
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 4; j++) {
-      if (a[i][j] > max_number) {
-        max_number = a[i][j];
-      }
+        max_number = max(a[i][j],max_number);                         //Inbuilt number
     }
   }
-
   cout << "Max Number is " << max_number << endl;
 }
 
