@@ -107,23 +107,65 @@ using namespace std;
 // }
 
 // Creation on 2D array using vector
-void print2DVector(){
-    vector<vector<int> > arr(4,vector<int>(3,999));
-    int row = arr.size();
-    int col = arr[0].size();
+// void print2DVector(){
+//     vector<vector<int> > arr(4,vector<int>(3,999));
+//     int row = arr.size();
+//     int col = arr[0].size();
 
-    for( int i=0; i<row; i++){
-        for( int j=0; j<col;j++){
-            cout << arr[i][j] << " ";
-        }
-        cout << endl;
+//     for( int i=0; i<row; i++){
+//         for( int j=0; j<col;j++){
+//             cout << arr[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+// }
+
+void findMinimumIn2DArray(){
+    int a[3][4] = {
+      {10, 20, 30, 40},
+      {50, 60, 7090, -2},
+      {110, 2000, 30, 400909},
+  };
+
+  int min_number = INT_MAX;
+
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 4; j++) {
+      if (a[i][j] < min_number) {
+        min_number = a[i][j];
+      }
     }
+  }
+
+  cout << "Minimum Number is " << min_number << endl;
+}
+
+void findMaximumIn2DArray() {
+  int a[3][4] = {
+      {10, 20, 30, 40},
+      {50, 60, 7090, 80},
+      {110, 2000, 30, 400909},
+  };
+
+  int max_number = INT_MIN;
+
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 4; j++) {
+      if (a[i][j] > max_number) {
+        max_number = a[i][j];
+      }
+    }
+  }
+
+  cout << "Max Number is " << max_number << endl;
 }
 
 int main() {
 
     // example1();
     // example2();
-    print2DVector();
+    // print2DVector();
+    findMinimumIn2DArray();
+    findMaximumIn2DArray();
     return 0;
 }
