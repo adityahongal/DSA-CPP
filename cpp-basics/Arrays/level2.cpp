@@ -49,6 +49,41 @@ using namespace std;
 //     }
 // }
 
+// Sorting 0's,1's and 2's (Dutch National Flag problem)
+
+void sortZeroOneTwo(int brr[], int n) {
+    int zeroCount = 0, oneCount = 0, twoCount = 0;
+
+    // Counting 0's, 1's and 2's
+    for (int i = 0; i < n; i++) {
+        if (brr[i] == 0) {
+            zeroCount++;
+        } else if (brr[i] == 1) {
+            oneCount++;
+        } else if (brr[i] == 2) {
+            twoCount++;
+        }
+    }
+
+    // Insertion
+    int i = 0;
+    for (; i < zeroCount; i++) {
+        brr[i] = 0;
+    }
+    for (; i < zeroCount + oneCount; i++) {
+        brr[i] = 1;
+    }
+    for (; i < zeroCount + oneCount + twoCount; i++) {
+        brr[i] = 2;
+    }
+
+    cout << "The sorted array is: " << endl;
+    for (int i = 0; i < n; i++) {
+        cout << brr[i] << " ";
+    }
+    cout << endl;
+}
+
 // Print all pairs
 
 // void printPairs(int arr[], int n) {
@@ -183,21 +218,26 @@ int main()
     // checkThreeSum(arr, n,70);
 
     // Shifting the array by n positions
-    int arr[] = {10,20,30,40,50,60};
-    int size = 6;
-    int n = 2;                                  // cyclically rotate array by 2 places
+    // int arr[] = {10,20,30,40,50,60};
+    // int size = 6;
+    // int n = 2;                                  // cyclically rotate array by 2 places
 
-    cout << "Before: " << endl;
-    for (int i = 0; i < size; i++){
-        cout << arr[i] << " ";
-    }
+    // cout << "Before: " << endl;
+    // for (int i = 0; i < size; i++){
+    //     cout << arr[i] << " ";
+    // }
 
-    rotateArray(arr, size, n);
+    // rotateArray(arr, size, n);
 
-    cout << "\nAfter: " << endl;
-    for (int i = 0; i < size; i++){
-        cout << arr[i] << " ";
-    }
+    // cout << "\nAfter: " << endl;
+    // for (int i = 0; i < size; i++){
+    //     cout << arr[i] << " ";
+    // }
+
+    // Sorting 0's,1's and 2's (Dutch National Flag problem)
+    int brr[] = {2, 0, 2, 1, 1, 0};
+    int n = 6;
+    sortZeroOneTwo(brr, n);
 
     return 0;
 }
