@@ -204,6 +204,21 @@ void diagonalSum() {
   cout << "Diagonal Sum: " << diaSum << endl;
 }
 
+void reverseDiagonalSum() {
+    int a[3][3] = {
+        {10, 20, 30},
+        {50, 60, 70},
+        {80, 29, 30}
+    };
+
+    int revDiaSum = 0;
+    for (int i = 0; i < 3; i++) {                  //for(int i =0; i < size; i++) 
+        revDiaSum += a[i][2 - i];                  // sum = sum + a[i][size-1-i];     size = 3 means (index = 0,1,2)
+    }
+
+    cout << "Reverse Diagonal Sum: " << revDiaSum << endl;
+}
+
 void transposeMatrix(){
     int b[3][3] = {{10, 20, 30,},
                     {11,12,13},
@@ -249,6 +264,7 @@ int main() {
     // printRowWiseSum();
     // printColWiseSum();
     // diagonalSum();
-    transposeMatrix();
+    // transposeMatrix();
+    reverseDiagonalSum();
     return 0;
 }
