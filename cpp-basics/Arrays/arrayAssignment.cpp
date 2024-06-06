@@ -36,6 +36,32 @@ bool haskeyPairTwoSum(){
     return false;
 }
 
+void FindPivotIndexBruteForce() {
+  vector<int> nums;
+  nums.push_back(1);
+  nums.push_back(7);
+  nums.push_back(3);
+  nums.push_back(6);
+  nums.push_back(5);
+  nums.push_back(6);
+
+  for (int i = 0; i < nums.size(); ++i) {
+    int lsum = 0;
+    int rsum = 0;
+
+    // lsum
+    for (int j = 0; j < i; j++)
+      lsum += nums[j];
+
+    // rsum
+    for (int j = i + 1; j < nums.size(); ++j)
+      rsum += nums[j];
+
+    if (lsum == rsum)
+      cout << "Pivot Index is " << i << endl;
+  }
+}
+
 void findPivotIndex(){
     // vector creation
     vector<int> nums;
@@ -92,6 +118,7 @@ void findPivotIndex(){
 int main(){
 
     // haskeyPairTwoSum();
-    findPivotIndex();
+    // FindPivotIndexBruteForce();
+    // findPivotIndex();
     // return 0;
 }
