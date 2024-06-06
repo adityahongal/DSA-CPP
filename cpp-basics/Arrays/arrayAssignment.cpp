@@ -221,6 +221,77 @@ void removeDuplicates() {
   printVector(arr);
 }
 
+// Finding Max Average of Sub Array
+// By Brute Force
+// More time Complexity
+
+void maxAverageSubArrayBruteForce() {
+    vector<int> nums;
+    int k = 4;
+
+    nums.push_back(1);
+    nums.push_back(12);
+    nums.push_back(-5);
+    nums.push_back(-6);
+    nums.push_back(50);
+    nums.push_back(3);
+
+    int size = nums.size();
+
+    int maxSum = INT_MIN;
+    int i = 0, j = k - 1;
+
+    while (j <= size) {
+      int sum = 0;
+      for (int y = i; y <= j; y++) {
+        sum += nums[y];
+      }
+
+      maxSum = max(maxSum, sum);
+      i++;
+      j++;
+    }
+
+    double Avg = maxSum / (double)k;
+    cout << "Max Avg by brute force is: " << Avg << endl;
+    ;
+}
+
+// Finding Max Average of Sub Array
+// By Sliding window method
+// O(n) time Complexity
+
+void maxAverageSubArraySlidingWindowMethod() {
+    vector<int> nums;
+    int k = 4;
+
+    nums.push_back(1);
+    nums.push_back(12);
+    nums.push_back(-5);
+    nums.push_back(-6);
+    nums.push_back(50);
+    nums.push_back(3);
+
+    int size = nums.size();
+    int i = 0, j = k - 1;
+    int sum = 0;
+    for (int y = i; y <= j; ++y) {
+      sum += nums[y];
+    }
+
+    int maxSum = sum;
+    j++;
+    while (j < size) {
+      sum = sum - nums[i++];
+      sum = sum + nums[j++];
+      maxSum = max(maxSum, sum);
+    }
+
+    double Avg = maxSum / (double)k;
+    cout << "Max Avg by Sliding Window method is: " << Avg << endl;
+    ;
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -228,6 +299,8 @@ int main(){
     // findPivotIndex();
     // missingNumberBySortMethod();
     // missingNumberByXORMethod();
-    removeDuplicates();
+    // removeDuplicates();
+    // maxAverageSubArrayBruteForce();
+    maxAverageSubArraySlidingWindowMethod();
     // return 0;
 }
