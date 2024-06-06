@@ -365,6 +365,72 @@ void sortNegNumbersToLeft() {
   // SC - O(1)
 }
 
+// Find Duplicate number mid level leetcode ques no. 287 
+// only 1 integer will be repeating many
+// times arr will be of size n and belong to [1,N]
+// Dont modify arrays
+
+void findDuplicateNumberInPlace() {
+  vector<int> arr;
+  arr.push_back(1);
+  arr.push_back(3);
+  arr.push_back(4);
+  arr.push_back(2);
+  arr.push_back(2);
+
+  vector<int> nums;
+  nums.push_back(5);
+  nums.push_back(1);
+  nums.push_back(2);
+  nums.push_back(4);
+  nums.push_back(2);
+
+  vector<int> num;
+  num.push_back(3);
+  num.push_back(3);
+  num.push_back(3);
+  num.push_back(3);
+  num.push_back(3);
+
+  // aproach 1 would be to sort and compare i = i+1 then return duplicate number
+  // i visit the loop only til N-1 not N because i+1 will be out of bound
+  sort(arr.begin(), arr.end());
+  for (int i = 0; i < arr.size() - 1; i++) {
+    if (arr[i] == arr[i + 1]) {
+      cout << "The Duplicate Number is: " << arr[i] << endl;
+      break;
+    }
+  }
+
+  // aproach 2  Negative marking method
+  int ans = -1;
+
+  for (int i = 0; i < nums.size(); i++) {
+
+    int index = abs(nums[i]);
+
+    // already visited check
+    if (nums[index] < 0) {
+      ans = index;
+      break;
+    }
+
+    // mark visited
+    nums[index] *= -1;
+  }
+
+  cout << "The duplicate number is: " << ans << endl;
+
+  // approach 3 positioning method
+  while (num[0] != num[num[0]]) {
+    swap(num[0], num[num[0]]);
+  }
+
+  cout << "The duplicate number is: " << num[0] << endl;
+
+  // approach 4 solve with binary search without modifying array
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -376,6 +442,7 @@ int main(){
     // maxAverageSubArrayBruteForce();
     // maxAverageSubArraySlidingWindowMethod();
     // sortColors();
-    sortNegNumbersToLeft();
+    // sortNegNumbersToLeft();
+    findDuplicateNumberInPlace();
     // return 0;
 }
