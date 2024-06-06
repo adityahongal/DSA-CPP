@@ -431,6 +431,37 @@ void findDuplicateNumberInPlace() {
   // approach 4 solve with binary search without modifying array
 }
 
+// Find missing elements with Duplicates
+// We used Missing method/Negative Marking method
+// Can use Sort and Swap method too
+
+void findMissingElementWithDuplicates() {
+  vector<int> nums;
+  nums.push_back(1);
+  nums.push_back(3);
+  nums.push_back(5);
+  nums.push_back(3);
+  nums.push_back(4);
+
+  // by visiting method
+  for (int i = 0; i < nums.size(); i++) {
+    int index = abs(nums[i]);
+    if (nums[index - 1] > 0) {
+      nums[index - 1] *= -1;
+    }
+  }
+
+  printVector(nums);
+
+  cout << "The missing numbers are ";
+  for (int i = 0; i < nums.size(); i++) {
+    if (nums[i] > 0)
+      cout << i + 1 << " ";
+  }
+
+  cout << endl;
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -443,6 +474,7 @@ int main(){
     // maxAverageSubArraySlidingWindowMethod();
     // sortColors();
     // sortNegNumbersToLeft();
-    findDuplicateNumberInPlace();
+    // findDuplicateNumberInPlace();
+    findMissingElementWithDuplicates();
     // return 0;
 }
