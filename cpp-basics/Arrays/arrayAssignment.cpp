@@ -326,6 +326,45 @@ void sortColors(){
     printVector(arr);
 }
 
+// Move all negative number to left side of the array in place
+// no order required
+void sortNegNumbersToLeft() {
+  // aproach 1 Using STL TC- Onlogn SC- O(n) n-> size of ar
+  // aproach 2 Dutch National flag method or 2 pointer
+
+  vector<int> arr;
+  arr.push_back(-9);
+  arr.push_back(6);
+  arr.push_back(4);
+  arr.push_back(2);
+  arr.push_back(-3);
+  arr.push_back(5);
+  arr.push_back(-7);
+  arr.push_back(0);
+  arr.push_back(-1);
+
+  // low - manages neg numbers
+  // high - manages pos numbers
+
+  int left = 0;
+  int right = arr.size() - 1;
+
+  while (left < right) {
+    if (arr[left] < 0) {
+      left++;
+    } else if (arr[right] > 0) {
+      right--;
+    } else {
+      swap(arr[left], arr[right]);
+    }
+  }
+
+  printVector(arr);
+
+  // TC - O(n)
+  // SC - O(1)
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -336,6 +375,7 @@ int main(){
     // removeDuplicates();
     // maxAverageSubArrayBruteForce();
     // maxAverageSubArraySlidingWindowMethod();
-    sortColors();
+    // sortColors();
+    sortNegNumbersToLeft();
     // return 0;
 }
