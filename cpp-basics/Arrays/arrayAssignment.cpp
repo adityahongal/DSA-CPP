@@ -115,10 +115,60 @@ void findPivotIndex(){
     cout << "Pivot Index is: " << -1 << endl;
 }
 
+void missingNumberBySortMethod(){
+    // sorting method complexity o(nlogn) + o(n) = o(nlogn) TC, o(1) SC
+    vector<int> nums2;
+    nums2.push_back(0);
+    nums2.push_back(1);
+    nums2.push_back(3);
+
+    sort(nums2.begin(), nums2.end());
+    for (int i = 0; i < nums2.size(); i++) {
+        if (i == nums2[i]) {
+        continue;
+        } 
+        else {
+        cout << "The missing number using Sort Method is: " << i << endl;
+        return;
+        }
+    }
+
+    // if all index match with nums2[index] then size is the missing number or n
+    cout << "The missing number using Sort Method is: " << nums2.size() << endl;
+}
+
+void missingNumberByXORMethod(){
+    // XOR method complexity o(n) TC, o(1) SC
+    vector<int> nums3;
+    nums3.push_back(9);
+    nums3.push_back(6);
+    nums3.push_back(4);
+    nums3.push_back(2);
+    nums3.push_back(3);
+    nums3.push_back(5);
+    nums3.push_back(7);
+    nums3.push_back(0);
+    nums3.push_back(1);
+
+    int ans=0;
+    // Array XOR
+    for (int i=0; i<nums3.size(); i++){
+        ans = ans ^ nums3[i];
+    }
+    // index XOR
+    int n=nums3.size();
+    for( int i=0;i<=n;i++){
+        ans = ans ^ i;
+    }
+    cout << "The missing number using XOR Method is: " << ans << endl;
+}
+
 int main(){
 
     // haskeyPairTwoSum();
     // FindPivotIndexBruteForce();
     // findPivotIndex();
+    // missingNumberBySortMethod();
+    missingNumberByXORMethod();
     // return 0;
 }
