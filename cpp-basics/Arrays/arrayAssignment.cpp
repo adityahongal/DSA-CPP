@@ -292,6 +292,40 @@ void maxAverageSubArraySlidingWindowMethod() {
     ;
 }
 
+// leetcode 75 sort colors
+void sortColors(){
+    vector<int> arr;
+    arr.push_back(1);
+    arr.push_back(0);
+    arr.push_back(2);
+    arr.push_back(2);
+    arr.push_back(1);
+    arr.push_back(0);
+    arr.push_back(1);
+    arr.push_back(0);
+    printVector(arr);
+
+    int size = arr.size();
+    int left = 0;
+    int right = size - 1;
+    int mid = 0;
+
+    while (mid <= right) {
+      if (arr[mid] == 0) {
+        swap(arr[mid], arr[left]);
+        left++;
+        mid++;
+      } else if (arr[mid] == 2) {
+        swap(arr[mid], arr[right]);
+        right--;
+      } else {
+        mid++;
+      }
+    }
+
+    printVector(arr);
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -301,6 +335,7 @@ int main(){
     // missingNumberByXORMethod();
     // removeDuplicates();
     // maxAverageSubArrayBruteForce();
-    maxAverageSubArraySlidingWindowMethod();
+    // maxAverageSubArraySlidingWindowMethod();
+    sortColors();
     // return 0;
 }
