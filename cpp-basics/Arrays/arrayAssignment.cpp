@@ -462,6 +462,57 @@ void findMissingElementWithDuplicates() {
   cout << endl;
 }
 
+// first repeating element GFG
+// Given an array arrl] of size n, find the first repeating element. The element
+// should occur more than once and the index of its first occurrence should be
+// the smallest. Note:- The position you return should be according to 1-based
+// indexing. Example 1: Input: n = 7 arr] = {1, 5, 3, 4, 3, 5, 6} Output: 2
+// Explanation:
+// 5 is appearing twice and its first appearence is at index 2 which is less
+// than 3 whose first occuring index is 3.
+
+void findFirstRepeatingElement() {
+  vector<int> nums;
+  nums.push_back(1);
+  nums.push_back(5);
+  nums.push_back(3);
+  nums.push_back(4);
+  nums.push_back(3);
+  nums.push_back(5);
+  nums.push_back(6);
+
+  // // brute force approach compare each element and return first occurance
+  // for (int i = 0; i < nums.size(); i++) {
+
+  //   for (int j = i + 1; j < nums.size(); j++) {
+  //     if (nums[i] == nums[j]) {
+
+  //       cout << "Repeated Number Index is: " << i + 1 << endl;
+  //       return;
+  //     }
+  //   }
+  // }
+  // // TC is O(n) + O(n-1) = O(n^2) SC - O(1)
+  // cout << "Repeated Number Index is: " << -1 << endl;
+
+  // optimised soln
+  // storing the occurance of numbers in hash unordered map
+  // Hashing
+  unordered_map<int, int> hash;
+  for (int i = 0; i < nums.size(); i++) {
+    hash[nums[i]]++;
+  }
+
+  for (int i = 0; i < nums.size(); i++) {
+    if (hash[nums[i]] > 1) {
+      cout << "Repeated Number index is: " << i + 1 << endl;
+      return;
+    }
+  }
+  // TC is O(n) sc is O(1)
+  cout << "Repeated Number Index is: " << -1 << endl;
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -475,6 +526,7 @@ int main(){
     // sortColors();
     // sortNegNumbersToLeft();
     // findDuplicateNumberInPlace();
-    findMissingElementWithDuplicates();
+    // findMissingElementWithDuplicates();
+    findFirstRepeatingElement();
     // return 0;
 }
