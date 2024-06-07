@@ -7,6 +7,14 @@
 #include <vector>
 using namespace std;
 
+void printSet(set<int> mySet) {
+  // Print the elements of the set (elements will be sorted)
+  for (auto element : mySet) {                  //auto detects datatype automatically
+    cout << element << " ";
+  }
+  cout << endl;
+}
+
 void printVector(vector<int> v) {
   cout << "Printing Vector" << endl;
   int size = v.size();
@@ -513,6 +521,50 @@ void findFirstRepeatingElement() {
   cout << "Repeated Number Index is: " << -1 << endl;
 }
 
+// Given three arrays sorted in increasing order. Find the elements that are
+// common in all three arrays. Note: can you take care of the duplicates without
+// using any additional Data Structure? Example 1: Input: n1 = 6; A = （1,5, 10,
+// 20, 40, 80｝ n2 = 5; B = {6, 7, 20, 80, 100} n3 = 8; C = {3, 4, 15, 20, 30,
+// 70, 80, 120} Output: 20 80 Explanation: 20 and 80 are the only common
+// elements in A, B and C.
+
+// Expected Time Complexity: 0(n1 + n2 + n3)
+// Expected Auxiliary Space: 0(n1 + n2 + n3)
+// Constraints:
+// 1 <= n1, n2, n3 <= 10^5
+// The array elements can be both positive or negative integers.
+
+void findCommonElementsIn3SortedArray() {
+  int n1 = 6;
+  int a[6] = {1, 5, 10, 20, 40, 80};
+  int n2 = 5;
+  int b[5] = {6, 7, 20, 80, 100};
+  int n3 = 8;
+  int c[8] = {3, 4, 15, 20, 30, 70, 80, 120};
+
+  set<int> ans;                                //Used STL Set to avoid duplicate elements
+  int i, j, k;
+  i = j = k = 0;
+
+  while (i < n1 && j < n2 && k < n3) {
+    if (a[i] == b[j] && b[j] == c[k]) {
+      ans.insert(a[i]);
+      i++;
+      j++;
+      k++;
+    } else if (a[i] < b[j]) {
+      i++;
+    } else if (b[j] < c[k]) {
+      j++;
+    } else {
+      k++;
+    }
+  }
+
+  cout << "Common element are: ";
+  printSet(ans);
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -527,6 +579,7 @@ int main(){
     // sortNegNumbersToLeft();
     // findDuplicateNumberInPlace();
     // findMissingElementWithDuplicates();
-    findFirstRepeatingElement();
+    // findFirstRepeatingElement();
+    findCommonElementsIn3SortedArray();
     // return 0;
 }
