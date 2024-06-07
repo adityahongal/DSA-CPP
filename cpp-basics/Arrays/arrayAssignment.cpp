@@ -565,6 +565,33 @@ void findCommonElementsIn3SortedArray() {
   printSet(ans);
 }
 
+// Wave print a matrix
+// use the below command to run in C++ 11 version compatible mode
+// g++ -std=c++11 arrayAssignment.cpp -o temp_executable && ./temp_executable && rm temp_executable
+
+void WavePrintMatrix() {
+  vector<vector<int> > v = {{1, 2, 3, 4},
+                           {5, 6, 7, 8},
+                           {9, 10, 11, 12}};
+  int row = v.size();
+  int col = v[0].size();
+
+  for( int startCol = 0; startCol < col; startCol++){
+    //Even no. of colums --> Top to bot --> Using Bitwise AND
+    if((startCol & 1) == 0){
+      for( int i = 0; i < row; i++){
+        cout << v[i][startCol] << " ";
+      }
+    }
+    else{
+      //Odd no. of columns
+      for( int i = row - 1; i>=0 ; i--){
+        cout << v[i][startCol] << " ";
+      }
+    }
+  }
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -580,6 +607,7 @@ int main(){
     // findDuplicateNumberInPlace();
     // findMissingElementWithDuplicates();
     // findFirstRepeatingElement();
-    findCommonElementsIn3SortedArray();
+    // findCommonElementsIn3SortedArray();
+    WavePrintMatrix();
     // return 0;
 }
