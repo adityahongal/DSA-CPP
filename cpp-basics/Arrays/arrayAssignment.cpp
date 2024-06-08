@@ -693,6 +693,56 @@ void SpiralPrintMatrix() {
   printVector(ans);
 }
 
+void AddTwoNumbersByTwoArrays() {
+  int a[] = {0, 9, 5, 4, 9};
+  int b[] = {2, 1, 4};
+
+  string ans;
+  int i = 4;
+  int j = 2;
+  int carry = 0;
+  // adding both the arrays till the both the index are same
+  while (i >= 0 && j >= 0) {
+    int x = a[i] + b[j] + carry;
+    int digit = x % 10;
+    carry = x / 10;
+    ans.push_back(digit + '0');
+    i--;
+    j--;
+  }
+
+  // if some left most digits are left to add in array a
+  while (i >= 0) {
+    int x = a[i] + carry;
+    int digit = x % 10;
+    carry = x / 10;
+    ans.push_back(digit + '0');
+    i--;
+  }
+
+  // if some left most digits are left to add in array b
+  while (j >= 0) {
+    int x = b[j] + carry;
+    int digit = x % 10;
+    carry = x / 10;
+    ans.push_back(digit + '0');
+    j--;
+  }
+
+  if (carry) {
+    ans.push_back(carry + '0');
+  }
+
+  // to remove extra zeros in the starting
+  while (ans[ans.size() - 1] == '0') {
+    ans.pop_back();
+  }
+  // the answer should be reversed to
+  reverse(ans.begin(), ans.end());
+
+  cout << "Sum of two numbers is: " << ans << endl;
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -710,6 +760,7 @@ int main(){
     // findFirstRepeatingElement();
     // findCommonElementsIn3SortedArray();
     // WavePrintMatrix();
-    SpiralPrintMatrix();
+    // SpiralPrintMatrix();
+    AddTwoNumbersByTwoArrays();
     // return 0;
 }
