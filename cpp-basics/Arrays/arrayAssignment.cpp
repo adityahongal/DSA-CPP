@@ -693,6 +693,21 @@ void SpiralPrintMatrix() {
   printVector(ans);
 }
 
+// Given two array A[O...N-1] and BIO....M-1] of size N and M respectively,
+// representing two numbers such that every element of arrays represent a digit.
+// For example, Al] = {1, 2, 3} and B[] = {2, 1,4 } represent 123 and 214
+// respectively. The task is to find the sum of both the numbers.
+
+// Explanation:
+// N=2, and A[]={1,2}
+// M=2, and B[]={2,1}
+// Number represented by first array is 12.
+// Number represented by second array is 21
+// Sum=12+21=33
+
+// Input : A[] = {9, 5, 4, 9}, B[] = {2, 1, 4}
+// Output : 9763
+
 void AddTwoNumbersByTwoArrays() {
   int a[] = {0, 9, 5, 4, 9};
   int b[] = {2, 1, 4};
@@ -743,6 +758,33 @@ void AddTwoNumbersByTwoArrays() {
   cout << "Sum of two numbers is: " << ans << endl;
 }
 
+void findFactorialOfALargeNumber() {
+  int n = 7;
+  vector<int> ans;
+  ans.push_back(1);
+  int carry = 0;
+  for (int i = 2; i <= n; i++) {
+    for (int j = 0; j < ans.size(); j++) {
+      int x = ans[j] * i + carry;
+      ans[j] = x % 10;
+      carry = x / 10;
+    }
+    // if(carry) {
+    //   ans.push_back(carry);
+    // }
+
+    // if carry is also in multiple digits
+    while (carry) {
+      ans.push_back(carry % 10);
+      carry = carry / 10;
+    }
+
+    // carry = 0;
+  }
+  reverse(ans.begin(), ans.end());
+  printVector(ans);
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -761,6 +803,7 @@ int main(){
     // findCommonElementsIn3SortedArray();
     // WavePrintMatrix();
     // SpiralPrintMatrix();
-    AddTwoNumbersByTwoArrays();
+    // AddTwoNumbersByTwoArrays();
+    findFactorialOfALargeNumber();
     // return 0;
 }
