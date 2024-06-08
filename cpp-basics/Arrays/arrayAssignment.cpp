@@ -7,6 +7,15 @@
 #include <vector>
 using namespace std;
 
+void print2DVector(vector<vector<int> > arr) {
+  for (int i = 0; i < arr.size(); i++) {
+    for (int j = 0; j < arr[i].size(); j++) {
+      cout << arr[i][j] << "  ";
+    }
+    cout << endl;
+  }
+}
+
 void printSet(set<int> mySet) {
   // Print the elements of the set (elements will be sorted)
   for (auto element : mySet) {                  //auto detects datatype automatically
@@ -570,9 +579,29 @@ void findCommonElementsIn3SortedArray() {
 // g++ -std=c++11 arrayAssignment.cpp -o temp_executable && ./temp_executable && rm temp_executable
 
 void WavePrintMatrix() {
-  vector<vector<int> > v = {{1, 2, 3, 4},
-                           {5, 6, 7, 8},
-                           {9, 10, 11, 12}};
+  // vector<vector<int> > v = {{1, 2, 3, 4},
+  //                          {5, 6, 7, 8},
+  //                          {9, 10, 11, 12}};
+
+  int r1[] = {1, 2, 3, 4};
+  int r2[] = {5, 6, 7, 8};
+  int r3[] = {9, 10, 11, 12};
+  int r4[] = {13, 14, 15, 16};
+  int r5[] = {17, 18, 19, 20};
+
+  vector<int> row1(r1, r1 + sizeof(r1) / sizeof(r1[0]));
+  vector<int> row2(r2, r2 + sizeof(r2) / sizeof(r2[0]));
+  vector<int> row3(r3, r3 + sizeof(r3) / sizeof(r3[0]));
+  vector<int> row4(r4, r4 + sizeof(r4) / sizeof(r4[0]));
+  vector<int> row5(r5, r5 + sizeof(r5) / sizeof(r5[0]));
+
+  vector<vector<int> > v;
+  v.push_back(row1);
+  v.push_back(row2);
+  v.push_back(row3);
+  v.push_back(row4);
+  v.push_back(row5);
+
   int row = v.size();
   int col = v[0].size();
 
@@ -592,6 +621,78 @@ void WavePrintMatrix() {
   }
 }
 
+// spiralprint matrix leet code 54
+void SpiralPrintMatrix() {
+  int r1[] = {1, 2, 3, 4, 5, 6};
+  int r2[] = {7, 8, 9, 10, 11, 12};
+  int r3[] = {13, 14, 15, 16, 17, 18};
+  int r4[] = {19, 20, 21, 22, 23, 24};
+  int r5[] = {25, 26, 27, 28, 29, 30};
+
+  vector<int> row1(r1, r1 + sizeof(r1) / sizeof(r1[0]));
+  vector<int> row2(r2, r2 + sizeof(r2) / sizeof(r2[0]));
+  vector<int> row3(r3, r3 + sizeof(r3) / sizeof(r3[0]));
+  vector<int> row4(r4, r4 + sizeof(r4) / sizeof(r4[0]));
+  vector<int> row5(r5, r5 + sizeof(r5) / sizeof(r5[0]));
+
+  vector<vector<int> > v;
+
+  v.push_back(row1);
+  v.push_back(row2);
+  v.push_back(row3);
+  v.push_back(row4);
+  v.push_back(row5);
+  print2DVector(v);
+
+  vector<int> ans;
+
+  int rows = v.size();
+  int cols = v[0].size();
+  int totalElements = rows * cols;
+
+  int startingRow = 0;
+  int endingCol = cols - 1;
+  int endingRow = rows - 1;
+  int startingCol = 0;
+
+  int count = 0;
+
+  while (count < totalElements) {
+    // print starting row
+    for (int i = startingCol; i <= endingCol && count < totalElements; i++) {
+      ans.push_back(v[startingRow][i]);
+      count++;
+      // if(count >= totalElements) {                  //we added this in for loop itself
+      //   break;
+      // }
+    }
+    startingRow++;
+
+    // print ending col
+    for (int i = startingRow; i <= endingRow && count < totalElements; i++) {
+      ans.push_back(v[i][endingCol]);
+      count++;
+    }
+    endingCol--;
+
+    // print ending row
+    for (int i = endingCol; i >= startingCol && count < totalElements; i--) {
+      ans.push_back(v[endingRow][i]);
+      count++;
+    }
+    endingRow--;
+
+    // print starting col
+    for (int i = endingRow; i >= startingRow && count < totalElements; i--) {
+      ans.push_back(v[i][startingCol]);
+      count++;
+    }
+    startingCol++;
+  }
+
+  printVector(ans);
+}
+
 int main(){
 
     // haskeyPairTwoSum();
@@ -608,6 +709,7 @@ int main(){
     // findMissingElementWithDuplicates();
     // findFirstRepeatingElement();
     // findCommonElementsIn3SortedArray();
-    WavePrintMatrix();
+    // WavePrintMatrix();
+    SpiralPrintMatrix();
     // return 0;
 }
