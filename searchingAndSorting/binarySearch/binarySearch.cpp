@@ -95,11 +95,49 @@ int findTotalOccurance(){
     // Cz we have used the same array 2 times
 }
 
+void findMissingElement(int arr[], int size) {
+  int start = 0;
+  int end = size - 1;
+  int mid = start + (end - start) / 2;
+  int ans = -1;
+
+  while (start <= end) {
+    int difference = arr[mid] - mid;
+
+    if (difference == 1) {
+        // Go to right
+      start = mid + 1;   
+    } 
+    else {
+     //Store Answer
+      ans = mid;
+
+      // Go to left
+      end = mid - 1;
+    }
+
+    mid = start + (end - start) / 2;
+  }
+
+  // try to exclude below statement and solve it in above logic HW
+  if (ans + 1 == 0) {
+    cout << "Missing Element is: " << size + 1 << endl;
+    return;
+  }
+
+  cout << "Missing Element is: " << ans + 1 << endl;
+  return;
+}
+
 int main(){
+
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8}; // for missing elem
+    int size = 9;                         // for missing elem
 
     // basicBinarySearch();
     // findFirstOccurance();
     // findLastOccurance();
-    findTotalOccurance();
+    // findTotalOccurance();
+    findMissingElement(arr, size);
     return 0;
 }
