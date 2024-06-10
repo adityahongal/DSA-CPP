@@ -129,15 +129,52 @@ void findMissingElement(int arr[], int size) {
   return;
 }
 
+// Leetcode 852
+// find peak indes in a mountain array
+// input [0,1,0]
+// output 1
+// solve in TC of O(logn)
+void findPeakIndexInAMountainArray(int crr[], int size) {
+  int start = 0;
+  int end = size - 1;
+  int mid = start + (end - start) / 2;
+
+  while (start < end) {
+    if (crr[mid] < crr[mid + 1]) {
+      // in A section of graph
+      // peak exists right side
+      // so move right
+      start = mid + 1;
+    } else {
+      // you might be in B section of graph
+      // and you might be on peak element
+      // move left without losing peak element so end = mid
+      end = mid;
+    }
+
+    // update mid
+    mid = start + (end - start) / 2;
+  }
+
+  cout << "Peak element is: " << start << endl;
+}
+
 int main(){
 
-    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8}; // for missing elem
-    int size = 9;                         // for missing elem
+    // int arr[] = {1, 2, 3, 4, 5, 6, 7, 8}; // for missing elem
+    // int size = 9;                         // for missing elem
+
+    // int crr[] = {0, 2, 1, 0};         // For Mountain Array
+    // int size = 4;                     // For Mountain Array
+
+    int crr[] = {10, 20, 50, 40, 30};         // For Mountain Array
+    int size = 4;                     // For Mountain Array
 
     // basicBinarySearch();
     // findFirstOccurance();
     // findLastOccurance();
     // findTotalOccurance();
-    findMissingElement(arr, size);
+    // findMissingElement(arr, size);
+    findPeakIndexInAMountainArray(crr, size);
     return 0;
 }
