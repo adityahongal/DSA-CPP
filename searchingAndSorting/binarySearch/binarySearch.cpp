@@ -31,7 +31,7 @@ void basicBinarySearch(){
 
 int findFirstOccurance() {
   int arr[8] = {10, 20, 20, 30, 30, 30, 40, 50};
-  int target = 20;
+  int target = 30;
   int start = 0;
   int end = 7;
   // int mid = (start + end) / 2;
@@ -57,9 +57,38 @@ int findFirstOccurance() {
   return answer;
 }
 
+int findLastOccurance() {
+  int arr[8] = {10, 20, 20, 30, 30, 30, 40, 50};
+  int target = 30;
+  int start = 0;
+  int end = 7;
+  // int mid = (start + end) / 2;
+  int mid = start + (end - start) / 2; // Best Practice to avoid integer overflow (if sum of start and end is very big it will overflow)
+  int answer = -1;
+
+  while (start <= end) {
+    if (arr[mid] == target) {
+      answer = mid;
+      // move towards right
+      start = mid + 1;
+    } else if (target > arr[mid]) {
+      start = mid + 1;
+    } else if (target < arr[mid]) {
+      end = mid - 1;
+    }
+    //update mid
+    mid = (start + end) / 2;
+  }
+
+  cout << "Last Occurance of target " << target << " is at: " << answer
+       << endl;
+  return answer;
+}
+
 int main(){
 
     // basicBinarySearch();
-    findFirstOccurance();
+    // findFirstOccurance();
+    findLastOccurance();
     return 0;
 }
