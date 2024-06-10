@@ -58,7 +58,7 @@ int findFirstOccurance() {
 }
 
 int findLastOccurance() {
-  int arr[8] = {10, 20, 20, 30, 30, 30, 40, 50};
+  int brr[8] = {10, 20, 20, 30, 30, 30, 40, 50};
   int target = 30;
   int start = 0;
   int end = 7;
@@ -67,13 +67,13 @@ int findLastOccurance() {
   int answer = -1;
 
   while (start <= end) {
-    if (arr[mid] == target) {
+    if (brr[mid] == target) {
       answer = mid;
       // move towards right
       start = mid + 1;
-    } else if (target > arr[mid]) {
+    } else if (target > brr[mid]) {
       start = mid + 1;
-    } else if (target < arr[mid]) {
+    } else if (target < brr[mid]) {
       end = mid - 1;
     }
     //update mid
@@ -85,10 +85,21 @@ int findLastOccurance() {
   return answer;
 }
 
+int findTotalOccurance(){
+    int firstOccurance = findFirstOccurance();
+    int lastOccurance = findLastOccurance();
+    int totalOccurance = lastOccurance - firstOccurance + 1;
+    cout << "Total Occurance of target is: " << totalOccurance << endl;
+    return totalOccurance;
+    // Anwser will be 3 in case of target=30
+    // Cz we have used the same array 2 times
+}
+
 int main(){
 
     // basicBinarySearch();
     // findFirstOccurance();
-    findLastOccurance();
+    // findLastOccurance();
+    findTotalOccurance();
     return 0;
 }
