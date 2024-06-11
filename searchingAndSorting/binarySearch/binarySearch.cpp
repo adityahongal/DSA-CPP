@@ -215,10 +215,10 @@ int search(vector<int> &nums, int target) {
   int size = nums.size();
   int ans = -1;
 
-  if (target >= nums[0] && target <= nums[pivotIndex]) {
+  if (target >= nums[0] && target <= nums[pivotIndex]) {           // target is in range 0th index to pivot index
     ans = binarySearch(nums, 0, pivotIndex, target);
   } else {
-    ans = binarySearch(nums, pivotIndex+1, size - 1, target);
+    ans = binarySearch(nums, pivotIndex+1, size - 1, target);      // target is in range pivotIndex+1 to n-1(i.e. size-1)
   }
 
   return ans;
