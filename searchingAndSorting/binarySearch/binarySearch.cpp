@@ -253,6 +253,43 @@ void findNearestSQRT() {
   cout << "SQRT is: " << ans << endl;
 }
 
+// Same as above with precision
+int findSQRTWithPrecesion(int num) {
+
+  int start = 0;
+  int end = num;
+  long long mid = start + (end - start) / 2;
+  int ans = -1;
+
+  while (start <= end) {
+    if (mid * mid <= num) {
+      ans = mid;
+      start = mid + 1; // move left
+    } else {
+      end = mid - 1;
+    }
+
+    mid = start + (end - start) / 2;
+  }
+
+  return ans;
+}
+
+double precesionSQRT(int n) {
+  double sqrt = findSQRTWithPrecesion(51);
+  double step = 0.1;
+  int precesion = 10;
+  for (int i = 0; i < precesion; i++) {
+    double j = sqrt;
+    while (j * j <= n) {
+      sqrt = j;
+      j += step;
+    }
+    step /= 10;
+  }
+  return sqrt;
+}
+
 int main(){
 
     // int arr[] = {1, 2, 3, 4, 5, 6, 7, 8}; // for missing elem
@@ -290,7 +327,12 @@ int main(){
     // int ans = search(v, 0);
     // cout << "Target is at: " << ans << "th Index" << endl;
 
-    findNearestSQRT();
+    // findNearestSQRT();
+    findSQRTWithPrecesion(51);
+    double sqrt = precesionSQRT(51);
+    cout << "Precesion SQRT is: " << sqrt << endl; // wont show all precesion so
+    // use printf 
+    printf("Most Precise sqrt is %0.10f", sqrt); cout << endl;
 
     return 0;
 }
