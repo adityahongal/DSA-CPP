@@ -224,6 +224,7 @@ int search(vector<int> &nums, int target) {
   return ans;
 }
 
+// Leetcode Ques no. 69
 void findNearestSQRT() {
   int num = 51;
   int start = 0;
@@ -290,6 +291,37 @@ double precesionSQRT(int n) {
   return sqrt;
 }
 
+//Leetcode Ques no. 74
+void findTargetIn2DSortedArray(vector<vector<int> > &arr, int target) {
+  int rows = arr.size();
+  int cols = arr[0].size();
+  int size = rows * cols;               //To find Total Elements
+
+  int start = 0;
+  int end = size - 1;
+  int mid = start + (end - start) / 2;
+
+  while (start <= end) {
+    //mid ka use karkek 2D array ka rowIndex and colIndex find krenge
+    int rowIndex = mid / cols;
+    int colIndex = mid % cols;
+    int currentNum = arr[rowIndex][colIndex];
+
+    if (currentNum == target) {
+      cout << "Target found at: row = " << rowIndex << " col = " << colIndex
+           << endl;
+      return;
+    } else if (currentNum > target) {
+      // move left
+      end = mid - 1;
+    } else {
+      start = mid + 1;
+    }
+
+    mid = start + (end - start) / 2;
+  }
+}
+
 int main(){
 
     // int arr[] = {1, 2, 3, 4, 5, 6, 7, 8}; // for missing elem
@@ -312,6 +344,31 @@ int main(){
     v.push_back(1);
     v.push_back(2);
 
+    // for 2d array find
+    vector<int> row1;
+    vector<int> row2;
+    vector<int> row3;
+
+    row1.push_back(1);
+    row1.push_back(2);
+    row1.push_back(3);
+    row1.push_back(4);
+
+    row2.push_back(5);
+    row2.push_back(6);
+    row2.push_back(7);
+    row2.push_back(8);
+
+    row3.push_back(9);
+    row3.push_back(10);
+    row3.push_back(11);
+    row3.push_back(12);
+
+    vector<vector<int> > arrB;
+    arrB.push_back(row1);
+    arrB.push_back(row2);
+    arrB.push_back(row3);
+
     // basicBinarySearch();
     // findFirstOccurance();
     // findLastOccurance();
@@ -327,12 +384,14 @@ int main(){
     // int ans = search(v, 0);
     // cout << "Target is at: " << ans << "th Index" << endl;
 
-    // findNearestSQRT();
-    findSQRTWithPrecesion(51);
-    double sqrt = precesionSQRT(51);
-    cout << "Precesion SQRT is: " << sqrt << endl; // wont show all precesion so
-    // use printf 
-    printf("Most Precise sqrt is %0.10f", sqrt); cout << endl;
+    // // findNearestSQRT();
+    // findSQRTWithPrecesion(51);
+    // double sqrt = precesionSQRT(51);
+    // cout << "Precesion SQRT is: " << sqrt << endl; // wont show all precesion so
+    // // use printf 
+    // printf("Most Precise sqrt is %0.10f", sqrt); cout << endl;
+
+    findTargetIn2DSortedArray(arrB, 7);
 
     return 0;
 }
