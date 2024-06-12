@@ -224,6 +224,35 @@ int search(vector<int> &nums, int target) {
   return ans;
 }
 
+void findNearestSQRT() {
+  int num = 51;
+  int start = 0;
+  int end = num;
+  long long mid = start + (end - start) / 2;              // used this long long int to avoid integer overflow
+  int ans = -1;
+
+  while(start <= end){
+    if (mid * mid == num) {
+      cout << "SQRT is: " << mid << endl;
+      return;
+    }
+    if (mid * mid < num){
+      //answer may or may not be so
+      //store and compute
+      ans = mid;
+      //go to right to find nearest answer
+      start = mid+1;
+    }
+    else {
+      ans = mid;
+      //go to left to find nearest answer
+      end = mid-1;
+    }
+    mid = start + (end - start) / 2;
+  }
+  cout << "SQRT is: " << ans << endl;
+}
+
 int main(){
 
     // int arr[] = {1, 2, 3, 4, 5, 6, 7, 8}; // for missing elem
@@ -253,13 +282,15 @@ int main(){
     // findMissingElement(arr, size);
     // findPeakIndexInAMountainArray(crr, size);
 
-    // pivot index
-    int pivotIndex = findPivotIndex(v);
-    cout << "Pivot Index is: " << pivotIndex << endl;
+    // // pivot index
+    // int pivotIndex = findPivotIndex(v);
+    // cout << "Pivot Index is: " << pivotIndex << endl;
 
-    // search in rotated and sorted array
-    int ans = search(v, 0);
-    cout << "Target is at: " << ans << "th Index" << endl;
+    // // search in rotated and sorted array
+    // int ans = search(v, 0);
+    // cout << "Target is at: " << ans << "th Index" << endl;
+
+    findNearestSQRT();
 
     return 0;
 }
