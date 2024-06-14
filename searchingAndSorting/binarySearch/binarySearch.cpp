@@ -364,6 +364,60 @@ int getQuotient(int dividend, int divisor) {
     return ans;
 }
 
+// Given a sorted array arr[] of size N, some elements of array are moved to either of the 
+// adjacent positions, i.e., arr[i] may be present at arr[i+1] or arr[i-1] 
+// i.e. arr[i] can only be swapped with either arr[i+1] or arr[i-1]. 
+// The task is to search for an element in this array.
+
+// Input: arr[] =  {10, 3, 40, 20, 50, 80, 70}, key = 40
+// Output: 2
+// Explanation: Output is index of 40 in given array i.e. 2
+
+// Input: arr[] =  {10, 3, 40, 20, 50, 80, 70}, key = 90
+// Output: -1
+// Explanation: -1 is returned to indicate the element is not present
+
+// Search in nearly or almost sorted array
+
+int searchInNearlySortedArray(int arr[], int size, int target)
+{
+    int s = 0;
+    int e = size - 1;
+    int mid = s + (e - s) / 2;
+
+    while (s <= e)
+    {
+        // cout << "printing mid:  " << mid << endl;
+        // cout << "target " << target << endl;
+        // cout << "arr[mid]: " << arr[mid] << endl << endl;
+        if (arr[mid] == target)
+        {
+            return mid; 
+        }
+        if (arr[mid - 1] == target)
+        {
+            return mid - 1;
+        }
+        if (arr[mid + 1] == target)
+        {
+            return mid + 1;
+        }
+
+        if (target > arr[mid])
+        {
+            // right
+            s = mid + 2;
+        }
+        else
+        {
+            // left
+            e = mid - 2;
+        }
+        mid = s + (e - s) / 2;
+    }
+    return -1;
+}
+
 int main(){
 
     // int arr[] = {1, 2, 3, 4, 5, 6, 7, 8}; // for missing elem
@@ -435,17 +489,24 @@ int main(){
 
     // findTargetIn2DSortedArray(arrB, 7);
 
-    // Get Quotient
-    int dividend = 10;          // can be -10
-    int divisor = 2;            // can be -2
+    // // Get Quotient
+    // int dividend = 10;          // can be -10
+    // int divisor = 2;            // can be -2
 
-    //mission is to find Quotient
-    int ans = getQuotient(abs(dividend), abs(divisor));
-    //ans answer positive values k hisaab se aara h 
-    if((dividend <0 && divisor>0) || (dividend >0 && divisor<0)) {
-      ans = 0-ans;
-    }
-    cout << "Final Ans : " << ans << endl;
+    // //mission is to find Quotient
+    // int ans = getQuotient(abs(dividend), abs(divisor));
+    // //ans answer positive values k hisaab se aara h 
+    // if((dividend <0 && divisor>0) || (dividend >0 && divisor<0)) {
+    //   ans = 0-ans;
+    // }
+    // cout << "Final Ans : " << ans << endl;
+
+    // for nearly sorted array check
+    int arrC[] = {10, 3, 40, 20, 50, 80, 70};
+    int sizeC = 7;
+    int targetC = 40;
+    int ans = searchInNearlySortedArray(arrC, sizeC, targetC);
+    cout << "Found at Index: " << ans << endl;
 
     return 0;
 }
