@@ -418,52 +418,110 @@ int searchInNearlySortedArray(int arr[], int size, int target)
     return -1;
 }
 
+int findOddOccuringElement(int arr[], int size){
+  int start = 0;
+  int end = size - 1;
+  int mid = start + (end - start) / 2;
+
+  while (start <= end) {
+    // single elem case
+    if (start == end) {
+      return start;
+    }
+
+    // if Duplicate element not exist
+    if ( mid-1 >= 0 && arr[mid] != arr[mid-1] && mid+1 < size && arr[mid] != arr[mid+1] ){
+      return mid;
+    }
+
+    // If duplicate element exist in left index
+    if (mid-1 >= 0 && arr[mid] == arr[mid-1]) {
+      int pairStartingIndex = mid -1;
+      //check mid for even or odd
+      if ( pairStartingIndex & 1 ){
+        // pair starting index is odd
+        // standing at right part
+        // go to left
+        end = mid - 1;
+      }
+      else {
+        // pair starting index is even
+        // standing at left part
+        // go to right
+        start = mid + 1;
+      }
+    }
+
+    // If duplicate element exist in right index
+    else if (mid+1 < size && arr[mid] == arr[mid+1]) {
+        int pairStartingIndex = mid;
+        //check mid for even or odd
+        if ( pairStartingIndex & 1 ){               //These conditions same as above
+          // pair starting index is odd
+          // standing at right part
+          // go to left
+          end = mid - 1;
+        }
+        else {
+          // pair starting index is even
+          // standing at left part
+          // go to right
+          start = mid + 1;
+        }
+      }
+    //update mid
+    mid = start + (end - start) / 2;
+  }
+  cout << "Odd Occurance not found" << endl;
+  return -1;
+}
+
 int main(){
 
     // int arr[] = {1, 2, 3, 4, 5, 6, 7, 8}; // for missing elem
     // int size = 9;                         // for missing elem
 
-    int crr[] = {0, 2, 1, 0};         // For Mountain Array
-    int size = 4;                     // For Mountain Array
+    // int crr[] = {0, 2, 1, 0};         // For Mountain Array
+    // int size = 4;                     // For Mountain Array
 
     // int crr[] = {10, 20, 50, 40, 30};         // For Mountain Array
     // int size = 4;                             // For Mountain Array
 
-    // for pivot index
-    vector<int> v;
+    // // for pivot index
+    // vector<int> v;
 
-    v.push_back(4);
-    v.push_back(5);
-    v.push_back(6);
-    v.push_back(7);
-    v.push_back(0);
-    v.push_back(1);
-    v.push_back(2);
+    // v.push_back(4);
+    // v.push_back(5);
+    // v.push_back(6);
+    // v.push_back(7);
+    // v.push_back(0);
+    // v.push_back(1);
+    // v.push_back(2);
 
-    // for 2d array find
-    vector<int> row1;
-    vector<int> row2;
-    vector<int> row3;
+    // // for 2d array find
+    // vector<int> row1;
+    // vector<int> row2;
+    // vector<int> row3;
 
-    row1.push_back(1);
-    row1.push_back(2);
-    row1.push_back(3);
-    row1.push_back(4);
+    // row1.push_back(1);
+    // row1.push_back(2);
+    // row1.push_back(3);
+    // row1.push_back(4);
 
-    row2.push_back(5);
-    row2.push_back(6);
-    row2.push_back(7);
-    row2.push_back(8);
+    // row2.push_back(5);
+    // row2.push_back(6);
+    // row2.push_back(7);
+    // row2.push_back(8);
 
-    row3.push_back(9);
-    row3.push_back(10);
-    row3.push_back(11);
-    row3.push_back(12);
+    // row3.push_back(9);
+    // row3.push_back(10);
+    // row3.push_back(11);
+    // row3.push_back(12);
 
-    vector<vector<int> > arrB;
-    arrB.push_back(row1);
-    arrB.push_back(row2);
-    arrB.push_back(row3);
+    // vector<vector<int> > arrB;
+    // arrB.push_back(row1);
+    // arrB.push_back(row2);
+    // arrB.push_back(row3);
 
     // basicBinarySearch();
     // findFirstOccurance();
@@ -501,12 +559,19 @@ int main(){
     // }
     // cout << "Final Ans : " << ans << endl;
 
-    // for nearly sorted array check
-    int arrC[] = {10, 3, 40, 20, 50, 80, 70};
-    int sizeC = 7;
-    int targetC = 40;
-    int ans = searchInNearlySortedArray(arrC, sizeC, targetC);
-    cout << "Found at Index: " << ans << endl;
+    // // for nearly sorted array check
+    // int arrC[] = {10, 3, 40, 20, 50, 80, 70};
+    // int sizeC = 7;
+    // int targetC = 40;
+    // int ans = searchInNearlySortedArray(arrC, sizeC, targetC);
+    // cout << "Found at Index: " << ans << endl;
+
+    // for odd occuring element
+    int arrD[] = {1, 1, 2, 2, 3, 3, 4, 5, 5, 3, 3};
+    int sizeD = 11;
+    int ans = findOddOccuringElement(arrD, sizeD);
+    cout << "Odd occuring Index is: " << ans << endl;
+    cout << "Odd occuring Element is: " << arrD[ans] << endl;
 
     return 0;
 }
