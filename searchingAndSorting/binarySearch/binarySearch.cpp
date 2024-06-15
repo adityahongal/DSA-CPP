@@ -278,14 +278,16 @@ int findSQRTWithPrecesion(int num) {
 
 double precesionSQRT(int n) {
   double sqrt = findSQRTWithPrecesion(51);
-  double step = 0.1;
+  double step = 0.1;                        // Precision 1 = 0.1, P2 = 0.01, P3 = 0.001,.....
   int precesion = 10;
   for (int i = 0; i < precesion; i++) {
-    double j = sqrt;
+    double j = sqrt;                // eg 7 will be converted to 7.0
     while (j * j <= n) {
-      sqrt = j;
-      j += step;
+      sqrt = j;                    // Store and Compute
+      j += step;                   // eg. Precision 1 => j=7.1, Precision 2 => j=7.12 ........
     }
+    //After this while loop got precision 1
+    // after next while loop precision 2,3,4,etc
     step /= 10;
   }
   return sqrt;
@@ -418,6 +420,7 @@ int searchInNearlySortedArray(int arr[], int size, int target)
     return -1;
 }
 
+// leetcode 540
 int findOddOccuringElement(int arr[], int size){
   int start = 0;
   int end = size - 1;
