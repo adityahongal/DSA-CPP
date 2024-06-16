@@ -225,7 +225,7 @@ int search(vector<int> &nums, int target) {
 }
 
 // Leetcode Ques no. 69
-void findNearestSQRT() {
+void findNearestSQRT() {                                    // T.C. ==> O(logn)
   int num = 51;
   int start = 0;
   int end = num;
@@ -255,7 +255,7 @@ void findNearestSQRT() {
 }
 
 // Same as above with precision
-int findSQRTWithPrecesion(int num) {
+int findSQRTWithPrecesion(int num) {                             // T.C. ==> O(logn)
 
   int start = 0;
   int end = num;
@@ -276,7 +276,7 @@ int findSQRTWithPrecesion(int num) {
   return ans;
 }
 
-double precesionSQRT(int n) {
+double precesionSQRT(int n) {                                   // T.C. ==> O(logn) + O(precision)
   double sqrt = findSQRTWithPrecesion(51);
   double step = 0.1;                        // Precision 1 = 0.1, P2 = 0.01, P3 = 0.001,.....
   int precesion = 10;
@@ -291,6 +291,31 @@ double precesionSQRT(int n) {
     step /= 10;
   }
   return sqrt;
+}
+
+// Finding Precision Square root Method 2
+// We use new derivation method for while condition
+// Integers do not have precision, so we
+// Used floating point variables
+
+double findSQRTWithPrecesionMethodTwo(int n)
+{
+    double start = 0;
+    double end = n;
+    double ans = 0;
+    while ((end - start) > 0.000000001)
+    {
+        double mid = (start + end) / 2;
+        double sqr = mid * mid;
+        if (sqr <= n)
+        {
+            ans = mid;
+            start = mid + 0.000000000000000000000000001;
+        }
+        else
+            end = mid - 0.000000000000000000000000001;
+    }
+    return ans;
 }
 
 //Leetcode Ques no. 74
@@ -542,11 +567,16 @@ int main(){
     // cout << "Target is at: " << ans << "th Index" << endl;
 
     // // findNearestSQRT();
-    // findSQRTWithPrecesion(51);
-    // double sqrt = precesionSQRT(51);
+    // findSQRTWithPrecesion(51);                            // T.C. ==> O(logn)
+    // double sqrt = precesionSQRT(51);                     // T.C. ==> O(logn) + O(precision)
     // cout << "Precesion SQRT is: " << sqrt << endl; // wont show all precesion so
     // // use printf 
     // printf("Most Precise sqrt is %0.10f", sqrt); cout << endl;
+
+    // Precison Square Root Method 2
+    int n = 63;
+    double ans = findSQRTWithPrecesionMethodTwo(n);
+    printf("M2: Precision Sqrt: %.9f\n", ans);
 
     // findTargetIn2DSortedArray(arrB, 7);
 
@@ -569,12 +599,12 @@ int main(){
     // int ans = searchInNearlySortedArray(arrC, sizeC, targetC);
     // cout << "Found at Index: " << ans << endl;
 
-    // for odd occuring element
-    int arrD[] = {1, 1, 2, 2, 3, 3, 4, 5, 5, 3, 3};
-    int sizeD = 11;
-    int ans = findOddOccuringElement(arrD, sizeD);
-    cout << "Odd occuring Index is: " << ans << endl;
-    cout << "Odd occuring Element is: " << arrD[ans] << endl;
+    // // for odd occuring element
+    // int arrD[] = {1, 1, 2, 2, 3, 3, 4, 5, 5, 3, 3};
+    // int sizeD = 11;
+    // int ans = findOddOccuringElement(arrD, sizeD);
+    // cout << "Odd occuring Index is: " << ans << endl;
+    // cout << "Odd occuring Element is: " << arrD[ans] << endl;
 
     return 0;
 }
