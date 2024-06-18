@@ -86,7 +86,51 @@ void kDiffPairsUsingTwoPointer() {
        << endl;
 }
 
+// using binary search
+int binarySearch(vector< int > &nums, int start, int target) {
+
+  int end = nums.size() - 1;
+  int mid = start + (end - start) / 2;
+
+  while (start <= end) {
+    if (nums[mid] == target) {
+      return mid;
+    } else if (target > nums[mid]) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+    mid = start + (end - start) / 2;
+  }
+
+  return -1;
+}
+
+void kDiffPairsUsingBinarySearch() {
+  vector< int > nums;
+  int k = 2;
+  nums.push_back(3);
+  nums.push_back(1);
+  nums.push_back(4);
+  nums.push_back(1);
+  nums.push_back(5);
+
+  sort(nums.begin(), nums.end());
+
+  set< pair< int, int > > answer;
+
+  for (int i = 0; i < nums.size(); i++) {
+    if (binarySearch(nums, i + 1, nums[i]+k) != -1) {
+      answer.insert(make_pair(nums[i], nums[i] + k));
+    }
+  }
+
+  cout << "K-Diff Pairs count using binary search is: " << answer.size()
+       << endl;
+}
+
 int main (){
-    kDiffPairsUsingTwoPointer();
+    // kDiffPairsUsingTwoPointer();
+    kDiffPairsUsingBinarySearch();
     return 0;
 }
