@@ -106,6 +106,36 @@ int binarySearch(vector< int > &nums, int start, int target) {
   return -1;
 }
 
+// leetcode 658
+void findKClosestElementsUsingTwoPointers() {
+  vector< int > nums;
+  nums.push_back(1);
+  nums.push_back(2);
+  nums.push_back(3);
+  nums.push_back(4);
+  nums.push_back(5);
+
+  int k = 4;
+  int x = -1;
+
+  int low = 0;
+  int high = nums.size() - 1;
+
+  while (high - low >= k) {
+    if (x - nums[low] > nums[high] - x) {
+      low++;
+    } else {
+      high--;
+    }
+  }
+
+  for (int i = low; i <= high; i++) {
+    cout << nums[i] << " ";
+  }
+
+  cout << endl;
+}
+
 void kDiffPairsUsingBinarySearch() {
   vector< int > nums;
   int k = 2;
@@ -131,6 +161,7 @@ void kDiffPairsUsingBinarySearch() {
 
 int main (){
     // kDiffPairsUsingTwoPointer();
-    kDiffPairsUsingBinarySearch();
+    // kDiffPairsUsingBinarySearch();
+    findKClosestElementsUsingTwoPointers();
     return 0;
 }
