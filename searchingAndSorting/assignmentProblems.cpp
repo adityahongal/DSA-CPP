@@ -159,9 +159,64 @@ void kDiffPairsUsingBinarySearch() {
        << endl;
 }
 
+// k closest element using Binary Search
+int lowerBound(vector< int > &nums, int target) {
+  int start = 0, end = nums.size() - 1;
+  int ans = end; // overflow
+
+  while (start <= end) {
+    int mid = start + (end - start) / 2;
+
+    if (nums[mid] >= target) {
+      ans = mid;
+      end = mid - 1;
+    } else if (target > nums[mid]) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  return ans;
+}
+
+void findKClosestElementsUsingBinarySearch() {
+  vector< int > nums;
+  nums.push_back(1);
+  nums.push_back(2);
+  nums.push_back(3);
+  nums.push_back(4);
+  nums.push_back(5);
+
+  int k = 4;
+  int x = 3;
+
+  int high = lowerBound(nums, x);
+  int low = high - 1;
+
+  while (k--) {
+    if (low < 0) {
+      high++;
+    } else if (high >= nums.size()) {
+      low--;
+    } else if (x - nums[low] > nums[high] - x) {
+      high++;
+    } else {
+      low--;
+    }
+  }
+
+  for (int i = low + 1; i < high; i++) {
+    cout << nums[i] << " ";
+  }
+
+  cout << endl;
+}
+
 int main (){
     // kDiffPairsUsingTwoPointer();
     // kDiffPairsUsingBinarySearch();
-    findKClosestElementsUsingTwoPointers();
+    // findKClosestElementsUsingTwoPointers();
+    findKClosestElementsUsingBinarySearch();
     return 0;
 }
