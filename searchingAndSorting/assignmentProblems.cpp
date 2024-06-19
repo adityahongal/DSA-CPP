@@ -389,12 +389,61 @@ void bookAllocationProblem() {
   cout << "The answer is: " << ans << endl;
 }
 
+bool isPossibleSolutionForPainters(int a[], int n, int k, long long mid) {
+  long long timeSum = 0;
+  int painterCount = 1;
+
+  for (int i = 0; i < n; i++) {
+    if (a[i] > mid) {
+      return false;
+    }
+
+    if (a[i] + timeSum > mid) {
+      painterCount++;
+      timeSum = a[i];
+
+      if (painterCount > k) {
+        return false;
+      }
+    } else {
+      timeSum += a[i];
+    }
+  }
+
+  return true;
+}
+
+void paintersPartionProblem() {
+  int a[] = {10,20,30,40};
+  int n = 4;
+  int k = 2;
+
+  long long start = 0;
+  long long end = accumulate(a, a + n, 0);
+
+  long long ans = -1;
+
+  while (start <= end) {
+    long long mid = start + (end - start) / 2;
+
+    if (isPossibleSolutionForPainters(a, n, k, mid)) {
+      ans = mid;
+      end = mid - 1;
+    } else {
+      start = mid + 1;
+    }
+  }
+
+  cout << "The answer is: " << ans << endl;
+}
+
 int main (){
     // kDiffPairsUsingTwoPointer();
     // kDiffPairsUsingBinarySearch();
     // findKClosestElementsUsingTwoPointers();
     // findKClosestElementsUsingBinarySearch();
     // exponentialSearch();
-    bookAllocationProblem();
+    // bookAllocationProblem();
+    paintersPartionProblem();
     return 0;
 }
