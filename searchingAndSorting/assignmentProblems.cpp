@@ -437,6 +437,60 @@ void paintersPartionProblem() {
   cout << "The answer is: " << ans << endl;
 }
 
+// Aggressive Cows Problem
+bool isPossiblePlacementForAggressiveCows(vector< int > &stalls, int k, int mid) {
+  // can we place k cows with at least mid distance between cows
+
+  int cowCount = 1;
+  int currentStallPosition = stalls[0];           // we place 1st cow at first position
+
+  for (int i = 1; i < stalls.size(); i++) {
+    if (stalls[i] - currentStallPosition >= mid) {
+      cowCount++;
+      currentStallPosition = stalls[i];           // One more cow has been placed
+    }
+
+    if (cowCount == k)
+      return true;                               // this means all cows are placed
+  }
+
+  return false;
+}
+
+void aggressiveCowsPlacement() {
+  vector< int > stalls;
+  stalls.push_back(1);
+  stalls.push_back(2);
+  stalls.push_back(4);
+  stalls.push_back(8);
+  stalls.push_back(9);
+
+  int n = 5;
+  int k = 3;
+
+  // op should be 3
+
+  sort(stalls.begin(), stalls.end());
+
+  int start = 0;
+  int end = stalls[stalls.size() - 1] - stalls[0];
+
+  int ans = -1;
+
+  while (start <= end) {
+    int mid = (start + end) >> 1;
+
+    if (isPossiblePlacementForAggressiveCows(stalls, k, mid)) {
+      ans = mid;
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  cout << "The answer is: " << ans << endl;
+}
+
 int main (){
     // kDiffPairsUsingTwoPointer();
     // kDiffPairsUsingBinarySearch();
@@ -444,6 +498,7 @@ int main (){
     // findKClosestElementsUsingBinarySearch();
     // exponentialSearch();
     // bookAllocationProblem();
-    paintersPartionProblem();
+    // paintersPartionProblem();
+    aggressiveCowsPlacement();
     return 0;
 }
