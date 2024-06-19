@@ -246,11 +246,155 @@ void exponentialSearch() {
   cout << "The target is at index: " << ans << endl;
 }
 
+// Book Allocation problem
+
+// Allocate Minimum Number of Pages from N books to M students
+
+// Given that there are N books and M students. Also given are the number of
+// pages in each book in ascending order. The task is to assign books in such a
+// way that the maximum number of pages assigned to a student is minimum, with
+// the condition that every student is assigned to read some consecutive books.
+
+// Print that minimum number of pages. 
+
+// Example : Input: N = 4, pages[] = {12,
+// 34, 67, 90}, M = 2 
+// Output: 113 
+// Explanation: There are 2 number of students.
+// Books can be distributed in following combinations: 
+// [12] and [34, 67, 90] -> Max number of pages is allocated to student ‘2’ with 34 + 67 + 90 = 191 pages
+// [12, 34] and [67, 90] -> Max number of pages is allocated to student ‘2’ with
+// 67 + 90 = 157 pages 
+// [12, 34, 67] and [90] -> Max number of pages is allocated to student ‘1’ with 12 + 34 + 67 = 113 pages Of the 3 cases, 
+// Option 3 has the minimum pages = 113.
+
+// Naive Approach: The simplest approach to solve this
+// problem is to find all permutations to distribute N books among M students,
+// and return the minimum page allocation among them. (Linear Search)
+
+// Efficient Approach: (using Binary Search)
+// Another way to solve this problem is to use Binary Search, based on this
+// idea: Case 1: When no valid answer exists. If the number of students is
+// greater than the number of books (i.e, M > N), In this case at least 1
+// student will be left to which no book has been assigned. Case 2: When a valid
+// answer exists.
+
+// The maximum possible answer could be when there is only one
+// student. So, all the book will be assigned to him and the result would be the
+// sum of pages of all the books.
+
+// The minimum possible answer could be when
+// number of student is equal to the number of book (i.e, M == N) , In this case
+// all the students will get at most one book. So, the result would be the
+// maximum number of pages among them (i.e, maximum(pages[])). Hence, we can
+// apply binary search in this given range and each time we can consider the mid
+// value as the maximum limit of pages one can get. And check for the limit if
+// answer is valid then update the limit accordingly.
+
+bool isPossibleAnswer(int APageInBooks[], int NBooks, int MStudents,
+                      int sol) {                                                  // int sol = mid as reference
+  // we need to store the total number of books or pages allocated to a
+  // particular student
+  //  we do that with below variable and reset for next student
+  int currentAllocationPageSum = 0;
+
+  // we need a counter to store the number of student for whom the book are
+  // allocated we increment the counter once the student has sufficient books or
+  // pages
+  int studentCounter = 1;
+
+  // iterate through all books
+  for (int i = 0; i < NBooks; i++) {
+
+    // if the current (i-th) book's page number itself is greater than
+    // solution/mid then return current mid is not the solution
+    if (APageInBooks[i] > sol) {
+      return false;
+    }
+
+    // if the current (i-th) book's page number when added to sum of previously
+    // allocated pages sum exceeds the solution / mid
+    if (currentAllocationPageSum + APageInBooks[i] > sol) {
+      // increase student counter to start allocating to the next student
+      studentCounter++;
+
+      // reset the sum to collect the number of pages to be allocated to the
+      // next student
+      currentAllocationPageSum = APageInBooks[i];
+
+      // check if increment student counter is exceeding the total students
+      // if false then total of students have already been allocated a book
+      // so there are still a few books left but no students
+      // so return false
+      if (studentCounter > MStudents) {
+        return false;
+      }
+    } else {
+
+      // if the current (i-th) book's page number when added to sum of
+      // previously allocated pages sum
+      // does not exceed the solution / mid
+      // then the current student can take another book or pages so
+      // add the current pages to the sum
+      currentAllocationPageSum += APageInBooks[i];
+    }
+  }
+
+  // when the program reaches here then all students have been allocated
+  // sufficient number of books and there are not any leftovers and there exists
+  // a possible solution
+  return true;
+}
+
+void bookAllocationProblem() {
+  int NBooks = 4;                               // number of books
+  int APageInBooks[] = {12, 34, 67, 90};        // number of pages in each books
+  int MStudents = 2;                            // number of students
+
+  // problem states every allocation should contagious
+  // meaning for every student shoud get a book and if there are insufficent
+  // books then return -1 to denote there is no possible solution
+  if (MStudents > NBooks) {
+    cout << "Insufficient Books available" << endl;
+    return;
+  }
+
+  int start = 0;
+  int ans = -1;
+  // accumulate gets the total sum of array provided
+  // we have to find in search space so end would be the total sum of all pages
+  // of all books
+  int end = accumulate(APageInBooks, APageInBooks + NBooks, 0);        // STL to find total sum of elements in array
+
+  while (start <= end) {
+    // we will find mid from 0 to totalSum of all pages in all books and move
+    // ahead from there
+    int mid = (start + end) >> 1; // equivalent to start + end / 2
+
+    // cout << end << "  " << mid << endl; // to check the movement of end and
+    // mid througout the program
+
+    // if there is a possible answer store the answer and try to minimize the
+    // answer for best possible outcome move left to minimize
+    if (isPossibleAnswer(APageInBooks, NBooks, MStudents, mid)) {
+      ans = mid;
+      end = mid - 1;
+    } else {
+      // if there is no possible answer in current search space then move right
+      // to expand and search in more number of pages
+      start = mid + 1;
+    }
+  }
+
+  cout << "The answer is: " << ans << endl;
+}
+
 int main (){
     // kDiffPairsUsingTwoPointer();
     // kDiffPairsUsingBinarySearch();
     // findKClosestElementsUsingTwoPointers();
     // findKClosestElementsUsingBinarySearch();
-    exponentialSearch();
+    // exponentialSearch();
+    bookAllocationProblem();
     return 0;
 }
