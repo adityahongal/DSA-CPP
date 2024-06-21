@@ -74,7 +74,7 @@ void ReplaceCharacter(){
     cout << "Enter your name with '@' characters" << endl;
     cin >> ch;
     cout << "Entered String is:" << ch << endl;
-    
+
     int size = strlen(ch);                          // we cannot use ch.size(); for chars
     for(int i = 0; i < size; i++){
         if(ch[i] == '@'){
@@ -84,8 +84,44 @@ void ReplaceCharacter(){
     cout << "Replaced String is:" << ch << endl;
 }
 
+// Lower to Upper Case conversion
+void convertIntoUpperCase(){
+    char chlower[1000];
+    cout << "Enter your name in lower case" << endl;
+    cin >> chlower;
+    int len = strlen(chlower);
+    
+    for(int i = 0; i < len; i++){
+        char currentchar = chlower[i];
+
+        if(chlower[i] >= 'a' && chlower[i] <= 'z'){           //if letter is a lowercase letter then only convert it
+            chlower[i] = currentchar - 'a' + 'A';
+        }
+    }
+    cout << "Coverted to upper case -->" << chlower << endl;
+}
+
+// Upper case to Lower Case conversion
+void convertIntoLowerCase(){
+    char chUpper[1000];
+    cout << "Enter your name in lower case" << endl;
+    cin >> chUpper;
+    int len = strlen(chUpper);
+    
+    for(int i = 0; i < len; i++){
+        char currentchar = chUpper[i];
+
+        if(chUpper[i] >= 'A' && chUpper[i] <= 'Z'){           //if letter is a Upper case letter then only convert it
+            chUpper[i] = currentchar - 'A' + 'a';
+        }
+    }
+    cout << "Coverted to lower case -->" << chUpper << endl;
+}
+
 int main(){
     // initchars();
-    ReplaceCharacter();
+    // ReplaceCharacter();
+    // convertIntoUpperCase();
+    convertIntoLowerCase();
     return 0;
 }
