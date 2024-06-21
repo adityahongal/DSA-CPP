@@ -1,4 +1,5 @@
 #include<iostream>
+#include <cstring> // For strlen
 using namespace std;
 
 // Finding length of char array
@@ -67,7 +68,24 @@ void initchars(){
     cout << "Length of your name is: " << len << endl;
 }
 
+// Replace the characters
+void ReplaceCharacter(){
+    char ch[1000];
+    cout << "Enter your name with '@' characters" << endl;
+    cin >> ch;
+    cout << "Entered String is:" << ch << endl;
+    
+    int size = strlen(ch);                          // we cannot use ch.size(); for chars
+    for(int i = 0; i < size; i++){
+        if(ch[i] == '@'){
+            ch[i] = ' ';
+        }
+    }
+    cout << "Replaced String is:" << ch << endl;
+}
+
 int main(){
-    initchars();
+    // initchars();
+    ReplaceCharacter();
     return 0;
 }
