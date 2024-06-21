@@ -1,6 +1,27 @@
 #include<iostream>
 using namespace std;
 
+// Finding length of char array
+
+int getLength(char arr[], int size){
+    int count = 0;
+
+    // for(int i=0; i< size; i++) {
+    //   if(ch[i] == '\0') {
+    //     break;
+    //   } else {
+    //     count++;
+    //   }
+    // }
+
+    int index = 0;
+    while(arr[index] != '\0'){
+        count++;
+        index++;
+    }
+    return count;
+}
+
 void initchars(){
 
     //Creation of character array
@@ -24,7 +45,7 @@ void initchars(){
     // we use getline
     // Example Sentence type input
 
-    cin.getline(arr,100);
+    // cin.getline(arr,100);
     // cin.getline(arr,100, '\t');        // Custom delimiter. Stops taking input when we hit tab
 
     //Printing character array
@@ -33,12 +54,17 @@ void initchars(){
     // Printing ASCII value of each character
     // We use typcasting to do that
     // enter 4 chars to verify null value
-    
+
     // cout << arr[0] << " --> " << (int)arr[0] << endl;
     // cout << arr[1] << " --> " << (int)arr[1] << endl;
     // cout << arr[2] << " --> " << (int)arr[2] << endl;
     // cout << arr[3] << " --> " << (int)arr[3] << endl;
     // cout << arr[4] << " --> " << (int)arr[4] << endl;
+
+    // Finding length of array call function
+    cin >> arr;
+    int len = getLength(arr,100);
+    cout << "Length of your name is: " << len << endl;
 }
 
 int main(){
