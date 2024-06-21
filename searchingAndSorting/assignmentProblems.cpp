@@ -597,6 +597,95 @@ void EKOSPOJ() {
   cout << maxSawBladeHeight(trees, m) << endl;
 }
 
+// PRATA - Roti Prata
+
+// IEEE is having its AGM next week and the president wants to serve cheese prata after the meeting. 
+// The subcommittee members are asked to go to food connection and get P (P<=1000) pratas packed for the function. 
+// The stall has L cooks (L<=50) and each cook has a rank R (1<=R<=8). 
+// A cook with a rank R can cook 1 prata in the first R minutes 1 more prata in the next 2R minutes, 
+// 1 more prata in 3R minutes and so on (he can only cook a complete prata) 
+// (For example if a cook is ranked 2, he will cook one prata in 2 minutes one more prata in the next 4 mins 
+// an one more in the next 6 minutes 
+// hence in total 12 minutes he cooks 3 pratas 
+// in 13 minutes also he can cook only 3 pratas as he does not have enough time for the 4th prata). 
+// The webmaster wants to know the minimum time to get the order done. Please write a program to help him out.
+
+// Input:
+// 3 - Testcases
+// 10 - Paratas
+// 4 - No . of cooks
+// 1 2 3 4 - Ranks of cooks
+
+// Output
+// 12 minutes
+
+bool isPossibleSolutionForPrata(vector<int> cookRanks, int noOfPratasToMake, int mid) {
+  int cuurentPrata = 0;                                                                 // Initially Cooked pratas count
+  for(int currentCook = 0; currentCook < cookRanks.size(); currentCook++) {
+    int currentCookRank = cookRanks[currentCook];
+    int prataCount = 1;
+    int timeTaken = 0;
+
+    while(true) {
+      if(timeTaken + prataCount * currentCookRank <= mid) {
+        ++cuurentPrata;
+        timeTaken += prataCount * currentCookRank;
+        ++prataCount;
+      } else {
+        break;
+      }
+    }
+
+    if(cuurentPrata >= noOfPratasToMake) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+int minTimeTakenToCompletePrataOrder(vector<int> cookRanks, int noOfPratasToMake) {
+  int start = 0;
+  int answer = -1;
+  int maxRankOfAllCooks =  *max_element(cookRanks.begin(), cookRanks.end());
+  int end = maxRankOfAllCooks* (noOfPratasToMake * (noOfPratasToMake + 1) / 2);
+
+  while(start <= end) {
+    int mid = start + (end - start) / 2;
+    if(isPossibleSolutionForPrata(cookRanks, noOfPratasToMake, mid)) {
+      answer = mid;
+      end = mid - 1;
+    } else {
+      start = mid + 1;
+    }
+  }
+
+  return answer;
+}
+
+void PrataSPOJ() {
+  int noOfTestCases; 
+  cout << "Enter no of test cases you want to run: " << endl;
+  cin >> noOfTestCases;
+
+  while(noOfTestCases--) {
+    int noOfPratasToMake, noOfCooks;
+    vector<int> cookRanks;
+    cout << "Enter no of Pratas to make: " << endl;
+    cin >> noOfPratasToMake;
+    cout << "Enter no of Cooks: " << endl;
+    cin >> noOfCooks;
+
+    while(noOfCooks--) {
+      int rank;
+      cout << "Enter rank for cook no: " << noOfCooks << endl;
+      cin >> rank;
+      cookRanks.push_back(rank);
+    }
+
+    cout << "Minimum Time Taken to make for test case "<< noOfTestCases << " is: " << minTimeTakenToCompletePrataOrder(cookRanks, noOfPratasToMake) << endl;
+  }
+}
 
 int main (){
     // kDiffPairsUsingTwoPointer();
@@ -606,7 +695,8 @@ int main (){
     // exponentialSearch();
     // bookAllocationProblem();
     // paintersPartionProblem();
-    aggressiveCowsPlacement();
-    EKOSPOJ();
+    // aggressiveCowsPlacement();
+    // EKOSPOJ();
+    PrataSPOJ();
     return 0;
 }
