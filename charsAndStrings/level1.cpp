@@ -161,7 +161,7 @@ void checkPalindrome() {
 
 // Char Functions
 
-void stringsinit(){
+void charFunctions(){
     // String Concatenation
     char arr1[100];
     cout << "Enter input for arr1:" << endl;
@@ -181,6 +181,6 @@ int main(){
     // convertIntoLowerCase();
     // reverseCharArray();
     // checkPalindrome();
-    stringsinit();
+    charFunctions();
     return 0;
 }
