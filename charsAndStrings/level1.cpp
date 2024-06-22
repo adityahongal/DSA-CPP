@@ -118,10 +118,30 @@ void convertIntoLowerCase(){
     cout << "Coverted to lower case -->" << chUpper << endl;
 }
 
+// Reverse char array
+void reverseCharArray(){
+    // 2 pointer approach
+    char ch[100];
+    cout << "Enter your name" << endl;
+    cin.getline(ch, 100);
+    int size = strlen(ch);
+
+    int i = 0;
+    int j = size - 1;
+
+    while (i < j) {
+        swap(ch[i], ch[j]);
+        i++;
+        j--;
+    }
+  cout << ch << endl;
+}
+
 int main(){
     // initchars();
     // ReplaceCharacter();
     // convertIntoUpperCase();
-    convertIntoLowerCase();
+    // convertIntoLowerCase();
+    reverseCharArray();
     return 0;
 }
