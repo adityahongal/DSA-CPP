@@ -137,11 +137,34 @@ void reverseCharArray(){
   cout << ch << endl;
 }
 
+void checkPalindrome() {
+  char ch[100];
+  cout << "Enter your name" << endl;
+  cin.getline(ch, 100);
+  int size = strlen(ch);
+
+  int i = 0;
+  int j = size - 1;
+
+  while (i <= j) {
+    if (ch[i] == ch[j]) {
+      i++;
+      j--;
+    } else {
+      cout << "Not Palindrome" << endl;
+      return;
+    }
+  }
+
+  cout << "It is a Palindrome" << endl;
+}
+
 int main(){
     // initchars();
     // ReplaceCharacter();
     // convertIntoUpperCase();
     // convertIntoLowerCase();
-    reverseCharArray();
+    // reverseCharArray();
+    checkPalindrome();
     return 0;
 }
