@@ -159,12 +159,28 @@ void checkPalindrome() {
   cout << "It is a Palindrome" << endl;
 }
 
+// Char Functions
+
+void stringsinit(){
+    // String Concatenation
+    char arr1[100];
+    cout << "Enter input for arr1:" << endl;
+    cin >> arr1;
+
+    char arr2[100];
+    cout << "Enter input for arr2:" << endl;
+    cin >> arr2;
+
+    cout << strcat(arr1,arr2) << endl;
+}
+
 int main(){
     // initchars();
     // ReplaceCharacter();
     // convertIntoUpperCase();
     // convertIntoLowerCase();
     // reverseCharArray();
-    checkPalindrome();
+    // checkPalindrome();
+    stringsinit();
     return 0;
 }
