@@ -141,6 +141,50 @@ void validPalindrome(string str) {
   cout << "It's already a Palindrome" << endl;
 }
 
+// leet code 647. Palindromic Substrings
+// Given a string s, return the number of palindromic substrings in it.
+
+// A string is a palindrome when it reads the same backward as forward.
+
+// A substring is a contiguous sequence of characters within the string.
+
+// Example 1:
+
+// Input: s = "abc"
+// Output: 3
+// Explanation: Three palindromic strings: "a", "b", "c".
+// Example 2:
+
+// Input: s = "aaa"
+// Output: 6
+// Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+
+int expand(string s, int i, int j) {
+        int count = 0;
+        while(i >= 0 && j <s.length() && s[i] == s[j]) {
+            count++;
+            i--;
+            j++;
+        }
+        return count;
+    }
+
+int countPalindromicSubstrings(string s){
+    int totalCount = 0;
+        for(int center=0; center<s.length(); center++) {
+            //odd
+            int i = center;
+            int j = center;
+            int oddSubStringCount = expand(s,i,j);
+            //even
+            i = center;
+            j = center+1;
+            int evenSubStringCount = expand(s,i,j);
+            totalCount = totalCount + oddSubStringCount + evenSubStringCount;
+        }
+    cout << "Total Palindromic substrings are: " << totalCount << endl;
+}
+
 int main(){
     // removeAdjacentDuplicateStrings("abbaca");
     // removeAdjacentDuplicateStrings("azxxzy");
@@ -148,8 +192,13 @@ int main(){
     // removeAllOccurancesOfSubstring("daabcbaabcbc", "abc");
     // removeAllOccurancesOfSubstring("axxxxyyyyb", "xy");
 
-    validPalindrome("aba");
-    validPalindrome("abca");
-    validPalindrome("abc");
+    // validPalindrome("aba");
+    // validPalindrome("abca");
+    // validPalindrome("abc");
+
+    countPalindromicSubstrings("abc");
+    countPalindromicSubstrings("aaa");
+    countPalindromicSubstrings("madam");
+
     return 0;
 }
