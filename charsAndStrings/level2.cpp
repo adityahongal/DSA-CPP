@@ -80,11 +80,76 @@ void removeAllOccurancesOfSubstring(string str, string subString) {
   cout << "After removing duplicate substring: " << str << endl;
 }
 
+// Leetcode 680. 
+// Valid Palindrome II
+// Given a string s, return true if the s can be palindrome after deleting at
+// most one character from it.
+
+// Example 1:
+
+// Input: s = "aba"
+// Output: true
+// Example 2:
+
+// Input: s = "abca"
+// Output: true
+// Explanation: You could delete the character 'c'.
+// Example 3:
+
+// Input: s = "abc"
+// Output: false
+
+bool checkPalindrome(string str, int start, int end) {
+  while (start <= end) {
+    if (str[start] == str[end]) {
+      start++;
+      end--;
+    } else {
+      return false;
+    }
+  }
+  return true;            //Valid palindrome
+}
+
+// Total TC O(n)
+void validPalindrome(string str) {
+  int size = str.length();
+  int start = 0;
+  int end = size - 1;
+
+  while (start <= end) {
+    if (str[start] == str[end]) {
+      start++;
+      end--;
+    } else {
+      // 1 removal allowed
+      // check palindrome for remaining chars in strings
+
+      // start ith char removal
+      bool possibleAnswerOne = checkPalindrome(str, start + 1, end);        //deleting ith index
+      // end jth char removal
+      bool possibleAnswerTwo = checkPalindrome(str, start, end - 1);       //deleting jth index
+
+      if (possibleAnswerOne || possibleAnswerTwo) {
+        cout << "Valid Palindrome" << endl;
+      } else {
+        cout << "Not Palindrome" << endl;
+      }
+      return;
+    }
+  }
+  cout << "It's already a Palindrome" << endl;
+}
+
 int main(){
     // removeAdjacentDuplicateStrings("abbaca");
     // removeAdjacentDuplicateStrings("azxxzy");
 
-    removeAllOccurancesOfSubstring("daabcbaabcbc", "abc");
-    removeAllOccurancesOfSubstring("axxxxyyyyb", "xy");
+    // removeAllOccurancesOfSubstring("daabcbaabcbc", "abc");
+    // removeAllOccurancesOfSubstring("axxxxyyyyb", "xy");
+
+    validPalindrome("aba");
+    validPalindrome("abca");
+    validPalindrome("abc");
     return 0;
 }
