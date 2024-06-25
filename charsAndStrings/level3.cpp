@@ -96,34 +96,58 @@ void garbageCollection(vector< string > &garbage, vector< int > &travel) {
     cout << "Answer: " << answer << endl;
 }
 
+// leetcode 791 Custom sort string
+
+static string orderCopy;               //we used this as global variable
+static bool compare(char char1, char char2) {
+    //logic ->
+        //order wali string me dekho, k konsa character pehle 
+        //aana chahiye and konsa character baad me aana chahaiye
+
+        //true -> a will be placed before b
+        //false -> b will be placed before a 
+
+    return (orderCopy.find(char1) < orderCopy.find(char2));
+}
+
+void customSortString(string order, string s) {
+    orderCopy = order;
+    sort(s.begin(), s.end(), compare);             // custom comparator. 
+
+    cout << s << endl;
+}
+
 int main(){
     // decodeMessage("the quick brown fox jumps over the lazy dog","vkbs bs t suepuv");
     // decodeMessage("eljuxhpwnyrdgtqkviszcfmabo","zwx hnfx lqantp mnoeius ycgk vcnjrdb");
 
-    // for garbage collection problem,
-    vector< string > garbageTestCaseOne;
-    vector< int > travelTestCaseOne;
-    vector< string > garbageTestCaseTwo;
-    vector< int > travelTestCaseTwo;
+    // // for garbage collection problem,
+    // vector< string > garbageTestCaseOne;
+    // vector< int > travelTestCaseOne;
+    // vector< string > garbageTestCaseTwo;
+    // vector< int > travelTestCaseTwo;
 
-    garbageTestCaseOne.push_back("G");
-    garbageTestCaseOne.push_back("P");
-    garbageTestCaseOne.push_back("GP");
-    garbageTestCaseOne.push_back("GG");
+    // garbageTestCaseOne.push_back("G");
+    // garbageTestCaseOne.push_back("P");
+    // garbageTestCaseOne.push_back("GP");
+    // garbageTestCaseOne.push_back("GG");
 
-    travelTestCaseOne.push_back(2);
-    travelTestCaseOne.push_back(4);
-    travelTestCaseOne.push_back(3);
+    // travelTestCaseOne.push_back(2);
+    // travelTestCaseOne.push_back(4);
+    // travelTestCaseOne.push_back(3);
 
-    garbageTestCaseTwo.push_back("MMM");
-    garbageTestCaseTwo.push_back("PGM");
-    garbageTestCaseTwo.push_back("GP");
+    // garbageTestCaseTwo.push_back("MMM");
+    // garbageTestCaseTwo.push_back("PGM");
+    // garbageTestCaseTwo.push_back("GP");
 
-    travelTestCaseTwo.push_back(3);
-    travelTestCaseTwo.push_back(10);
+    // travelTestCaseTwo.push_back(3);
+    // travelTestCaseTwo.push_back(10);
 
-    garbageCollection(garbageTestCaseOne, travelTestCaseOne);
-    garbageCollection(garbageTestCaseTwo, travelTestCaseTwo);
+    // garbageCollection(garbageTestCaseOne, travelTestCaseOne);
+    // garbageCollection(garbageTestCaseTwo, travelTestCaseTwo);
+
+    customSortString("cba", "abcd");
+    customSortString("bcafg", "abcd");
 
     return 0;
 }
