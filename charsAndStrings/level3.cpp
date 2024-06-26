@@ -4,6 +4,15 @@
 #include <unordered_map>            // use for unordered_map
 using namespace std;
 
+void printStringVectorNativeMethod(vector<string> v) {
+  // for each loop
+  for (auto it : v) {
+    cout << it << " ";
+  }
+  cout << endl;
+
+}
+
 // leetcode 2325 Decode the message
 void createMapping(unordered_map<char,char> &mapping, string key) {
         char start = 'a';
@@ -117,6 +126,51 @@ void customSortString(string order, string s) {
     cout << s << endl;
 }
 
+// Leetcode 890
+// Find and replace Pattern
+void normalise(string &str) {
+        char start = 'a';
+        unordered_map<char,char> mapping;
+
+        for(int i=0; i<str.length(); i++) {
+            char stringKaCharacter = str[i];
+            if(mapping.find(stringKaCharacter) == mapping.end()) {
+                //if mapping pehle se present nahi h 
+                //then create it and move ahead
+                mapping[stringKaCharacter] = start;
+                start++;
+            }
+        }
+
+        //mapping create ho chuki h 
+        //string str ko update normalise kardo using mapping 
+        for(int i=0; i<str.length(); i++) {
+            char mappedCharacter = mapping[str[i]];            //example of matching d->a , e->b , q->c
+            str[i] = mappedCharacter;
+        }
+        //toh humne str wali string ko normalise / update krdia 
+}
+
+vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        vector<string> ans ;
+
+        //step A: pattern normalise 
+        normalise(pattern);
+        ///stepB: words ki list me hr ek word ko normlaise 
+        // karna hai, and compare krna h pattern se
+        //if pattern k equal aagya, toh ans me store krna h 
+        for(int i=0; i<words.size(); i++) {
+            //ith string 
+            string currWord = words[i];
+            normalise(currWord);
+            if(currWord == pattern) {
+                ans.push_back(words[i]);
+            }
+        }
+        printStringVectorNativeMethod(ans);
+        return ans;
+}
+
 int main(){
     // decodeMessage("the quick brown fox jumps over the lazy dog","vkbs bs t suepuv");
     // decodeMessage("eljuxhpwnyrdgtqkviszcfmabo","zwx hnfx lqantp mnoeius ycgk vcnjrdb");
@@ -146,8 +200,29 @@ int main(){
     // garbageCollection(garbageTestCaseOne, travelTestCaseOne);
     // garbageCollection(garbageTestCaseTwo, travelTestCaseTwo);
 
-    customSortString("cba", "abcd");
-    customSortString("bcafg", "abcd");
+    // customSortString("cba", "abcd");
+    // customSortString("bcafg", "abcd");
+
+    // for find and replace pattern
+    vector< string > wordsTestCaseOne;
+    string patternTestCaseOne = "abb";
+
+    wordsTestCaseOne.push_back("abc");
+    wordsTestCaseOne.push_back("deq");
+    wordsTestCaseOne.push_back("mee");
+    wordsTestCaseOne.push_back("aqq");
+    wordsTestCaseOne.push_back("dkd");
+    wordsTestCaseOne.push_back("ccc");
+
+    vector< string > wordsTestCaseTwo;
+    string patternTestCaseTwo = "a";
+
+    wordsTestCaseTwo.push_back("a");
+    wordsTestCaseTwo.push_back("b");
+    wordsTestCaseTwo.push_back("c");
+
+    findAndReplacePattern(wordsTestCaseOne, patternTestCaseOne);
+    findAndReplacePattern(wordsTestCaseTwo, patternTestCaseTwo);
 
     return 0;
 }
