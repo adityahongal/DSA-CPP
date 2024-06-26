@@ -114,6 +114,31 @@ void findLongestCommonPrefix(vector< string > &strs) {
     return;
 }
 
+// Leetcode 345 reverse only vowels
+
+bool isVowel(char ch) {
+    ch = tolower(ch);                      // inbuilt STL to convert upper case to lower case
+    return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+}
+void reverseOnlyVowels(string str) {
+    int low = 0, high = str.size() - 1;
+
+    while (low < high) {
+      if (isVowel(str[low]) && isVowel(str[high])) {
+        swap(str[low], str[high]);
+        low++;
+        high--;
+      } else if (!isVowel(str[low])) {
+        low++;
+      } else {
+        high--;
+      }
+    }
+
+  cout << "String after reverse: " << str << endl;
+  return;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -126,18 +151,21 @@ int main(){
     // reverseOnlyLetters("a-bC-dEf-ghIj");
 
     // for longest prefix problem
-    vector< string > strsTestCaseOne;
-    vector< string > strsTestCaseTwo;
+    // vector< string > strsTestCaseOne;
+    // vector< string > strsTestCaseTwo;
 
-    strsTestCaseOne.push_back("flower");
-    strsTestCaseOne.push_back("flow");
-    strsTestCaseOne.push_back("flight");
+    // strsTestCaseOne.push_back("flower");
+    // strsTestCaseOne.push_back("flow");
+    // strsTestCaseOne.push_back("flight");
 
-    strsTestCaseTwo.push_back("dog");
-    strsTestCaseTwo.push_back("racecar");
-    strsTestCaseTwo.push_back("car");
+    // strsTestCaseTwo.push_back("dog");
+    // strsTestCaseTwo.push_back("racecar");
+    // strsTestCaseTwo.push_back("car");
 
-    findLongestCommonPrefix(strsTestCaseOne);
-    findLongestCommonPrefix(strsTestCaseTwo);
+    // findLongestCommonPrefix(strsTestCaseOne);
+    // findLongestCommonPrefix(strsTestCaseTwo);
+
+    reverseOnlyVowels("hello");
+    reverseOnlyVowels("LeetCode");
     return 0;
 }
