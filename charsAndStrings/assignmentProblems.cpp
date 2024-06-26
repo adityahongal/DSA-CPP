@@ -58,11 +58,34 @@ void isAnagramByFrequencyMethod(string str, string testString) {
   return;
 } // TC = O(m) + O(n) + O(256) = O(m+n)
 
+// Leetcode 917 reverse only letters - T.C. = O(n)
+void reverseOnlyLetters(string str) {
+    int low = 0, high = str.size() - 1;
+    while (low < high) {
+      if (isalpha(str[low]) && isalpha(str[high])) {
+        swap(str[low], str[high]);
+        low++;
+        high--;
+      } else if (!isalpha(str[low])) {
+        low++;
+      } else {
+        high--;
+      }
+    }
+
+    cout << "String after reverse: " << str << endl;
+    return;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
 
-    isAnagramByFrequencyMethod("anagram", "nagaram");
-    isAnagramByFrequencyMethod("rat", "car");
+    // isAnagramByFrequencyMethod("anagram", "nagaram");
+    // isAnagramByFrequencyMethod("rat", "car");
+
+    reverseOnlyLetters("ab-cd");
+    reverseOnlyLetters("Test1ng-Leet=code-Q!");
+    reverseOnlyLetters("a-bC-dEf-ghIj");
     return 0;
 }
