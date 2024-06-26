@@ -77,6 +77,43 @@ void reverseOnlyLetters(string str) {
     return;
 }
 
+// Leetcode 14 find Longest Common prefix
+void findLongestCommonPrefix(vector< string > &strs) {
+    string answer = "";
+    int i = 0;
+    while (true) {
+      char currentChar = 0;
+      for (auto str : strs) {
+        if (i >= str.size()) {                  // To check out of bound. "if(i >= str[i])" was used previously but it was giving error in leetcode but running in vscode
+          currentChar = 0;
+          break;
+        }
+
+        if (currentChar == 0) {                 // we check with char of all strings,if its common then add and update
+          currentChar = str[i];
+        } else if (str[i] != currentChar) {     // if its not same char or common prefix then we come back to 0 and break
+          currentChar = 0;
+          break;
+        }
+      }
+
+      if (currentChar == 0) {                   // after a certain words in string if there are no letters present we exit
+        break;                                  // eg. flower and flow, there are no letters after flow
+      }
+
+      answer.push_back(currentChar);            // push current character to answer
+      i++;
+    }
+
+    if (answer == "") {
+      cout << "No Prefix found" << endl;
+
+    } else {
+      cout << "Longest common prefix is: " << answer << endl;
+    }
+    return;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -84,8 +121,23 @@ int main(){
     // isAnagramByFrequencyMethod("anagram", "nagaram");
     // isAnagramByFrequencyMethod("rat", "car");
 
-    reverseOnlyLetters("ab-cd");
-    reverseOnlyLetters("Test1ng-Leet=code-Q!");
-    reverseOnlyLetters("a-bC-dEf-ghIj");
+    // reverseOnlyLetters("ab-cd");
+    // reverseOnlyLetters("Test1ng-Leet=code-Q!");
+    // reverseOnlyLetters("a-bC-dEf-ghIj");
+
+    // for longest prefix problem
+    vector< string > strsTestCaseOne;
+    vector< string > strsTestCaseTwo;
+
+    strsTestCaseOne.push_back("flower");
+    strsTestCaseOne.push_back("flow");
+    strsTestCaseOne.push_back("flight");
+
+    strsTestCaseTwo.push_back("dog");
+    strsTestCaseTwo.push_back("racecar");
+    strsTestCaseTwo.push_back("car");
+
+    findLongestCommonPrefix(strsTestCaseOne);
+    findLongestCommonPrefix(strsTestCaseTwo);
     return 0;
 }
