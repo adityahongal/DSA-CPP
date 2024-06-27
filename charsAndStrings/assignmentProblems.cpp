@@ -244,7 +244,7 @@ void groupAnagrams(vector< string > &strs) {
 }
 
 // Method 2 - using hashing T.C.-> O(NK) S.C.-> O(NK)
-array< int, 256 > hashStr(string s) {
+array< int, 256 > hashStr(string s) {                        // Use #include <array>
   array< int, 256 > hashArray = {0};
   for (int i = 0; i < s.size(); i++) {
     hashArray[s[i]]++;
@@ -264,6 +264,35 @@ void groupAnagram2(vector< string > &strs) {
   print2DStringVector(answer);
 }
 
+// Leetcode 5 Longest Palindromic substring
+// substrings of a string
+// extract palidromic ones
+// max length string from palindromic ones
+
+bool checkPalindrome(string str, int start, int end) {
+  while (start <= end) {
+    if (str[start] == str[end]) {
+      start++;
+      end--;
+    } else {
+      return false;
+    }
+  }
+
+  return true;
+}
+void longestPalindrome(string s) {
+  string answer = "";
+  for (int i = 0; i < s.size(); i++) {
+    for (int j = i; j < s.size(); j++) {
+      if (checkPalindrome(s, i, j)) {
+        string t = s.substr(i, j - i + 1);
+        answer = t.size() > answer.size() ? t : answer;
+      }
+    }
+  }
+  cout << answer << endl;
+}
 
 int main(){
     // isAnagram("anagram", "nagaram");
@@ -303,15 +332,18 @@ int main(){
     // reorganizeString("aaabc");
 
     // for group anagrams
-    vector< string > strs;
-    strs.push_back("eat");
-    strs.push_back("tea");
-    strs.push_back("tan");
-    strs.push_back("ate");
-    strs.push_back("nat");
-    strs.push_back("bat");
+    // vector< string > strs;
+    // strs.push_back("eat");
+    // strs.push_back("tea");
+    // strs.push_back("tan");
+    // strs.push_back("ate");
+    // strs.push_back("nat");
+    // strs.push_back("bat");
 
     // groupAnagrams(strs);
-    groupAnagram2(strs);
+    // groupAnagram2(strs);
+
+    longestPalindrome("babad");
+    longestPalindrome("cbbd");
     return 0;
 }
