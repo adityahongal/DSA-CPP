@@ -5,6 +5,7 @@
 #include <string.h>
 #include <string>
 #include <vector>
+#include <array>             //used for group anagram method 2
 using namespace std;
 
 void print2DStringVector(vector< vector< string > > arr) {
@@ -242,6 +243,28 @@ void groupAnagrams(vector< string > &strs) {
     print2DStringVector(answer);
 }
 
+// Method 2 - using hashing T.C.-> O(NK) S.C.-> O(NK)
+array< int, 256 > hashStr(string s) {
+  array< int, 256 > hashArray = {0};
+  for (int i = 0; i < s.size(); i++) {
+    hashArray[s[i]]++;
+  }
+  return hashArray;
+}
+
+void groupAnagram2(vector< string > &strs) {
+  map< array< int, 256 >, vector< string > > mp;
+  for (auto str : strs) {
+    mp[hashStr(str)].push_back(str);
+  }
+  vector< vector< string > > answer;
+  for (auto it = mp.begin(); it != mp.end(); it++) {
+    answer.push_back(it->second); // key -> first, vector<string>
+  }
+  print2DStringVector(answer);
+}
+
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -288,7 +311,7 @@ int main(){
     strs.push_back("nat");
     strs.push_back("bat");
 
-    groupAnagrams(strs);
-    // groupAnagram2(strs);
+    // groupAnagrams(strs);
+    groupAnagram2(strs);
     return 0;
 }
