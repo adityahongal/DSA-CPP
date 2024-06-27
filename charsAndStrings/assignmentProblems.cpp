@@ -165,6 +165,57 @@ void isIsomorphic(string s, string t) {
     cout << (s == t) << " " << s << " " << t << " " << endl;
 }
 
+// Leetcode 767. Reorganize String
+// T.C. => O(N)
+// Greedy algorithm/Method
+void reorganizeString(string s) {
+  int hash[26] = {0};
+
+  for (int i = 0; i < s.size(); i++) {
+    hash[s[i] - 'a']++;                         //mapping from 0 to 26
+  }
+
+  // find most freq char
+  char maxFreqChar;                             //this will hold most appearing characters
+  int maxFreq = INT_MIN;
+  for (int i = 0; i < 26; i++) {
+    if (hash[i] > maxFreq) {
+      maxFreq = hash[i];
+      maxFreqChar = i + 'a';                    // if i=0, i+a=0+97=>a. if i=1, i+a=1+97=>b
+    }
+  }
+
+  // try to place most freq char
+  int index = 0;
+  while (maxFreq > 0 && index < s.size()) {
+    s[index] = maxFreqChar;
+    maxFreq--;
+    index += 2;
+  }
+
+  // one or more max freq char was not able to place adacently or goes out of bound
+  if (maxFreq != 0) {
+    cout << "Answer: " << "" << endl;
+    return;
+  }
+
+  hash[maxFreqChar - 'a'] = 0;                  // set most freq char to zero after its placed
+
+  // To place the rest of char
+  for (int i = 0; i < 26; i++) {
+    while (hash[i] > 0) {
+      // if index goes out of string range(s.size()) while placing,bring it back to index 1
+      // or else continue till s.size() is reached
+      index = index >= s.size() ? 1 : index;
+      s[index] = i + 'a';
+      index += 2;
+      hash[i]--; // reduce frequency of char after placing
+    }
+  }
+
+  cout << "Answer: " << s << endl;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -194,8 +245,12 @@ int main(){
     // reverseOnlyVowels("hello");
     // reverseOnlyVowels("LeetCode");
 
-    isIsomorphic("egg", "add");
-    isIsomorphic("paper", "title");
-    isIsomorphic("foo", "bar");
+    // isIsomorphic("egg", "add");
+    // isIsomorphic("paper", "title");
+    // isIsomorphic("foo", "bar");
+
+    reorganizeString("aab");
+    reorganizeString("aaab");
+    reorganizeString("aaabc");
     return 0;
 }
