@@ -216,6 +216,32 @@ void reorganizeString(string s) {
   cout << "Answer: " << s << endl;
 }
 
+// Leetcode 49 Group Anagrams
+// TC (for method 1):-
+// N -> strs.length
+// K -> max length of largest string
+// O(N KlogK) -> KlogK is TC of map datastructure insert
+// SC => O(NK)   
+
+// Method 1 -  using sorting and Mapping
+
+void groupAnagrams(vector< string > &strs) {
+  // map string -> vector answer
+    map< string, vector< string > > mp;
+    for (auto str : strs) {
+      string s = str;
+      sort(s.begin(), s.end());
+      mp[s].push_back(str);
+    }
+
+    vector< vector< string > > answer;
+    for (auto it = mp.begin(); it != mp.end(); it++) {
+      answer.push_back(it->second); // key -> first, vector<string> (i.e value) -> second
+    }
+
+    print2DStringVector(answer);
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -249,8 +275,20 @@ int main(){
     // isIsomorphic("paper", "title");
     // isIsomorphic("foo", "bar");
 
-    reorganizeString("aab");
-    reorganizeString("aaab");
-    reorganizeString("aaabc");
+    // reorganizeString("aab");
+    // reorganizeString("aaab");
+    // reorganizeString("aaabc");
+
+    // for group anagrams
+    vector< string > strs;
+    strs.push_back("eat");
+    strs.push_back("tea");
+    strs.push_back("tan");
+    strs.push_back("ate");
+    strs.push_back("nat");
+    strs.push_back("bat");
+
+    groupAnagrams(strs);
+    // groupAnagram2(strs);
     return 0;
 }
