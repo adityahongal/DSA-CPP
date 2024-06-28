@@ -349,6 +349,48 @@ void myAtoi(string s) {
     return;
 }
 
+// Leetcode 443. String Compression
+// this algo is also called Running length Encoding algo
+
+int compress(vector< char > &s) {
+    int index = 0;
+    int count = 1;
+    char prev = s[0];
+
+    for (int i = 1; i < s.size(); ++i) {
+      if (s[i] == prev) {
+        count++;
+      } else {
+        s[index++] = prev;
+        if (count > 1) {
+          int start = index;
+          while (count) {
+            s[index++] = (count % 10) + '0';                 //if its greater than 1 or 2 digits we convert it to character
+            count /= 10;
+          }
+          reverse(s.begin() + start, s.begin() + index);    //After converting to character we have to reverse it to get final
+        }
+        prev = s[i];
+        count = 1;                                        //we reset it back to 1
+      }
+    }
+
+  // To handle last character when i goes out of loop/bound (After For Loop)
+  // We add it and return index
+    s[index++] = prev;
+    if (count > 1) {
+      int start = index;
+
+      while (count) {
+        s[index++] = (count % 10) + '0';
+        count /= 10;
+      }
+      reverse(s.begin() + start, s.begin() + index);
+    }
+
+    return index;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -407,10 +449,51 @@ int main(){
     // cout << strStr("sadbutsada", "da") << endl;
     // cout << strStr("leetcode", "leeto") << endl;
 
-    myAtoi("42");
-    myAtoi(" -042");
-    myAtoi("1337c0d3");
-    myAtoi("0-1");
-    myAtoi("words and 987");
+    // myAtoi("42");
+    // myAtoi(" -042");
+    // myAtoi("1337c0d3");
+    // myAtoi("0-1");
+    // myAtoi("words and 987");
+
+    // for string compression
+    vector< char > testCaseOne;
+    vector< char > testCaseTwo;
+    vector< char > testCaseThree;
+
+    testCaseOne.push_back('a');
+    testCaseOne.push_back('a');
+    testCaseOne.push_back('b');
+    testCaseOne.push_back('b');
+    testCaseOne.push_back('c');
+    testCaseOne.push_back('c');
+    testCaseOne.push_back('c');
+
+    testCaseTwo.push_back('a');
+
+    testCaseThree.push_back('a');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+    testCaseThree.push_back('b');
+
+    int res1 = compress(testCaseOne);
+    print1DCharVector(testCaseOne);
+    cout << "Result: " << res1 << endl;
+
+    int res2 = compress(testCaseTwo);
+    print1DCharVector(testCaseTwo);
+    cout << "Result: " << res2 << endl;
+
+    int res3 = compress(testCaseThree);
+    print1DCharVector(testCaseThree);
+    cout << "Result: " << res3 << endl;
     return 0;
 }
