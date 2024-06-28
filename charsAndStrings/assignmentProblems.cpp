@@ -316,6 +316,39 @@ int strStr(string haystack, string needle) {
   return -1;
 }
 
+// Leetcode 8. String to Integer (atoi)
+void myAtoi(string s) {
+
+    // int integer = atoi(s.c_str());
+    // cout << "Answer using In built Library " << integer << endl;
+
+    int num = 0, i = 0, sign = 1; // sign can be +1(+ve) and  -1(-ve)
+
+    // iterate through leading whitespaces
+    while (s[i] == ' ') {
+      i++;
+    }
+
+    // check if it starts with + or - sign  
+    if (i < s.size() && (s[i] == '+' || s[i] == '-')) {
+      sign = s[i] == '+' ? 1 : -1;
+      ++i;
+    }
+
+    // To determine if its a digit and convert to integer
+    while (i < s.size() && isdigit(s[i])) {
+      if (num > INT_MAX / 10 || (num == INT_MAX / 10 && s[i] > '7')) {             //handling out of bound
+        cout << "Answer: " << (sign == -1 ? INT_MIN : INT_MAX) << endl;
+        return;
+      }
+      num = num * 10 + (s[i] - '0');                      // Converting to integer. ASCII of 0=48,1=49,2=50
+      i++;
+    }
+
+    cout << "Answer: " << num * sign << endl;
+    return;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -369,9 +402,15 @@ int main(){
     // longestPalindrome("cbbd");
 
     // to find index of First Occurrence in a String
-    cout << strStr("sadbutsad", "sad") << endl;
-    cout << strStr("sadbutsad", "but") << endl;
-    cout << strStr("sadbutsada", "da") << endl;
-    cout << strStr("leetcode", "leeto") << endl;
+    // cout << strStr("sadbutsad", "sad") << endl;
+    // cout << strStr("sadbutsad", "but") << endl;
+    // cout << strStr("sadbutsada", "da") << endl;
+    // cout << strStr("leetcode", "leeto") << endl;
+
+    myAtoi("42");
+    myAtoi(" -042");
+    myAtoi("1337c0d3");
+    myAtoi("0-1");
+    myAtoi("words and 987");
     return 0;
 }
