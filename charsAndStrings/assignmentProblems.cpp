@@ -294,6 +294,28 @@ void longestPalindrome(string s) {
   cout << answer << endl;
 }
 
+// leetcode 28. Find the Index of the First Occurrence in a String 
+// T.C. -> O(mn)
+
+int strStr(string haystack, string needle) {
+  int sizeOfHaystack = haystack.size();               // n
+  int sizeOfNeedle = needle.size();                   // m
+
+  for (int i = 0; i <= sizeOfHaystack - sizeOfNeedle; i++) {           //n-m => to prevent i from going out of bound
+    for (int j = 0; j < sizeOfNeedle; j++) {
+      if (needle[j] != haystack[i + j]) {
+        break;
+      }
+
+      if (j == sizeOfNeedle - 1) {                                 //matched
+        return i;
+      }
+    }
+  }
+
+  return -1;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -343,7 +365,13 @@ int main(){
     // groupAnagrams(strs);
     // groupAnagram2(strs);
 
-    longestPalindrome("babad");
-    longestPalindrome("cbbd");
+    // longestPalindrome("babad");
+    // longestPalindrome("cbbd");
+
+    // to find index of First Occurrence in a String
+    cout << strStr("sadbutsad", "sad") << endl;
+    cout << strStr("sadbutsad", "but") << endl;
+    cout << strStr("sadbutsada", "da") << endl;
+    cout << strStr("leetcode", "leeto") << endl;
     return 0;
 }
