@@ -448,6 +448,36 @@ void convert(string s, int numRows) {
     cout << endl;
 }
 
+static bool comparator(string a, string b) {
+    string t1 = a + b;
+    string t2 = b + a;
+
+    return t1 > t2;
+}
+
+void largestNumber(vector< int > &nums) {
+    vector< string > snums;
+
+    for (auto n : nums) {
+      snums.push_back(to_string(n));                 // Converting to string
+    }
+
+    sort(snums.begin(), snums.end(), comparator);    // sort and custom comparator
+
+    string answer = "";
+    
+    if (snums[0] == "0") {                           // Handle edge case when all numbers are 0
+      cout << "0" << endl;
+      return;
+    }
+    
+    for (auto str : snums) {                        // Join the sorted strings to form the largest number
+      answer += str;
+    }
+
+    cout << answer << endl;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -558,8 +588,29 @@ int main(){
     // intToRoman(1994);
     // intToRoman(1997);
 
-    convert("PAYPALISHIRING", 3);
-    convert("PAYPALISHIRING", 4);
-    convert("A", 1);
+    // convert("PAYPALISHIRING", 3);
+    // convert("PAYPALISHIRING", 4);
+    // convert("A", 1);
+
+    // for largest number
+    vector< int > numsTestCaseOne;
+    vector< int > numsTestCaseTwo;
+    vector< int > numsTestCaseThree;
+
+    numsTestCaseOne.push_back(10);
+    numsTestCaseOne.push_back(2);
+
+    numsTestCaseTwo.push_back(3);
+    numsTestCaseTwo.push_back(30);
+    numsTestCaseTwo.push_back(34);
+    numsTestCaseTwo.push_back(5);
+    numsTestCaseTwo.push_back(9);
+
+    numsTestCaseThree.push_back(0);
+    numsTestCaseThree.push_back(0);
+
+    largestNumber(numsTestCaseOne);
+    largestNumber(numsTestCaseTwo);
+    largestNumber(numsTestCaseThree);
     return 0;
 }
