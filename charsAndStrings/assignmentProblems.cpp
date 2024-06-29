@@ -478,6 +478,45 @@ void largestNumber(vector< int > &nums) {
     cout << answer << endl;
 }
 
+// Leetcode 2125. Number of Laser Beams in a Bank
+// TC O(n^2)
+
+// There is one laser beam between any two security devices if both conditions are met:
+
+// 1. The two devices are located on two different rows: r1 and r2, where r1 < r2.
+// 2.For each row i where r1 < i < r2, there are no security devices in the ith row.
+
+int countDevices(string &binary) {                 // To count no. of 1's i.e. devices
+    int count = 0;
+    for(auto b:binary) {
+      count += b - '0';
+    }
+    return count;
+}
+
+int numberOfBeams(vector< string > &bank) {
+    vector<int> devices;
+    for(auto row: bank) {
+        devices.push_back(countDevices(row));      // Storing the count of devices
+    }
+
+    int beams = 0;
+    for(int i=0; i<devices.size(); i++) {
+      int j = i+1;
+      while(j < devices.size()) {
+          beams += devices[i] * devices[j];
+          if(devices[j] == 0) {                   
+              j++;
+          } 
+          else {
+              break;                              // This satisfies condition 2 in Question
+          }
+      }
+    }
+
+    return beams;
+}
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -593,24 +632,40 @@ int main(){
     // convert("A", 1);
 
     // for largest number
-    vector< int > numsTestCaseOne;
-    vector< int > numsTestCaseTwo;
-    vector< int > numsTestCaseThree;
+    // vector< int > numsTestCaseOne;
+    // vector< int > numsTestCaseTwo;
+    // vector< int > numsTestCaseThree;
 
-    numsTestCaseOne.push_back(10);
-    numsTestCaseOne.push_back(2);
+    // numsTestCaseOne.push_back(10);
+    // numsTestCaseOne.push_back(2);
 
-    numsTestCaseTwo.push_back(3);
-    numsTestCaseTwo.push_back(30);
-    numsTestCaseTwo.push_back(34);
-    numsTestCaseTwo.push_back(5);
-    numsTestCaseTwo.push_back(9);
+    // numsTestCaseTwo.push_back(3);
+    // numsTestCaseTwo.push_back(30);
+    // numsTestCaseTwo.push_back(34);
+    // numsTestCaseTwo.push_back(5);
+    // numsTestCaseTwo.push_back(9);
 
-    numsTestCaseThree.push_back(0);
-    numsTestCaseThree.push_back(0);
+    // numsTestCaseThree.push_back(0);
+    // numsTestCaseThree.push_back(0);
 
-    largestNumber(numsTestCaseOne);
-    largestNumber(numsTestCaseTwo);
-    largestNumber(numsTestCaseThree);
+    // largestNumber(numsTestCaseOne);
+    // largestNumber(numsTestCaseTwo);
+    // largestNumber(numsTestCaseThree);
+
+    // for Laser beams
+    vector< string > testCaseOne;
+    vector< string > testCaseTwo;
+
+    testCaseOne.push_back("011001");
+    testCaseOne.push_back("000000");
+    testCaseOne.push_back("010100");
+    testCaseOne.push_back("001000");
+
+    testCaseTwo.push_back("000");
+    testCaseTwo.push_back("111");
+    testCaseTwo.push_back("000");
+
+    cout << "Total No of laser beams are: " << numberOfBeams(testCaseOne) << endl;
+    cout << "Total No of laser beams are: " << numberOfBeams(testCaseTwo) << endl;
     return 0;
 }
