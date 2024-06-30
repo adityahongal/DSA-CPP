@@ -563,6 +563,41 @@ int findMinimumTimeDifference(vector< string > &timePoints) {
     return answer;
 }
 
+// Leetcode 1209. Remove All Adjacent Duplicates in String II
+
+// Method 1 TC - O(NK)
+bool areLastK_1CharsSame(string &ans, char &newch, int K_1) {
+  int it = ans.size() - 1;
+  for (int k = 0; k < K_1; k++) {
+    if (newch != ans[it]) {
+      return false;
+    }
+    it--;
+  }
+  return true;
+}
+string removeDuplicatesMethodOne(string s, int k) {
+  string ans;
+  for (int i = 0; i < s.size(); ++i) {
+    char &newchar = s[i];
+    if (ans.size() < k - 1) {
+      ans.push_back(newchar);
+    } else {
+      if (areLastK_1CharsSame(ans, newchar, k - 1)) {
+        for (int j = 0; j < k - 1; j++) {
+          ans.pop_back();
+        }
+      } else {
+        ans.push_back(newchar);
+      }
+    }
+  }
+  return ans;
+}
+
+// Method 2
+// 2 pointer approach TC - O(n) SC - O(n)
+
 int main(){
     // isAnagram("anagram", "nagaram");
     // isAnagram("rat", "car");
@@ -715,24 +750,32 @@ int main(){
     // cout << "Total No of laser beams are: " << numberOfBeams(testCaseTwo) << endl;
 
     // For find minimm time difference
-    vector< string > timePointsTestCaseOne;
-    vector< string > timePointsTestCaseTwo;
-    vector< string > timePointsTestCaseThree;
+    // vector< string > timePointsTestCaseOne;
+    // vector< string > timePointsTestCaseTwo;
+    // vector< string > timePointsTestCaseThree;
 
-    timePointsTestCaseOne.push_back("23:59");
-    timePointsTestCaseOne.push_back("00:00");
+    // timePointsTestCaseOne.push_back("23:59");
+    // timePointsTestCaseOne.push_back("00:00");
 
-    timePointsTestCaseTwo.push_back("00:00");
-    timePointsTestCaseTwo.push_back("23:59");
-    timePointsTestCaseTwo.push_back("00:00");
+    // timePointsTestCaseTwo.push_back("00:00");
+    // timePointsTestCaseTwo.push_back("23:59");
+    // timePointsTestCaseTwo.push_back("00:00");
 
-    timePointsTestCaseThree.push_back("12:12");
-    timePointsTestCaseThree.push_back("00:13");
+    // timePointsTestCaseThree.push_back("12:12");
+    // timePointsTestCaseThree.push_back("00:13");
 
-    cout << findMinimumTimeDifference(timePointsTestCaseOne) << endl;
+    // cout << findMinimumTimeDifference(timePointsTestCaseOne) << endl;
 
-    cout << findMinimumTimeDifference(timePointsTestCaseTwo) << endl;
+    // cout << findMinimumTimeDifference(timePointsTestCaseTwo) << endl;
 
-    cout << findMinimumTimeDifference(timePointsTestCaseThree) << endl;
+    // cout << findMinimumTimeDifference(timePointsTestCaseThree) << endl;
+
+    cout << removeDuplicatesMethodOne("deeedbbcccbdaa", 3) << endl;
+    cout << removeDuplicatesMethodOne("abcd", 2) << endl;
+    cout << removeDuplicatesMethodOne("pbbcggttciiippooaais", 2) << endl;
+
+    // cout << removeDuplicatesMethodTwo("deeedbbcccbdaa", 3) << endl;
+    // cout << removeDuplicatesMethodTwo("abcd", 2) << endl;
+    // cout << removeDuplicatesMethodTwo("pbbcggttciiippooaais", 2) << endl;
     return 0;
 }
