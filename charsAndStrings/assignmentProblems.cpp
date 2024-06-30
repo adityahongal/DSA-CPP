@@ -565,7 +565,7 @@ int findMinimumTimeDifference(vector< string > &timePoints) {
 
 // Leetcode 1209. Remove All Adjacent Duplicates in String II
 
-// Method 1 TC - O(NK)
+// Method 1 TC - O(NK). More Run time since we don't use any space
 bool areLastK_1CharsSame(string &ans, char &newch, int K_1) {
   int it = ans.size() - 1;
   for (int k = 0; k < K_1; k++) {
@@ -597,6 +597,26 @@ string removeDuplicatesMethodOne(string s, int k) {
 
 // Method 2
 // 2 pointer approach TC - O(n) SC - O(n)
+// Less runtime and more efficient
+string removeDuplicatesMethodTwo(string s, int k) {
+    int i = 0, j = 0;
+    vector< int > count(s.size(), 0);        // SINGLE SPACE  
+
+    while (j < s.size()) {
+      s[i] = s[j];
+      count[i] = 1;                          // set count to 1
+      if (i > 0 && s[i] == s[i - 1]) {
+        count[i] += count[i - 1];
+      }
+      if (count[i] == k) {
+        i -= k;
+      }
+      ++i;
+      ++j;
+    }
+
+    return s.substr(0, i);                  // since we are making changes inside string only
+}
 
 int main(){
     // isAnagram("anagram", "nagaram");
@@ -770,12 +790,12 @@ int main(){
 
     // cout << findMinimumTimeDifference(timePointsTestCaseThree) << endl;
 
-    cout << removeDuplicatesMethodOne("deeedbbcccbdaa", 3) << endl;
-    cout << removeDuplicatesMethodOne("abcd", 2) << endl;
-    cout << removeDuplicatesMethodOne("pbbcggttciiippooaais", 2) << endl;
+    // cout << removeDuplicatesMethodOne("deeedbbcccbdaa", 3) << endl;
+    // cout << removeDuplicatesMethodOne("abcd", 2) << endl;
+    // cout << removeDuplicatesMethodOne("pbbcggttciiippooaais", 2) << endl;
 
-    // cout << removeDuplicatesMethodTwo("deeedbbcccbdaa", 3) << endl;
-    // cout << removeDuplicatesMethodTwo("abcd", 2) << endl;
-    // cout << removeDuplicatesMethodTwo("pbbcggttciiippooaais", 2) << endl;
+    cout << removeDuplicatesMethodTwo("deeedbbcccbdaa", 3) << endl;
+    cout << removeDuplicatesMethodTwo("abcd", 2) << endl;
+    cout << removeDuplicatesMethodTwo("pbbcggttciiippooaais", 2) << endl;
     return 0;
 }
