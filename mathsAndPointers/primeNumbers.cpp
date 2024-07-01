@@ -52,10 +52,38 @@ int countPrimesSQRT(int n) {
     return c;
 }
 
+// sieve of Eratosthenes method
+// TC -> O(n)(n/2, n/3, n/5, n/11...) -> harmonic progression of prime numbers or tailor series
+// O(n* log(logn))
+// SC -> O(n)
+
+int countPrimesUsingSieveOfErastosthenes(int n) {
+    if(n==0) return 0;
+
+    vector<bool> prime(n, true);                // Mark all as Prime Numbers
+    prime[0] = prime[1] = false;
+
+    int ans = 0;
+
+    for(int i = 2; i < n; i++) {
+        if(prime[i]) {
+        ans++;
+
+        int j = 2*i;
+        while (j<n) {
+            prime[j] = false;
+            j += i;
+        }
+        }
+    }
+
+    return ans;
+}
+
 int main(){
 
     cout << "Naive Approach: " << countPrimesNaive(10) << endl; 
     cout << "SQRT Approach: " << countPrimesSQRT(21) << endl;  
-    
+    cout << "Sieve of Eratosthenes Approach " << countPrimesUsingSieveOfErastosthenes(21) << endl;
     return 0;
 }
