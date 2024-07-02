@@ -30,6 +30,48 @@ void pointersInit() {
     // the answer of size of different datatype pointers are same why ?
     // because ptr variable stores only address
     // so answer for 32 bit system might be 4 and for 64 bit will be 8
+
+    // do not declare pointer empty because it will store illegal random garbage value
+    // instead point it to zero e.g. int* ptr = 0; or nullptr
+
+    int b = 100;
+    int *bptr = &b;
+    cout << "Before: " << bptr << " " << *bptr << endl;
+
+    bptr = bptr + 1; // gives next + 1byte memory address
+    cout << "After: " << bptr << " " << *bptr << endl;
+
+    // Pointer Arithmatics
+    *bptr = *bptr + 1;
+    cout << "After increment: " << *bptr << endl;
+
+    *bptr = *bptr / 2;
+    cout << "Division: " << (*bptr) << endl;
+    *bptr = *bptr - 7;
+    cout << "Substraction: " << (*bptr) << endl;
+
+    // Copying Pointers
+    int x = 666;
+    int *y = &x;
+    int *z = y;
+    cout << "x: " << x << endl;
+    cout << "Address of y: " << y << endl;
+    cout << "Address of z: " << z << " Value of " << "z: " << *z << endl;
+
+    // Some other examples of accessing pointers
+    int d = 200;
+    int *dptr = &d;
+
+    cout << endl << d << endl;           // value of d
+    cout << &d << endl;                  // address of d
+    cout << dptr << endl;                // address stored in dptr
+    cout << *dptr << endl;               // value stored in d (holds address of d)
+    cout << &dptr << endl;               // address of dptr
+    cout << (*dptr)++ << endl;           // increment of 200 by 1
+    cout << *dptr << endl;               // it will be 201
+
+    cout << ++(*dptr) << endl;           // it will be 202 but it gives direct output
+
 }
 
 int main(){
