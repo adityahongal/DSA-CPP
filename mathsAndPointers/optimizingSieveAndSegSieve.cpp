@@ -59,10 +59,70 @@ vector< bool > SieveOfE(long long int num) {
     return sieve;
 }
 
+// SEGMENTED SIEVE
+
+// get prime in range of (left, right)
+// segmented sieve
+// R-L <= 10 ^ 6 then only create sieve
+// array limit size 21
+
+// steps
+// 1. generate all primes responsible to mark seg sieve
+// using normal sieve N = sqrt R
+// 2. for all primes in normal sieve store primes in base primes
+// 3. find first index to start marking
+// ex if L - 110 /  R - 120 then / basePrime[0] -> resembles -> 110 /
+// basePrime[20] -> 130
+// firstMultiple = (L / prime) * prime
+// 110 / 2 * 2 = 110 completely divisible
+// but 110 / 3 * 3 = 108 which is less than L
+// so we add prime to L
+// if first multiple < L then firstmultiple += prime
+// int j = i * i ;
+// in seg sieve int j = max(firstMul, prime * prime)
+
+vector< bool > SegmentedSieveOfE(long long int L, long long int R) {
+    // use normal sieve to mark seg sieve sqrt(R)
+    vector< bool > sieve = SieveOfE(sqrt(R));
+    // base primes will be used to mark
+    // sieve return bool vector ot true false fro prime
+    // we store prime numbers in base primes vector
+    vector< long long int > basePrimes;
+
+    // get base prime
+    for (long long int i = 0; i < sieve.size(); i++) {
+        if (sieve[i]) {
+        basePrimes.push_back(i);
+        }
+    }
+
+    vector< bool > segSieve(R - L + 1, true);
+    if (L == 1 || L == 0) {
+        segSieve[L] = false;
+    }
+
+    for (auto prime : basePrimes) {
+        long long int first_mul = (L / prime) * prime;
+        first_mul = first_mul < L ? first_mul + prime : first_mul;
+        long long int j = max(first_mul, prime * prime);
+        while (j <= R) {
+        // j-L is to fit in right array indexes as it start from 0-sizeofR
+        segSieve[j - L] = false;
+        j += prime;
+        }
+    }
+    return segSieve;
+}
+
 int main(){
 
-    int num = 21;
-    vector< bool > sieve = SieveOfE(num);
-    printSieveVector(sieve);
+    // int num = 21;
+    // vector< bool > sieve = SieveOfE(num);
+    // printSieveVector(sieve);
+
+    long long int L = 110;
+    long long int R = 130;
+    vector< bool > SegSieve = SegmentedSieveOfE(L, R);
+    printSegSieveVector(SegSieve, L);
     return 0;
 }
