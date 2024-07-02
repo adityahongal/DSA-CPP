@@ -114,6 +114,19 @@ vector< bool > SegmentedSieveOfE(long long int L, long long int R) {
     return segSieve;
 }
 
+// Product of prime numbers(Ques available on geeksforgeeks.com)
+long long primeProduct(long long L, long long R) {
+    vector< bool > segSieve = SegmentedSieveOfE(L, R);
+    long long int ans = 1;
+    for (long long int i = 0; i < segSieve.size(); i++) {
+        if (segSieve[i]) {
+        long long int actualPrime = (L + i) % M;
+        ans = (ans * actualPrime) % M;
+        }
+    }
+    return ans;
+}
+
 int main(){
 
     // int num = 21;
@@ -124,5 +137,7 @@ int main(){
     long long int R = 130;
     vector< bool > SegSieve = SegmentedSieveOfE(L, R);
     printSegSieveVector(SegSieve, L);
+
+    cout << primeProduct(L, R) << endl;
     return 0;
 }
