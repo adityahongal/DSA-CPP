@@ -74,7 +74,25 @@ void pointersInit() {
 
 }
 
+// Pointers behaviour with Arrays
+void arrayPointers() {
+    int arr[5] = {10, 20, 30, 40, 50};
+
+    cout << arr << endl;               // This gives base address of array
+    cout << arr[0] << endl;           // This gives element at index 0
+    cout << &arr[0] << endl;          // This also gives base address of array    
+    cout << &arr << endl;             // This too gives base address of array
+
+    // Creating Pointer for arrays
+    int *ptr = arr;
+    cout << "Base address of array stored in pointer: " << ptr << endl;
+    cout << "Value of address stored : " << *ptr << endl;
+    cout << "Address of Pointer: " << &ptr << endl;
+
+}
+
 int main(){
-    pointersInit();
+    // pointersInit();
+    arrayPointers();
     return 0;
 }
