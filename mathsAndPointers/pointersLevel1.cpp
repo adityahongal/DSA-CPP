@@ -78,16 +78,36 @@ void pointersInit() {
 void arrayPointers() {
     int arr[5] = {10, 20, 30, 40, 50};
 
-    cout << arr << endl;               // This gives base address of array
-    cout << arr[0] << endl;           // This gives element at index 0
-    cout << &arr[0] << endl;          // This also gives base address of array    
-    cout << &arr << endl;             // This too gives base address of array
+    // cout << arr << endl;               // This gives base address of array
+    // cout << arr[0] << endl;           // This gives element at index 0
+    // cout << &arr[0] << endl;          // This also gives base address of array    
+    // cout << &arr << endl;             // This too gives base address of array
 
     // Creating Pointer for arrays
     int *ptr = arr;
+    // cout << "Base address of array stored in pointer: " << ptr << endl;
+    // cout << "Value of address stored : " << *ptr << endl;
+    // cout << "Address of Pointer: " << &ptr << endl;
+
+    // arr = arr + 1;                    // not possible in arrays, cz once array is created it cannot be modified
+
+    // Accessing with pointer
+    cout << endl << "Accesing" << endl;
+    cout << "Base address of arr: " << arr << endl;
+    cout << "Base address accessed through &arr: " << &arr << endl;
+    cout << "Value of arr[0]: " << arr[0] << endl;
+    cout << "Address of value through &arr[0]: " << &arr[0] << endl;
     cout << "Base address of array stored in pointer: " << ptr << endl;
-    cout << "Value of address stored : " << *ptr << endl;
-    cout << "Address of Pointer: " << &ptr << endl;
+    cout << "Address of Pointer itself: " << &ptr << endl;
+    cout << "Value at stored address: " << *ptr << endl;
+
+    cout << "value at base address + 1 = " << *arr + 1 << endl;
+    cout << "Gives the value of the second element of the array: " << *(arr + 1) << endl;
+    // *(arr + 1) moves the pointer to the next element in the array. In this case, it points to arr[1].
+    // *(arr + 1) then dereferences this pointer, giving you the value of the second element of the array. 
+    // In this case, *(arr + 1) is 20.
+
+    cout << "Gives the value of the fourth element of the array: " << *(arr + 3) << endl;
 
 }
 
