@@ -109,6 +109,45 @@ void arrayPointers() {
 
     cout << "Gives the value of the fourth element of the array: " << *(arr + 3) << endl;
 
+    // Pointers behaviour with char arrays
+    char ch[50] = "addy";
+    char *chptr = ch;                                           // or you can use &ch both gives base address of array
+
+    cout << "Prints entire string: " << ch << endl;
+    cout << "Base Address of char array: " << &ch << endl;
+    cout << "Prints Entire String: " << chptr << endl;  
+    cout << "Base Address of chptr itself: " << &chptr << endl;  
+    cout << "Value at stored address: " << *chptr << endl;          // Gives first letter
+    cout << "Gives the value of the fourth letter of the string: " << *(chptr + 3) << endl;
+    cout << "chptr + 1: " << chptr + 1 << endl;                     // leaving first character it will print rest of the string
+
+    char ch3 = 'a';
+    char *ch3ptr = &ch3;
+    cout << "Printing 'a' till null char or garbage char is found: " << ch3ptr << endl;      // print a and untill null char is found with garbage values. Also depends on versions and compiler versions
+
+    // Some more examples of pointer in chars
+    char ch4[10] = "RacecaR";
+    char *cptr = ch4;
+
+    cout << endl;
+    cout << "ch: " << ch4 << endl;
+    cout << "&ch: " << &ch4 << endl;
+    cout << "*(ch + 3): " << *(ch4 + 3)<< endl;
+    cout << "cptr: " << cptr << endl;
+    cout << "&cptr: " << &cptr << endl;
+    cout << "*cptr: " << *cptr << endl;
+    cout << "*(cptr + 3): " << *(cptr + 3) << endl;
+    cout << "cptr + 2: " << cptr + 2 << endl;
+    cout << "cptr + 4: " << cptr + 4 << endl;
+
+    // Special case
+    // Since &ch4[0] is a pointer to the first character of the string "RacecaR", 
+    // cout will print the entire string "RacecaR".
+
+    // In C++, when you use cout to print a char*, 
+    // it is treated as a C-style string and 
+    // cout prints the characters starting from the pointer until it encounters a null terminator (\0).
+    cout << "&ch[0]: " << &ch[0] << endl;
 }
 
 int main(){
