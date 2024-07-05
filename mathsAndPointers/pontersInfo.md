@@ -194,4 +194,6 @@ Here are some strategies for avoiding dangling pointers in your code:
 3. Avoid returning pointers to local variables: If you need to return a value from a function, consider using a reference or a smart pointer instead of a raw pointer. If you must use a raw pointer, make sure the memory it points to is not freed before the pointer is used.
 4. Nullify pointers after deleting or freeing memory: To prevent dangling pointers, always nullify a pointer after deleting or freeing the memory it points to. This ensures that the pointer is no longer a dangling pointer and can be safely used without causing undefined behavior.
 
-In summary, dangling pointers are a common problem in C++ programming that can lead to unpredictable behavior and program crashes. To avoid dangling pointers, use smart pointers.
+In summary, dangling pointers are a common problem in C++ programming that can lead to unpredictable behavior and program crashes. 
+
+To avoid dangling pointers, use smart pointers.
