@@ -19,7 +19,19 @@ void exampleOfByReference(){
     solve(arr,5);
 }
 
+// Double/Multi Pointers
+void multiPointers(){
+    int a = 50;
+    int *p = &a;
+    int **q = &p;                             // Double pointer
+    int ***r = &q;
+    
+    cout << "Value of q: " << **q << endl;
+    cout << "Value of r: " << ***r << endl;
+}
+
 int main(){
-    exampleOfByReference();
+    // exampleOfByReference();
+    multiPointers();
     return 0;
 }
