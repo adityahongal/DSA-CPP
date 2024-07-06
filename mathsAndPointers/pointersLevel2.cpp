@@ -62,10 +62,55 @@ void heapMemory2(){
 
 }
 
+void heapmemory3(){
+    
+    // to create 2D array in stack memory
+    // int arr[2][4] = { 
+    //                 {2,4,6,8},
+    //                 {1,2,3,4}
+    //                 };
+
+    // to create 2D array in heap memory
+
+    // 4 -> row count
+    // 3 -> col count
+
+    int** arr = new int*[4];           // Array of pointers
+
+    for(int i=0; i<4; i++) {
+        // Create 1D array for every single pointer
+        arr[i] = new int[3];
+    }
+
+    //taking input 
+    for(int i=0; i<4; i++) {
+        for(int j=0; j<3; j++) {
+            cin >> arr[i][j];
+        }
+    }
+
+    // Printing/Accessing
+    cout << endl << "Printing the 2D array " << endl;
+    for(int i=0; i<4; i++) {
+        for(int j=0; j<3; j++) {
+            cout <<  arr[i][j] << ' ';
+        }
+        cout << endl;
+    }
+
+    // Deleting or Deallocation
+    // We have to delete every single item
+    // or else there will be memory leak
+    for(int i=0; i<4; i++) {
+        delete[] arr[i];
+    }
+}
+
 int main(){
     // exampleOfByReference();
     // multiPointers();
-    // heapMemory1(); // Heap memory usage example goes here...
-    heapMemory2(); 
+    // heapMemory1();
+    // heapMemory2(); 
+    heapmemory3();
     return 0;
 }
