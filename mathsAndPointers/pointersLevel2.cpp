@@ -30,8 +30,25 @@ void multiPointers(){
     cout << "Value of r: " << ***r << endl;
 }
 
+// Use Cases of Pointers
+void heapMemory1(){
+
+    // To create integer in stack memory
+    int a = 10;                                     // Static variables,temp variables etc stored in stack memory
+    cout << "Value of a in stack: " << a << endl;
+
+    // To create integer in heap memory
+    int *p = new int;                               // Here new represents return address, we store that in pointer
+    *p = 20;
+    cout << "Value of a in heap: " << *p << endl;
+
+    // Deallocate memory
+    delete p;
+}
+
 int main(){
     // exampleOfByReference();
-    multiPointers();
+    // multiPointers();
+    heapMemory1(); // Heap memory usage example goes here...
     return 0;
 }
