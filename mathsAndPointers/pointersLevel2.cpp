@@ -31,6 +31,8 @@ void multiPointers(){
 }
 
 // Use Cases of Pointers
+// Stack memory stores pointers,Static variables,temp variables etc
+// Heap memory stores dynamic variables like vectors,etc
 void heapMemory1(){
 
     // To create integer in stack memory
@@ -46,9 +48,24 @@ void heapMemory1(){
     delete p;
 }
 
+void heapMemory2(){
+    
+    // to create 1D array in stack memory
+    int arr[5] = {0};
+    cout << arr[0] << arr[1] << arr[2] << endl;
+    
+    // to create array in heap memory (dynamic memory)
+    // when we create an array in heap memory
+    // its always initialized with zero
+    int *brr = new int[5];
+    cout << brr[0] << brr[1] << brr[2] << endl;
+
+}
+
 int main(){
     // exampleOfByReference();
     // multiPointers();
-    heapMemory1(); // Heap memory usage example goes here...
+    // heapMemory1(); // Heap memory usage example goes here...
+    heapMemory2(); 
     return 0;
 }
