@@ -206,6 +206,97 @@ void probTwentyOne() {
     cout << a[0] << endl;
 }
 
+void square(int *p) {
+    int a = 10;
+    p = &a;
+    *p = (*p) * (*p);
+    cout << "Inside a(local variable): " << a << endl;
+}
+void probTwentyTwo() {
+    int a = 10;
+    square(&a);
+    cout << "Outside a: " << a << endl;
+}
+
+void Q(int z) {       // this is passed as value
+    z += z;   
+    cout << z << " ";
+}
+
+void P(int *y) {
+    int x = *y + 2;
+    Q(x);
+    *y = x - 1;
+    cout << x << " ";
+}
+
+void probTwentyThree() {
+    int x = 5;
+    P(&x);
+    cout << x;
+}
+
+void probTwentyFour() {
+    int a = 10;
+    int *p = &a; // b comes here
+    int **q = &p;
+
+    int b = 20;
+    *q = &b;
+    (*p)++;
+    cout << a << " " << b << endl;
+}
+
+int f(int x, int *py, int **ppz) {          // int x is value, int &py holds address of b
+    // x is a copy of c 
+    // although value of c is affected 
+    // x wont be affected
+    int y, z;
+    **ppz += 1;
+    z = **ppz;
+
+    *py += 2;
+    y = *py;
+
+    x += 3;
+    return x + y + z;
+}
+void probTwentyFive() {
+    int c, *b, **a;
+    c = 4;
+    b = &c;
+    a = &b;
+
+    cout << f(c, b, a);
+}
+
+
+void probTwentySix() {
+    int ***r, **q, *p, i=8;
+
+    p = &i;
+    (*p)++;
+
+    q = &p;
+    (**q)++;
+
+    r=&q;
+
+    cout << *p << " " << **q << " " << ***r << endl;
+
+}
+
+void increment(int **p) {
+    (**p)++;
+}
+
+void probTwentySeven() {
+    int num = 10;
+    int *ptr = &num;
+    increment(&ptr);
+    cout << num << endl;
+}
+
 int main(){
     // probOne();
     // probTwo();
@@ -227,6 +318,12 @@ int main(){
     // probEighteen();
     // probNinteen();
     // probTwenty();
-    probTwentyOne();
+    // probTwentyOne();
+    // probTwentyTwo();
+    // probTwentyThree();
+    // probTwentyFour();
+    // probTwentyFive();
+    // probTwentySix();
+    probTwentySeven();
     return 0;
 }
