@@ -70,11 +70,22 @@ int NfibonacciSeriesSum(int n) {
     return ans;
 }
 
+int sumOfN(int n) {
+    if (n == 1) {
+        return 1;
+    }
+
+    int ans = n + sumOfN(n - 1);
+    return ans;
+}
+
+
 int main(){
     // cout << factorial(5) << endl;
     // printReverseCount(10);
     // printCount(10);
     // cout << pow(5) << endl;  // 2 to power of 5
-    cout << NfibonacciSeriesSum(9) << endl;
+    // cout << NfibonacciSeriesSum(9) << endl;
+    cout << sumOfN(5) << endl;
     return 0;
 }
