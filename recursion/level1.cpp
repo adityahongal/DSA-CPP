@@ -50,9 +50,21 @@ void printCount(int n) {
     cout << n << " ";
 }
 
+int pow(int n) {
+    // base case
+    if (n == 0) {                   // n to power of 0 = 1
+        return 1;
+    }
+
+    // Recursive Call
+    int ans = 2 * pow(n - 1);
+    return ans;
+}
+
 int main(){
     // cout << factorial(5) << endl;
-    printReverseCount(10);
-    printCount(10);
+    // printReverseCount(10);
+    // printCount(10);
+    cout << pow(5) << endl;  // 2 to power of 5
     return 0;
 }
