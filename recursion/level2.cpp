@@ -34,6 +34,19 @@ bool searchArray(int arr[], int size, int target, int index) {
     return ans;
 }
 
+// Max number in an array using recursion
+void maxNumInArr(int arr[], int size, int index,int &maxNum) { // v impo &maxNum pass by reference
+    // base case
+    if (index >= size) {
+        return;
+    }
+
+    // processing
+    maxNum = max(maxNum, arr[index]);
+    // recursive call
+    maxNumInArr(arr, size, index + 1, maxNum);
+}
+
 int main(){
     // Print array using recursion
     int arr[] = {10,20,30,40,50};
@@ -42,7 +55,11 @@ int main(){
     // printArrayRecursive(arr, sizeOfArr, index);
 
     // Search array using recursion
-    int target = 50;
-    cout << searchArray(arr,sizeOfArr,target,index) << endl;
+    // int target = 50;
+    // cout << searchArray(arr,sizeOfArr,target,index) << endl;
+
+    int maxNum = INT_MIN;
+    maxNumInArr(arr, sizeOfArr, index, maxNum);
+    cout << maxNum << endl;
     return 0;
 }
