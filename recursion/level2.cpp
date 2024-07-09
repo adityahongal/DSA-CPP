@@ -78,11 +78,24 @@ void evenNumsInArray(int arr[], int size, int index, vector< int > &ans) {
         return;
     }
 
-    if (arr[index] % 2 == 0) {
+    if (arr[index] % 2 == 0) {                   // can also be wriiten as if(!(arr[index] & 1))
         ans.push_back(arr[index]);
     }
 
     evenNumsInArray(arr, size, index + 1, ans);
+}
+
+// Print and Store Odd numbers in an array using recursion
+void oddNumsInArray(int arr[], int size, int index, vector< int > &ans) {
+    if (index >= size) {
+        return;
+    }
+
+    if (arr[index] & 1) {                     //if(arr[index] % 2 == 1)
+        ans.push_back(arr[index]);
+    }
+
+    oddNumsInArray(arr, size, index + 1, ans);
 }
 
 int main(){
@@ -107,9 +120,14 @@ int main(){
     // minNumInArr(arr, sizeOfArr, index, minNum);
     // cout << minNum << endl;
 
-    // Print and Store even numbers in an array using recursion
+    // Print and Store Even numbers in an array using recursion
+    // vector<int> ans;
+    // evenNumsInArray(arr, sizeOfArr, index, ans);
+    // printVector(ans);
+
+    // Print and Store Odd numbers in an array using recursion
     vector<int> ans;
-    evenNumsInArray(arr, sizeOfArr, index, ans);
+    oddNumsInArray(arr, sizeOfArr, index, ans);
     printVector(ans);
 
     return 0;
