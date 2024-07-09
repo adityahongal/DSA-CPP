@@ -43,8 +43,23 @@ void maxNumInArr(int arr[], int size, int index,int &maxNum) { // v impo &maxNum
 
     // processing
     maxNum = max(maxNum, arr[index]);
+    
     // recursive call
     maxNumInArr(arr, size, index + 1, maxNum);
+}
+
+// Min number in an array using recursion
+void minNumInArr(int arr[], int size, int index,int &minNum) { // v impo &minNum
+    // base case
+    if (index >= size) {
+        return;
+    }
+
+    // processing
+    minNum = min(minNum, arr[index]);
+
+    // recursive call
+    minNumInArr(arr, size, index + 1, minNum);
 }
 
 int main(){
@@ -58,8 +73,15 @@ int main(){
     // int target = 50;
     // cout << searchArray(arr,sizeOfArr,target,index) << endl;
 
+    // Max number in an array using recursion
     int maxNum = INT_MIN;
     maxNumInArr(arr, sizeOfArr, index, maxNum);
     cout << maxNum << endl;
+
+    // Min number in an array using recursion
+    int minNum = INT_MAX;
+    minNumInArr(arr, sizeOfArr, index, minNum);
+    cout << minNum << endl;
+
     return 0;
 }
