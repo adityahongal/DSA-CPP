@@ -98,12 +98,61 @@ void oddNumsInArray(int arr[], int size, int index, vector< int > &ans) {
     oddNumsInArray(arr, size, index + 1, ans);
 }
 
+// Binary Search using recursion
+int binarySearchRecursive(int arr[], int size, int start, int end, int target)
+{
+    // base case
+    if (start > end)
+    {
+        return -1;
+    }
+
+    int mid = (start + end) / 2;
+
+    // processing
+    if (arr[mid] == target)
+    {
+        return mid;
+    }
+    // rest will be handled by recursion
+    // arr[mid] not equal to target
+    // then target maybe big or small
+    if (target > arr[mid])
+    {
+        // Go right
+        return binarySearchRecursive(arr, size, mid + 1, end, target);   //Right Recursive call
+    }
+    else
+    {
+        // Go left
+        return binarySearchRecursive(arr, size, start, mid - 1, target);   //Left recursive call
+    }
+}
+
+// Print Digits to Number
+// e.g. 389 -> 3,8,9
+
+void digitToNumber(int n){
+    if(n == 0){
+        return;
+    }
+
+    // Recursive call first to avoid printing reversed numbers
+    int newNumber = n / 10;
+    digitToNumber(newNumber);
+
+    // Print the last digit
+    // processing
+    int digit  = n % 10;
+    cout << digit << " ";
+}
+
 int main(){
     // Print array using recursion
     // int arr[] = {10,20,30,40,50};
-    int arr[] = {10,11,12,13,14,15,16,17};
-    int sizeOfArr = sizeof(arr) / sizeof(arr[0]);
-    int index = 0;
+    // int arr[] = {10,11,12,13,14,15,16,17};
+    // int sizeOfArr = sizeof(arr) / sizeof(arr[0]);
+    // int index = 0;
     // printArrayRecursive(arr, sizeOfArr, index);
 
     // Search array using recursion
@@ -126,9 +175,25 @@ int main(){
     // printVector(ans);
 
     // Print and Store Odd numbers in an array using recursion
-    vector<int> ans;
-    oddNumsInArray(arr, sizeOfArr, index, ans);
-    printVector(ans);
+    // vector<int> ans;
+    // oddNumsInArray(arr, sizeOfArr, index, ans);
+    // printVector(ans);
+
+    // Binary Search using recursion
+    // int arr[] = {10,20,30,40,50,60,70};
+    // int sizeOfArr = sizeof(arr) / sizeof(arr[0]);
+    // int target = 60;
+
+    // int start = 0;
+    // int end = sizeOfArr - 1;
+    // int ans = binarySearchRecursive(arr, sizeOfArr, start, end, target);
+    // cout << "answer index: " << ans << endl;
+
+    // Digit to number
+    cout << "Enter digit: " << endl;
+    int n;
+    cin >> n;
+    digitToNumber(n);
 
     return 0;
 }
