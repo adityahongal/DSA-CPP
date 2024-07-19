@@ -71,7 +71,7 @@ bool checkPalindrome(string &str, int start, int end) {
 void addStrings(string &num1, int ptr1, string &num2, int ptr2, string &ans,
                 int carry = 0) {
     
-    if (ptr1 && ptr2 < 0) {
+    if (ptr1 < 0 && ptr2 < 0) {
         // extra carry might be remaining
         if (carry != 0) {
         // return string(1, carry + '0');
@@ -82,9 +82,10 @@ void addStrings(string &num1, int ptr1, string &num2, int ptr2, string &ans,
     }
 
     // ex sum ptr1 is at 4 in 456 and sum2 56 -> ptr2 will be at diff positions
-    
-    // string ans = "";
+    // i.e. Extract digits or treat as '0' if pointer is below zero
 
+    // string ans = "";
+    
     int digitOfNum1 = (ptr1 >= 0 ? num1[ptr1] : '0') - '0';
     int digitOfNum2 = (ptr2 >= 0 ? num2[ptr2] : '0') - '0';
     int csum = digitOfNum1 + digitOfNum2 + carry;
@@ -141,7 +142,7 @@ int main(){
     reverse(ans1.begin(), ans1.end());
     cout << ans1 << endl;
 
-    string num3 = "11", num4 = "77";
+    string num3 = "9133", num4 = "0";
     string ans2 = "";
     addStrings(num3, num3.size() - 1, num4, num4.size() - 1, ans2);
     reverse(ans2.begin(), ans2.end());
