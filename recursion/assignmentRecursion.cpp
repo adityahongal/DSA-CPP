@@ -32,6 +32,19 @@ void findLastOccuranceOfCharRTL(string str, int index, int &ans, char target) {
     findLastOccuranceOfCharRTL(str, index - 1, ans, target);     // recursive call // i = n-1
 }
 
+// Reverse a string recursively
+// Tc -> O(n/2) -> O(n)
+// SC -> O(n/2 + 1 ) -> O(n)
+void reverseString(string &str, int start, int end) {
+    if (start >= end) {
+        return;
+    }
+
+    swap(str[start], str[end]);
+
+    reverseString(str, start + 1, end - 1);
+}
+
 int main(){
 
     // for last occurance of char
@@ -42,14 +55,21 @@ int main(){
     // cout << "Found on index: " << ans << endl;
 
     // last occr using inbuilt STL function
-    const char* last_occurrence = strrchr("abcddedg", 'd');
-    cout << "using inbuilt strrchr(): " << last_occurrence << endl;
+    // const char* last_occurrence = strrchr("abcddedg", 'd');
+    // cout << "using inbuilt strrchr(): " << last_occurrence << endl;
 
-    // for last occurance of char
-    // Method 2
-    string str = "abcddedg";
-    int index = str.size() - 1;  // start from rightmost index (n-1)
-    int ans = -1;
-    findLastOccuranceOfCharRTL(str, index, ans, 'd');
-    cout << "Found on index using RTL: " << ans << endl;
+    // // for last occurance of char
+    // // Method 2
+    // string str = "abcddedg";
+    // int index = str.size() - 1;  // start from rightmost index (n-1)
+    // int ans = -1;
+    // findLastOccuranceOfCharRTL(str, index, ans, 'd');
+    // cout << "Found on index using RTL: " << ans << endl;
+
+    // Reverse a string
+    string str = "hello";
+    int start = 0;
+    int end = str.length() - 1;
+    reverseString(str, start, end);
+    cout << str << endl;
 }
