@@ -45,6 +45,24 @@ void reverseString(string &str, int start, int end) {
     reverseString(str, start + 1, end - 1);
 }
 
+// Check palindrome
+// 1 is for base condition below
+// Tc -> O(n/2) -> O(n)
+// SC -> O(n/2 + 1 ) -> O(n)
+
+bool checkPalindrome(string &str, int start, int end) {
+    if (start >= end) {
+        return true;
+    }
+
+    if (str[start] != str[end]) {
+        return false;
+    }
+
+    return checkPalindrome(str, start + 1, end - 1);
+}
+
+
 int main(){
 
     // for last occurance of char
@@ -67,9 +85,16 @@ int main(){
     // cout << "Found on index using RTL: " << ans << endl;
 
     // Reverse a string
-    string str = "hello";
-    int start = 0;
-    int end = str.length() - 1;
-    reverseString(str, start, end);
-    cout << str << endl;
+    // string str = "hello";
+    // int start = 0;
+    // int end = str.length() - 1;
+    // reverseString(str, start, end);
+    // cout << str << endl;
+
+    // Check palindrome
+    string str1 = "racecar";
+    cout << checkPalindrome(str1, 0, str1.size() - 1) << endl;
+
+    string str2 = "racetar";
+    cout << checkPalindrome(str2, 0, str2.size() - 1) << endl;
 }
