@@ -100,6 +100,39 @@ void addStrings(string &num1, int ptr1, string &num2, int ptr2, string &ans,
     // return ans;
 }
 
+// Print all sub array using RE
+
+// TC -> O(N^2)
+// start run for N times
+// end runs for N, N-1, N-2 ... 1 worst case N
+// so N * N
+
+// SC -> O(N)
+// subarray runs -> N + 2 calls
+
+void subArray_util(vector< int > &nums, int start, int end) {
+    // base case
+    if (end >= nums.size()) {
+        return;
+    }
+
+    // processing
+    for (int i = start; i <= end; i++) {
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+
+    // RE Call
+    subArray_util(nums, start, end + 1);
+}
+
+void subArray(vector< int > &nums) {                     
+    for (int start = 0; start < nums.size(); start++) {        // To traverse start from 0th index to end of array
+        int end = start;
+        subArray_util(nums, start, end);
+    }
+}
+
 int main(){
 
     // for last occurance of char
@@ -136,15 +169,24 @@ int main(){
     // cout << checkPalindrome(str2, 0, str2.size() - 1) << endl;
 
     // for string add
-    string num1 = "456", num2 = "77";
-    string ans1 = "";
-    addStrings(num1, num1.size() - 1, num2, num2.size() - 1, ans1);
-    reverse(ans1.begin(), ans1.end());
-    cout << ans1 << endl;
+    // string num1 = "456", num2 = "77";
+    // string ans1 = "";
+    // addStrings(num1, num1.size() - 1, num2, num2.size() - 1, ans1);
+    // reverse(ans1.begin(), ans1.end());
+    // cout << ans1 << endl;
 
-    string num3 = "9133", num4 = "0";
-    string ans2 = "";
-    addStrings(num3, num3.size() - 1, num4, num4.size() - 1, ans2);
-    reverse(ans2.begin(), ans2.end());
-    cout << ans2 << endl;
+    // string num3 = "9133", num4 = "0";
+    // string ans2 = "";
+    // addStrings(num3, num3.size() - 1, num4, num4.size() - 1, ans2);
+    // reverse(ans2.begin(), ans2.end());
+    // cout << ans2 << endl;
+
+    // Print all subarray
+    vector< int > nums;
+    nums.push_back(1);
+    nums.push_back(2);
+    nums.push_back(3);
+    nums.push_back(4);
+    nums.push_back(5);
+    subArray(nums);
 }
