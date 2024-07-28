@@ -133,6 +133,48 @@ void subArray(vector< int > &nums) {
     }
 }
 
+// Remove all occurances of a subarray
+
+// N -> str.size
+// M -> part.size
+// left part -> O(N)
+// right part -> O(M)
+// O(N)
+// O(NM) + O(N) -> O(NM) for one case
+// total RE calls = O(N/M)
+
+// TC -> O(N/M * NM) = O(N^2)
+// SC -> O(N/M)
+
+void removeOccurances(string &str, string &part) {
+
+    // processing
+    // 1. find part string position in s
+    // 2. erase that part
+    // 3. RE call for remaining string
+
+    // 1.
+    int found = str.find(part);
+
+    // 2.
+    if (found != string::npos) {
+        // part string is located
+        // we can take left string of found and concatinate it with right string
+
+        // pluck left str
+        string leftStr = str.substr(0, found);
+        string rightStr = str.substr(found + part.size(), str.size());
+        str = leftStr + rightStr;
+
+        removeOccurances(str, part);          // Recursive call
+    } 
+    else {
+        // all the occurances have been removed
+        // base case
+        return;
+    }
+}
+
 int main(){
 
     // for last occurance of char
@@ -182,11 +224,24 @@ int main(){
     // cout << ans2 << endl;
 
     // Print all subarray
-    vector< int > nums;
-    nums.push_back(1);
-    nums.push_back(2);
-    nums.push_back(3);
-    nums.push_back(4);
-    nums.push_back(5);
-    subArray(nums);
+    // vector< int > nums;
+    // nums.push_back(1);
+    // nums.push_back(2);
+    // nums.push_back(3);
+    // nums.push_back(4);
+    // nums.push_back(5);
+    // subArray(nums);
+
+    // Remove all occurances of a subarray
+    string s1 = "daabcbaabcbc";
+    string part1 = "abc";
+    removeOccurances(s1, part1);
+    cout << s1 << endl;
+
+    string s2 = "axxxxyyyyb";
+    string part2 = "xy";
+    removeOccurances(s2, part2);
+    cout << s2 << endl;
+
+    return 0;
 }
