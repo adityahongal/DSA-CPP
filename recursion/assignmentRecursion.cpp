@@ -175,6 +175,33 @@ void removeOccurances(string &str, string &part) {
     }
 }
 
+// BUY And SELL Stocks
+
+// LeetCode 121 Best Time to buy and sell stock
+// TC -> O(N)
+// SC -> O(N)
+void BuySellStocks(vector< int > &prices, int index, int &minPrice, int &maxProfit) {
+    // base case N + 1 Times
+    if (index >= prices.size()) {
+        return;
+    }
+
+    // processing
+    if (prices[index] < minPrice) {               // first we buy stock
+        minPrice = prices[index];
+    }
+
+    int todaySProfit = prices[index] - minPrice;  // Then we calculate current profit and try to sell that stock
+    
+    // if current profit is more than max profit then update max profit
+    if (todaySProfit > maxProfit) {
+        maxProfit = todaySProfit;
+    }
+
+    // RE
+    BuySellStocks(prices, index + 1, minPrice, maxProfit);  // Recursive call
+}
+
 int main(){
 
     // for last occurance of char
@@ -232,16 +259,30 @@ int main(){
     // nums.push_back(5);
     // subArray(nums);
 
-    // Remove all occurances of a subarray
-    string s1 = "daabcbaabcbc";
-    string part1 = "abc";
-    removeOccurances(s1, part1);
-    cout << s1 << endl;
+    // // Remove all occurances of a subarray
+    // string s1 = "daabcbaabcbc";
+    // string part1 = "abc";
+    // removeOccurances(s1, part1);
+    // cout << s1 << endl;
 
-    string s2 = "axxxxyyyyb";
-    string part2 = "xy";
-    removeOccurances(s2, part2);
-    cout << s2 << endl;
+    // string s2 = "axxxxyyyyb";
+    // string part2 = "xy";
+    // removeOccurances(s2, part2);
+    // cout << s2 << endl;
+
+    // LeetCode 121 Best Time to buy and sell stock
+    vector< int > prices;
+    prices.push_back(7);
+    prices.push_back(1);
+    prices.push_back(5);
+    prices.push_back(3);
+    prices.push_back(6);
+    prices.push_back(4);
+
+    int minPrice = INT_MAX;
+    int maxProfit = INT_MIN;
+    BuySellStocks(prices, 0, minPrice, maxProfit);
+    cout << "Max Profit: " << maxProfit << endl;
 
     return 0;
 }
