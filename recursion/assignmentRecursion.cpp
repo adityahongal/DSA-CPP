@@ -202,6 +202,45 @@ void BuySellStocks(vector< int > &prices, int index, int &minPrice, int &maxProf
     BuySellStocks(prices, index + 1, minPrice, maxProfit);  // Recursive call
 }
 
+// Leetcode 273. Integer to words
+// computation is proportional to number of words generated
+// words generated is proportional to the digits in num
+// 1 digit can be represented by 2 words max
+// N -> no of digits -> ceil(logN)base10
+// TC -> proportional to no of digits
+// TC -> O(log10 N) base 10
+// N -> no of digits, constant which represents no of time it will loop in
+// reference map untill no is found ex num 23 -> 23 times loop in reference map
+// SC -> O(log10 N) base 10
+
+string numberToWords(int num, vector< pair< int, string > > &referenceMap){
+    
+    if(num == 0){
+        return "ZERO";
+    }
+
+    for( auto it : referenceMap){
+        if(num >= it.first){
+            // to find string "a"
+            string a = "";
+            if(num >= 100){
+                a = numberToWords(num / it.first, referenceMap) + " ";
+            }
+
+            // to find string "b"
+            string b = it.second;
+
+            // to find string "c"
+            string c = "";
+            if(num % it.first != 0){
+                c = " " + numberToWords(num%it.first, referenceMap);
+            }
+            return a + b + c;
+        }
+    }
+    return "";
+}
+
 int main(){
 
     // for last occurance of char
@@ -271,18 +310,64 @@ int main(){
     // cout << s2 << endl;
 
     // LeetCode 121 Best Time to buy and sell stock
-    vector< int > prices;
-    prices.push_back(7);
-    prices.push_back(1);
-    prices.push_back(5);
-    prices.push_back(3);
-    prices.push_back(6);
-    prices.push_back(4);
+    // vector< int > prices;
+    // prices.push_back(7);
+    // prices.push_back(1);
+    // prices.push_back(5);
+    // prices.push_back(3);
+    // prices.push_back(6);
+    // prices.push_back(4);
 
-    int minPrice = INT_MAX;
-    int maxProfit = INT_MIN;
-    BuySellStocks(prices, 0, minPrice, maxProfit);
-    cout << "Max Profit: " << maxProfit << endl;
+    // int minPrice = INT_MAX;
+    // int maxProfit = INT_MIN;
+    // BuySellStocks(prices, 0, minPrice, maxProfit);
+    // cout << "Max Profit: " << maxProfit << endl;
+
+    // For int to words problem
+    vector< pair< int, string > > referenceMap = {{1000000000, "Billion"},
+                                                  {1000000, "Million"},
+                                                  {1000, "Thousand"},
+                                                  {100, "Hundred"},
+                                                  {90, "Ninety"},
+                                                  {80, "Eighty"},
+                                                  {70, "Seventy"},
+                                                  {60, "Sixty"},
+                                                  {50, "Fifty"},
+                                                  {40, "Forty"},
+                                                  {30, "Thirty"},
+                                                  {20, "Twenty"},
+                                                  {19, "Nineteen"},
+                                                  {18, "Eighteen"},
+                                                  {17, "Seventeen"},
+                                                  {16, "Sixteen"},
+                                                  {15, "Fifteen"},
+                                                  {14, "Fourteen"},
+                                                  {13, "Thirteen"},
+                                                  {12, "Twelve"},
+                                                  {11, "Eleven"},
+                                                  {10, "Ten"},
+                                                  {9, "Nine"},
+                                                  {8, "Eight"},
+                                                  {7, "Seven"},
+                                                  {6, "Six"},
+                                                  {5, "Five"},
+                                                  {4, "Four"},
+                                                  {3, "Three"},
+                                                  {2, "Two"},
+                                                  {1, "One"}};
+
+    int num1 = 10102;
+    int num2 = 123;
+    int num3 = 1234567;
+
+    string ans1, ans2, ans3;
+    ans1 = numberToWords(num1, referenceMap);
+    ans2 = numberToWords(num2, referenceMap);
+    ans3 = numberToWords(num3, referenceMap);
+
+    cout << ans1 << endl;
+    cout << ans2 << endl;
+    cout << ans3 << endl;
 
     return 0;
 }
