@@ -285,6 +285,37 @@ bool isMatch(string s, string p, int si = 0, int pi = 0) {
     return false;
 }
 
+// Leetcode 1155. Number of Dice Rolls With Target Sum
+// TC O(k^n)
+// SC O(n)
+int numRollsToTarget(int n, int k, int target) {
+
+    if (target < 0) {
+        return 0;
+    }
+
+    // found case
+    if (n == 0 && target == 0) {
+        return 1;
+    }
+
+    // not found case
+    if (n == 0 && target != 0) {
+        return 0;
+    }
+
+    if (n != 0 && target == 0) {
+        return 0;
+    }
+
+    int ans = 0;
+    for (int i = 1; i <= k; i++) { // i represents face value
+        ans = ans + numRollsToTarget(n - 1, k, target - i);
+    }
+
+    return ans;
+}
+
 int main(){
 
     // for last occurance of char
@@ -414,14 +445,19 @@ int main(){
     // cout << ans3 << endl;
 
     // Leetcode 44 - WildCard Matching (Hard level)
-    cout << isMatch("aa", "a") << endl;
-    cout << isMatch("aa", "*") << endl;
-    cout << isMatch("cb", "?a") << endl;
-    cout << isMatch("ca", "?a") << endl;
-    cout << isMatch("aa", "aa*") << endl;  // * acts as empty string
-    cout << isMatch("**ab", "ab") << endl; // * acts as empty string and constraint violation
-    cout << isMatch("abcdefg", "ab*fg") << endl; // will return true as * will match with "cde"
-    cout << isMatch("abc", "abc***") << endl;
+    // cout << isMatch("aa", "a") << endl;
+    // cout << isMatch("aa", "*") << endl;
+    // cout << isMatch("cb", "?a") << endl;
+    // cout << isMatch("ca", "?a") << endl;
+    // cout << isMatch("aa", "aa*") << endl;  // * acts as empty string
+    // cout << isMatch("**ab", "ab") << endl; // * acts as empty string and constraint violation
+    // cout << isMatch("abcdefg", "ab*fg") << endl; // will return true as * will match with "cde"
+    // cout << isMatch("abc", "abc***") << endl;
+
+    // 1155. Number of Dice Rolls With Target Sum
+    cout << numRollsToTarget(1, 6, 3) << endl;
+    cout << numRollsToTarget(2, 6, 7) << endl;
+    cout << numRollsToTarget(3, 2, 6) << endl;
 
     return 0;
 }
